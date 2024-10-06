@@ -1,6 +1,6 @@
 Hello ae!
 Mình sẽ chia ra thành 3 source chính:
-Template front-end mình sẽ sử dụng là: CORK
+Template front-end mình sẽ sử dụng là: Cork - Bootstrap 5
 1. Source EasyBuy-Backend (API)
 2. Source EasyBuy-Frontend-Admin (Admin page: template)
 3. Source EasyBuy-Frontend-Customer (Customer page: template)
