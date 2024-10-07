@@ -22,5 +22,7 @@ Ví dụ: Khi mình checkout sang nhánh mới và làm mình đã làm xong tas
 Mỗi lần tạo nhánh mới thì phải pull origin develop để cập nhật code mới nhất sau đó check out từ nhánh develop sang nhánh mới để làm nha.
 
 * Người merge code thì sẽ là tui nha ae, tui là Công Anh:)))
+* Tui đi làm r nên có chút kinh nghiệm nên ae đừng gạch đá gì tui nha:)))
+  
   
 Tui cảm ơn ae !
