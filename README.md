@@ -1,9 +1,10 @@
 Hello ae!
 Mình sẽ chia ra thành 3 source chính:
 Template front-end mình sẽ sử dụng là: Cork - Bootstrap 5
+Database mình sử dụng: SQL Server
 1. Source EasyBuy-Backend (API)
 2. Source EasyBuy-Frontend-Admin (Admin page: template)
-3. Source EasyBuy-Frontend-Customer (Customer page: template)
+3. Source EasyBuy-Frontend-Customer (Customer page: template) (Dang thảo luận)
 
 Mỗi source chính là mỗi project và tất cả nằm trong 1 solution ae nhé.
 Source EasyBuy-Backend mình sẽ sử dụng các pakages này nha:
