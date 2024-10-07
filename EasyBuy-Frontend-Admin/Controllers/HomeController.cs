@@ -10,6 +10,7 @@ namespace EasyBuy_Frontend_Admin.Controllers
 
         public HomeController(ILogger<HomeController> logger)
         {
+            //Db -> model
             _logger = logger;
         }
 
