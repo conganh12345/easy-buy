@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Admin page</title>
+    <title>@ViewData["Title"]</title>
 
     <link rel="icon" type="image/x-icon" href="~/images/favicon.ico" />
     <link href="~/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -75,7 +75,9 @@
 
         <!--  BEGIN CONTENT AREA  -->
         <div id="content" class="main-content">
-            @RenderBody()
+            <div layout:fragment="content" class="layout-px-spacing">
+                @RenderBody()
+            </div>
 
             <!--  BEGIN FOOTER  -->
             <div class="footer-wrapper">

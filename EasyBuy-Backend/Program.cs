@@ -1,4 +1,5 @@
-using EasyBuy_Backend.Data;
+﻿using EasyBuy_Backend.Data;
+using EasyBuy_Backend.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,8 +11,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Đăng ký MyDbContext với Dependency Injection và cấu hình kết nối đến cơ sở dữ liệu SQL Server
 builder.Services.AddDbContext<MyDbContext>(options => 
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddRepositories();
 
 var app = builder.Build();
 
