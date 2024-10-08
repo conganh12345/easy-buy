@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using EasyBuy_Backend.Models;
+using EasyBuy_Backend.Data.Configurations;
 
 namespace EasyBuy_Backend.Data
 {
@@ -7,9 +8,14 @@ namespace EasyBuy_Backend.Data
     {
         public MyDbContext(DbContextOptions options) : base(options) 
         {
-
+            //
         }
 
         public DbSet<User> Users { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+        }      
     }
 }

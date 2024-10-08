@@ -6,7 +6,7 @@
 			<div class="nav-logo">
 
 				<div class="nav-item theme-text">
-					<a href="#" class="nav-link"> TRAIN-BOOKING </a>
+					<a href="#" class="nav-link"> EASY-BUY </a>
 				</div>
 			</div>
 			<div class="nav-item sidebar-toggle">
@@ -28,16 +28,16 @@
 					<img src="/images/profile-30.png" alt="avatar">
 				</div>
 				<div class="profile-content">
-					<h6 class="">Bảo Anh Tin</h6>
+					<h6 class="">Đại ca</h6>
 					<p class="">Quản trị viên</p>
 				</div>
 			</div>
 		</div>
 
 		<ul class="list-unstyled menu-categories" id="accordionExample">
-			<li class="menu active">
+			<li class="menu @(ViewContext.RouteData.Values["controller"]?.ToString() == "Dashboard" ? "active" : "")">
 
-				<a href="#" class="dropdown-toggle">
+				<a href="@Url.Action("Index", "Dashboard")" class="dropdown-toggle">
 					<div>
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 							 viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -63,8 +63,8 @@
 				</div>
 			</li>
 
-			<li class="menu">
-				<a href="#" class="dropdown-toggle">
+			<li class="menu @(ViewContext.RouteData.Values["controller"]?.ToString() == "User" ? "active" : "")">
+				<a href="@Url.Action("Index", "User")" class="dropdown-toggle">
 					<div>
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 							 viewBox="0 0 24 24" fill="none" stroke="currentColor"

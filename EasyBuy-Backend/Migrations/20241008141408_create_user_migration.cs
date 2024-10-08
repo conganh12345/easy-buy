@@ -11,19 +11,19 @@ namespace EasyBuy_Backend.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "users",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    name = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: false),
+                    email = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: false),
+                    phone = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    password = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_users", x => x.id);
                 });
         }
 
@@ -31,7 +31,7 @@ namespace EasyBuy_Backend.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "users");
         }
     }
 }
