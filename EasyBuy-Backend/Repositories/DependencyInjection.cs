@@ -7,9 +7,8 @@ namespace EasyBuy_Backend.Repositories
         // Đăng ký các lớp repository trong Dependency Injection
         public static void AddRepositories(this IServiceCollection services)
         {
-            
-            services.AddScoped<IUserRepository, UserRepository>();
-
+			// Register repositories here
+			services.AddScoped<IUserRepository, UserRepository>();
         }
     }
 }

@@ -29,44 +29,34 @@ namespace EasyBuy_Backend.Controllers
         public IActionResult GetById(int id)
         {
             var user = _userRepository.GetById(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
+           
             return Ok(user);
         }
 
         [HttpPost]
-        public IActionResult Create(User user)
+        public IActionResult Create([FromBody]User user)
         {
             _userRepository.Create(user);
 
-            return CreatedAtAction(nameof(GetById), new { id = user.Id }, user);
-        }
+			return Ok();
+		}
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody]User user)
+        public IActionResult Update([FromBody] User user, int id)
         {
-            if (id != user.Id)
-            {
-                return BadRequest();
-            }
             _userRepository.Update(user);
 
-            return NoContent();
-        }
+			return Ok();
+		}
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             var user = _userRepository.GetById(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
+           
             _userRepository.Delete(user);
 
-            return NoContent();
-        }
+			return Ok();
+		}
     }
 }
