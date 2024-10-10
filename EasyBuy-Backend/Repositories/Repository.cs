@@ -24,22 +24,22 @@ namespace EasyBuy_Backend.Repositories
             return _dbSet.Find(id);
         }
 
-        public void Create(T entity)
-        {
-            _dbSet.Add(entity);
-            _context.SaveChanges();
-        }
+		public bool Create(T entity)
+		{
+			_dbSet.Add(entity);
+			return _context.SaveChanges() > 0; 
+		}
 
-        public void Update(T entity)
-        {
-            _dbSet.Update(entity);
-            _context.SaveChanges();
-        }
+		public bool Update(T entity)
+		{
+			_dbSet.Update(entity);
+			return _context.SaveChanges() > 0; 
+		}
 
-        public void Delete(T entity)
-        {
-            _dbSet.Remove(entity);
-            _context.SaveChanges();
-        }
-    }
+		public bool Delete(T entity)
+		{
+			_dbSet.Remove(entity);
+			return _context.SaveChanges() > 0; 
+		}
+	}
 }

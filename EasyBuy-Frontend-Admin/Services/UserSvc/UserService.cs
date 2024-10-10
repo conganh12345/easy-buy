@@ -39,8 +39,12 @@ namespace EasyBuy_Frontend_Admin.Services.UserSvc
 			{
 				var response = await _httpClient.PostAsJsonAsync("/api/User", user);
 
-                return true;
-            }
+				if (response.IsSuccessStatusCode)
+				{
+					return true; 
+				}
+				return false;
+			}
 			catch (Exception ex)
 			{
 				Debug.WriteLine("An error occurred while adding user: " + ex.Message);
@@ -80,8 +84,12 @@ namespace EasyBuy_Frontend_Admin.Services.UserSvc
 			{
 				var response = await _httpClient.PutAsJsonAsync($"/api/User/{user.Id}", user);
 
-                return true;
-            }
+				if (response.IsSuccessStatusCode)
+				{
+					return true;
+				}
+				return false;
+			}
 			catch (Exception ex)
 			{
 				Debug.WriteLine("An error occurred while updating user: " + ex.Message);
@@ -95,8 +103,12 @@ namespace EasyBuy_Frontend_Admin.Services.UserSvc
 			{
 				var response = await _httpClient.DeleteAsync($"/api/User/{id}");
 
-                return true;
-            }
+				if (response.IsSuccessStatusCode)
+				{
+					return true;
+				}
+				return false;
+			}
 			catch (Exception ex)
 			{
 				Debug.WriteLine("An error occurred while deleting user: " + ex.Message);
