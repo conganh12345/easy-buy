@@ -9,6 +9,7 @@ namespace EasyBuy_Frontend_Admin.RouteConfigs
             // Gọi tất cả các route config từ các lớp trong folder Modules
             Dashboard.RegisterRoutes(endpoints);
             User.RegisterRoutes(endpoints);
+            Category.RegisterRoutes(endpoints);
         }
     }
 }
