@@ -24,8 +24,12 @@ namespace EasyBuy_Backend.Data.Configurations
                 .HasMaxLength(255)
                 .HasColumnName("description");
 
-            entity.Property(e => e.Status)
-                .HasColumnName("status");
-        }
-    }
+			entity.Property(e => e.Status)
+	            .HasConversion(
+		            v => v.ToString(),
+		            v => (CategoryStatus)Enum.Parse(typeof(CategoryStatus), v))
+	            .HasColumnName("status");
+
+		}
+	}
 }

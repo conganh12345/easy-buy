@@ -2,6 +2,7 @@
 	ViewData["Title"] = "Danh mục";
 }
 @model List<EasyBuy_Frontend_Admin.Models.CategoryViewModel>
+@using EasyBuy_Frontend_Admin.Helpers
 
 <!-- CSS riêng cho lớp con -->
 @section Styles {
@@ -60,7 +61,10 @@
 									<td>@category.Id</td>
 									<td>@category.Name</td>
 									<td>@category.Description</td>
-									<td>@category.Status</td>
+									<td>
+										<span class="badge badge-light-@category.Status.GetBadge()">@category.Status.GetDisplayName()
+										</span>
+									</td>
 									<td class="text-truncate" style="max-width: 250px;">
 										<a href="@Url.Action("Edit", "Category", new { id = category.Id })"
 										   class="bs-tooltip edit" data-bs-toggle="tooltip"

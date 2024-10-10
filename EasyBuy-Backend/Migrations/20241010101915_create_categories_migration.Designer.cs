@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EasyBuy_Backend.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20241010064033_create_categories_migration")]
+    [Migration("20241010101915_create_categories_migration")]
     partial class create_categories_migration
     {
         /// <inheritdoc />
@@ -46,8 +46,9 @@ namespace EasyBuy_Backend.Migrations
                         .HasColumnType("varchar(255)")
                         .HasColumnName("name");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int")
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("status");
 
                     b.HasKey("Id");

@@ -36,27 +36,33 @@ namespace EasyBuy_Backend.Controllers
         [HttpPost]
         public IActionResult Create([FromBody] Category category)
         {
-            _categoryRepository.Create(category);
-
-            return Ok();
+            if (_categoryRepository.Create(category))
+            {
+				return Ok();
+			}
+            return BadRequest();
         }
 
         [HttpPut("{id}")]
         public IActionResult Update([FromBody] Category category, int id)
         {
-            _categoryRepository.Update(category);
-
-            return Ok();
-        }
+            if(_categoryRepository.Update(category))
+			{
+				return Ok();
+			}
+			return BadRequest();
+		}
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             var category = _categoryRepository.GetById(id);
 
-            _categoryRepository.Delete(category);
-
-            return Ok();
-        }
+            if(_categoryRepository.Delete(category))
+			{
+				return Ok();
+			}
+			return BadRequest();
+		}
     }
 }

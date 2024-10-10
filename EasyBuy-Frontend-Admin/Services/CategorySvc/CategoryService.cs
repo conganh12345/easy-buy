@@ -39,8 +39,12 @@ namespace EasyBuy_Frontend_Admin.Services.CategorySvc
             {
                 var response = await _httpClient.PostAsJsonAsync("/api/Category", category);
 
-                return true;
-            }
+				if (response.IsSuccessStatusCode)
+				{
+					return true;
+				}
+				return false;
+			}
             catch (Exception ex)
             {
                 Debug.WriteLine("An error occurred while adding category: " + ex.Message);
@@ -80,8 +84,12 @@ namespace EasyBuy_Frontend_Admin.Services.CategorySvc
             {
                 var response = await _httpClient.PutAsJsonAsync($"/api/Category/{category.Id}", category);
 
-                return true;
-            }
+				if (response.IsSuccessStatusCode)
+				{
+					return true;
+				}
+				return false;
+			}
             catch (Exception ex)
             {
                 Debug.WriteLine("An error occurred while updating category: " + ex.Message);
@@ -95,8 +103,12 @@ namespace EasyBuy_Frontend_Admin.Services.CategorySvc
             {
                 var response = await _httpClient.DeleteAsync($"/api/Category/{id}");
 
-                return true;
-            }
+				if (response.IsSuccessStatusCode)
+				{
+					return true;
+				}
+				return false;
+			}
             catch (Exception ex)
             {
                 Debug.WriteLine("An error occurred while deleting category: " + ex.Message);

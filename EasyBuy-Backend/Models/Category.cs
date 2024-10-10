@@ -1,4 +1,7 @@
-﻿namespace EasyBuy_Backend.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.Reflection;
+
+namespace EasyBuy_Backend.Models
 {
     public class Category
     {
@@ -8,6 +11,15 @@
 
         public string Description { get; set; }
 
-        public int Status { get; set; }
+		public CategoryStatus Status { get; set; }
     }
+
+	public enum CategoryStatus
+	{
+		[Display(Name = "Hoạt động")]
+		ENABLE = 0,
+
+		[Display(Name = "Không hoạt động")]
+		DISABLED = 1
+	}
 }

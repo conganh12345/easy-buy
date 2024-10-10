@@ -18,6 +18,14 @@ namespace EasyBuy_Frontend_Admin.Models
 
         [Required(ErrorMessage = "Trạng thái là bắt buộc.")]
         [JsonPropertyName("status")]
-        public int Status { get; set; }
+        public CategoryStatus Status { get; set; }
     }
+	public enum CategoryStatus
+	{
+		[Display(Name = "Hoạt động")]
+		ENABLE = 0,
+
+		[Display(Name = "Không hoạt động")]
+		DISABLED = 1
+	}
 }
