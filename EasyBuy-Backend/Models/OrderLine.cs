@@ -6,18 +6,17 @@ namespace EasyBuy_Backend.Models
     public class OrderLine
     {
         [Key]
-        public int Id { get; set; } // Khóa chính
+        public int Id { get; set; } 
 
         [Required]
-        public int Quantity { get; set; } // Số lượng sản phẩm
+        public int Quantity { get; set; } 
 
         [Required]
-        public double UnitPrice { get; set; } // Giá đơn vị của sản phẩm
+        public double UnitPrice { get; set; } 
 
-        // Thêm khóa ngoại để liên kết với Order
         public int OrderId { get; set; }
         [ForeignKey("OrderId")]
-        public Order Order { get; set; } // Liên kết với đơn hàng
+        public Order Order { get; set; } 
 
         public int ProductId { get; set; }
         [ForeignKey("ProductId")]

@@ -23,13 +23,6 @@ namespace EasyBuy_Backend.Data.Configurations
             entity.Property(e => e.Total)
                 .IsRequired()
                 .HasColumnName("total");
-
-            // Thiết lập khóa ngoại cho Supplier
-            entity.HasOne(e => e.Supplier)
-                .WithMany(s => s.InventoryVouchers) // Liên kết với Suppliers
-                .HasForeignKey(e => e.SupplierId)
-                .OnDelete(DeleteBehavior.Restrict) // Thiết lập hành động khi xóa
-                .HasConstraintName("FK_InventoryVoucher_Supplier");
         }
     }
 }

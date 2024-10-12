@@ -13,23 +13,21 @@ namespace EasyBuy_Backend.Data.Configurations
             entity.HasKey(e => e.Id);
 
             entity.Property(e => e.Id)
+                .IsRequired()
                 .HasColumnName("id");
 
             entity.Property(e => e.Name)
-                .HasMaxLength(255)
-                .IsUnicode(false)
-                .HasColumnName("name");
+                .IsRequired()
+                .HasMaxLength(100);
 
             entity.Property(e => e.Description)
-                .HasMaxLength(255)
-                .HasColumnName("description");
+                .HasMaxLength(250);
 
-			entity.Property(e => e.Status)
-	            .HasConversion(
-		            v => v.ToString(),
-		            v => (CategoryStatus)Enum.Parse(typeof(CategoryStatus), v))
-	            .HasColumnName("status");
-
-		}
-	}
+            entity.Property(e => e.Status)
+                .HasConversion(
+                    v => v.ToString(),
+                    v => (CategoryStatus)Enum.Parse(typeof(CategoryStatus), v))
+                .HasColumnName("status");
+        }
+    }
 }

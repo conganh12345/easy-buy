@@ -16,7 +16,7 @@ namespace EasyBuy_Backend.Data.Configurations
 
             entity.Property(e => e.Id)
                 .IsRequired()
-                .HasColumnName("id"); // Đặt tên cột là "id"
+                .HasColumnName("id");
 
             entity.Property(e => e.Name)
                 .HasMaxLength(100)
@@ -47,7 +47,6 @@ namespace EasyBuy_Backend.Data.Configurations
                     v => v.ToString(),
                     v => (SupplierStatus)Enum.Parse(typeof(SupplierStatus), v))
                 .HasColumnName("status");
-
         }
     }
 }

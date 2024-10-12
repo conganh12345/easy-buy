@@ -6,18 +6,17 @@ namespace EasyBuy_Backend.Models
     public class InventoryVoucherDetail
     {
         [Key]
-        public int Id { get; set; } // Khóa chính
+        public int Id { get; set; } 
 
         [Required]
-        public int Quantity { get; set; } // Số lượng sản phẩm nhận
+        public int Quantity { get; set; } 
 
         [Required]
-        public double ReceivingUnitPrice { get; set; } // Giá đơn vị của sản phẩm nhận
+        public double ReceivingUnitPrice { get; set; }
 
-        // Khóa ngoại liên kết với InventoryVoucher
         public int InventoryVoucherId { get; set; }
         [ForeignKey("InventoryVoucherId")]
-        public InventoryVoucher InventoryVoucher { get; set; } // Liên kết với phiếu nhập kho
+        public InventoryVoucher InventoryVoucher { get; set; } 
 
         public int ProductId { get; set; }
         [ForeignKey("ProductId")]
