@@ -1,6 +1,8 @@
 ﻿using EasyBuy_Backend.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using static EasyBuy_Backend.Models.Order;
+using static EasyBuy_Backend.Models.Supplier;
 
 namespace EasyBuy_Backend.Data.Configurations
 {
@@ -41,9 +43,11 @@ namespace EasyBuy_Backend.Data.Configurations
                 .HasColumnName("email");
 
             entity.Property(e => e.Status)
-                .IsRequired()
+                .HasConversion(
+                    v => v.ToString(),
+                    v => (SupplierStatus)Enum.Parse(typeof(SupplierStatus), v))
                 .HasColumnName("status");
-           
+
         }
     }
 }

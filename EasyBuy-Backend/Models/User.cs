@@ -1,17 +1,47 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace EasyBuy_Backend.Models
 {
     public class User
     {
-        public int Id { get; set; }
+        [Key]
+        public int Id { get; set; } // Khóa chính
 
-        public string Name { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string Name { get; set; } // Tên người dùng
 
-        public string Email { get; set; }
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; } // Email người dùng
 
-        public string? Phone { get; set; }
+        [StringLength(15)]
+        public string? Phone { get; set; } // Số điện thoại người dùng
 
-        public string Password { get; set; }
+        [Required]
+        public string Password { get; set; } // Mật khẩu người dùng
+
+        [Required]
+        [StringLength(50)]
+        public string Address { get; set; } // Địa chỉ người dùng
+
+        [Required]
+        public UserStatus Status { get; set; }
+
+        public virtual ICollection<Order> Orders { get; set; } // Danh sách đơn hàng của người dùng
+
+        public virtual ICollection<Cart> Carts { get; set; }
+
+        public virtual ICollection<Product> Products { get; set; }
+    }
+
+    public enum UserStatus
+    {
+        [Display(Name = "Hoạt động")]
+        ENABLE = 0,
+
+        [Display(Name = "Không hoạt động")]
+        DISABLED = 1
     }
 }

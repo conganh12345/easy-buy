@@ -12,6 +12,8 @@ namespace EasyBuy_Backend.Models
         public string Description { get; set; }
 
 		public CategoryStatus Status { get; set; }
+
+        public virtual ICollection<Product> Products { get; set; }
     }
 
 	public enum CategoryStatus

@@ -26,9 +26,18 @@ namespace EasyBuy_Backend.Models
         public string Email { get; set; } // Email nhà cung cấp
 
         [Required]
-        public byte Status { get; set; } // Trạng thái nhà cung cấp (0 hoặc 1)
+        public SupplierStatus Status { get; set; }
 
         public virtual ICollection<InventoryVoucher> InventoryVouchers { get; set; } // Liên kết với InventoryVoucher
 
+    }
+
+    public enum SupplierStatus
+    {
+        [Display(Name = "Hoạt động")]
+        ENABLE = 0,
+
+        [Display(Name = "Không hoạt động")]
+        DISABLED = 1
     }
 }
