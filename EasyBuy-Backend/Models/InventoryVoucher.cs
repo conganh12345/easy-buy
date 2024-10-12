@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace EasyBuy_Backend.Models
+{
+    public class InventoryVoucher
+    {
+        [Key]
+        public int Id { get; set; } // Đổi InID sang kiểu int
+
+        [Required]
+        public DateTime Date { get; set; }
+
+        [Required]
+        public double Total { get; set; }
+
+        public int? SupplierId { get; set; }
+        [ForeignKey("SupplierId")]
+        public Supplier Supplier { get; set; }
+    }
+}
