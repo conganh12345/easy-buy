@@ -8,35 +8,35 @@ namespace EasyBuy_Backend.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Voucher> entity)
         {
-            entity.ToTable("vouchers"); // Tên bảng trong cơ sở dữ liệu
+            entity.ToTable("vouchers");
 
-            entity.HasKey(e => e.Id); // Đặt Id làm khóa chính
+            entity.HasKey(e => e.Id);
 
             entity.Property(e => e.Id)
                 .IsRequired()
-                .HasColumnName("id"); // Đặt tên cột là "id"
+                .HasColumnName("id");
 
             entity.Property(e => e.VoucherName)
                 .IsRequired()
                 .HasMaxLength(50)
-                .HasColumnName("voucher_name"); // Đặt tên cột là "voucher_name"
+                .HasColumnName("voucher_name"); 
 
             entity.Property(e => e.Discount)
                 .IsRequired()
-                .HasColumnName("discount"); // Đặt tên cột là "discount"
+                .HasColumnName("discount"); 
 
             entity.Property(e => e.Unit)
                 .IsRequired()
                 .HasMaxLength(5)
-                .HasColumnName("unit"); // Đặt tên cột là "unit"
+                .HasColumnName("unit");
 
             entity.Property(e => e.DateFrom)
                 .IsRequired()
-                .HasColumnName("date_from"); // Đặt tên cột là "date_from"
+                .HasColumnName("date_from"); 
 
             entity.Property(e => e.DateTo)
                 .IsRequired()
-                .HasColumnName("date_to"); // Đặt tên cột là "date_to"
+                .HasColumnName("date_to");
 
             entity.Property(e => e.Status)
                 .HasConversion(

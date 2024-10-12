@@ -26,6 +26,7 @@ namespace EasyBuy_Backend.Data
         public DbSet<Order> Orders { get; set; }
 
         public DbSet<Cart> Carts { get; set; }
+
         public DbSet<InventoryVoucherDetail> InventoryVoucherDetails { get; set; }
 
         public DbSet<Product> Products { get; set; }    
@@ -47,6 +48,15 @@ namespace EasyBuy_Backend.Data
             modelBuilder.ApplyConfiguration(new PaymentConfiguration());
 
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
+
+            modelBuilder.ApplyConfiguration(new CartConfiguration());
+
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
+
+            modelBuilder.ApplyConfiguration(new OrderLineConfiguration());
+
+            modelBuilder.ApplyConfiguration(new InventoryVoucherDetailConfiguration());
+
         }      
     }
 }
