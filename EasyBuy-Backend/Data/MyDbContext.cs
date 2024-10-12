@@ -15,6 +15,7 @@ namespace EasyBuy_Backend.Data
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<InventoryVoucher> InventoryVouchers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -24,6 +25,7 @@ namespace EasyBuy_Backend.Data
 
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
 
+            modelBuilder.ApplyConfiguration(new InventoryVoucherConfiguration());
         }      
     }
 }

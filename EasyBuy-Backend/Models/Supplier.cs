@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EasyBuy_Backend.Models
 {
@@ -26,5 +27,8 @@ namespace EasyBuy_Backend.Models
 
         [Required]
         public byte Status { get; set; } // Trạng thái nhà cung cấp (0 hoặc 1)
+
+        public virtual ICollection<InventoryVoucher> InventoryVouchers { get; set; } // Liên kết với InventoryVoucher
+
     }
 }
