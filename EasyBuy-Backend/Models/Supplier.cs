@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EasyBuy_Backend.Models
 {
@@ -6,25 +7,37 @@ namespace EasyBuy_Backend.Models
     {
         [Key]
         [Required]
-        public int Id { get; set; } // Id của nhà cung cấp
+        public int Id { get; set; } 
 
         [Required]
         [StringLength(100)]
-        public string Name { get; set; } // Tên nhà cung cấp
+        public string Name { get; set; } 
 
         [Required]
         [StringLength(10)]
-        public string NumberPhone { get; set; } // Số điện thoại nhà cung cấp
+        public string NumberPhone { get; set; } 
 
         [Required]
         [StringLength(200)]
-        public string Address { get; set; } // Địa chỉ nhà cung cấp
+        public string Address { get; set; } 
 
         [Required]
         [StringLength(50)]
-        public string Email { get; set; } // Email nhà cung cấp
+        public string Email { get; set; } 
 
         [Required]
-        public byte Status { get; set; } // Trạng thái nhà cung cấp (0 hoặc 1)
+        public SupplierStatus Status { get; set; }
+
+        public virtual ICollection<InventoryVoucher>? InventoryVouchers { get; set; } 
+
+    }
+
+    public enum SupplierStatus
+    {
+        [Display(Name = "Hoạt động")]
+        ENABLE = 0,
+
+        [Display(Name = "Không hoạt động")]
+        DISABLED = 1
     }
 }

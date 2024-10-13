@@ -26,5 +26,34 @@ namespace EasyBuy_Frontend_Admin.Models
 		[StringLength(100, MinimumLength = 6, ErrorMessage = "Mật khẩu phải có độ dài từ 6 đến 100 ký tự.")]
 		[JsonPropertyName("password")]
 		public string Password { get; set; }
+
+		[Required(ErrorMessage = "Địa chỉ là bắt buộc.")]
+		[StringLength(200, MinimumLength = 6, ErrorMessage = "Địa chỉ phải có độ dài từ 6 đến 200 ký tự.")]
+		[JsonPropertyName("address")]
+		public string Address { get; set; }
+
+        [Required(ErrorMessage = "Trạng thái là bắt buộc.")]
+        [JsonPropertyName("status")]
+        public UserStatus Status { get; set; }
+
+        [Required(ErrorMessage = "Vai trò là bắt buộc.")]
+        [JsonPropertyName("role")]
+        public UserRole Role { get; set; }
+    }
+    public enum UserStatus
+    {
+        [Display(Name = "Hoạt động")]
+        ENABLE = 0,
+
+        [Display(Name = "Không hoạt động")]
+        DISABLED = 1
+    }
+    public enum UserRole
+    {
+        [Display(Name = "Người dùng")]
+        USER = 0,
+
+        [Display(Name = "Quản trị viên")]
+        ADMIN = 1
     }
 }
