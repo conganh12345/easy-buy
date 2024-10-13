@@ -35,7 +35,7 @@ namespace EasyBuy_Frontend_Admin.Controllers
                 TempData["Success"] = "Thêm mới người dùng thành công.";
                 return RedirectToAction(nameof(Index));
 			}
-            TempData["Error"] = "Đã có lỗi xảy ra";
+			TempData["Error"] = "Đã có lỗi xảy ra";
             return View(user);
 		}
 

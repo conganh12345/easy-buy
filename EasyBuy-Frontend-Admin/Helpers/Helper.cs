@@ -19,13 +19,42 @@ namespace EasyBuy_Frontend_Admin.Helpers
 		{
 			switch (enumValue)
 			{
-				case CategoryStatus.ENABLE:
-					return "success";  
-				case CategoryStatus.DISABLED:
-					return "danger";  
+				// Kiểm tra từng loại enum
+				case CategoryStatus categoryStatus:
+					switch (categoryStatus)
+					{
+						case CategoryStatus.ENABLE:
+							return "success";
+						case CategoryStatus.DISABLED:
+							return "danger";
+					}
+					break;
+
+				case UserStatus userStatus:
+					switch (userStatus)
+					{
+						case UserStatus.ENABLE:
+							return "success";
+						case UserStatus.DISABLED:
+							return "danger";
+					}
+					break;
+
+				case UserRole userRole:
+					switch (userRole)
+					{
+						case UserRole.USER:
+							return "info";
+						case UserRole.ADMIN:
+							return "primary";
+					}
+					break;
+
 				default:
-					return "secondary"; 
+					return "secondary";
 			}
+
+			return "secondary"; 
 		}
 	}
 }

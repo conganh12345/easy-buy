@@ -7,26 +7,26 @@ namespace EasyBuy_Backend.Models
     public class Order
     {
         [Key]
-        public int Id { get; set; } // Khóa chính
+        public int Id { get; set; } 
 
         [Required]
-        public DateTime OrderDate { get; set; } // Ngày đặt hàng
+        public DateTime OrderDate { get; set; }
 
         [Required]
-        public int ShippingFee { get; set; } // Phí giao hàng
+        public int ShippingFee { get; set; } 
 
         [Required]
-        public int OrderDiscount { get; set; } // Giảm giá đơn hàng
+        public int OrderDiscount { get; set; } 
 
         [Required]
-        public double OrderTotal { get; set; } // Tổng đơn hàng
+        public double OrderTotal { get; set; } 
 
         [Required]
         [StringLength(150)]
-        public string Address { get; set; } // Địa chỉ giao hàng
+        public string Address { get; set; } 
 
         [Required]
-        public OrderStatus Status { get; set; } // Trạng thái đơn hàng
+        public OrderStatus Status { get; set; }
 
         public int? UserId { get; set; }
         [ForeignKey("UserId")]

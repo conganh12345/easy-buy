@@ -23,7 +23,7 @@ namespace EasyBuy_Backend.Models
         public string Password { get; set; } 
 
         [Required]
-        [StringLength(50)]
+        [StringLength(200)]
         public string Address { get; set; } 
 
         [Required]
@@ -32,9 +32,9 @@ namespace EasyBuy_Backend.Models
         [Required]
         public UserRole Role { get; set; } 
 
-        public virtual ICollection<Order> Orders { get; set; } 
+        public virtual ICollection<Order>? Orders { get; set; } 
 
-        public virtual ICollection<Cart> Carts { get; set; }
+        public virtual ICollection<Cart>? Carts { get; set; }
     }
 
     public enum UserStatus

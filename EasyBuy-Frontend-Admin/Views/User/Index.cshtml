@@ -2,6 +2,7 @@
     ViewData["Title"] = "Người dùng";
 }
 @model List<EasyBuy_Frontend_Admin.Models.UserViewModel>
+@using EasyBuy_Frontend_Admin.Helpers
 
 <!-- CSS riêng cho lớp con -->
 @section Styles {
@@ -51,6 +52,8 @@
 								<th>Tên</th>
 								<th>Email</th>
 								<th>Số điện thoại</th>
+								<th>Vai trò</th>
+								<th>Trạng thái</th>
 								<th class="no-content" style="width: 5%">Thao tác</th>
 							</tr>
 						</thead>
@@ -62,6 +65,14 @@
 									<td>@user.Name</td>
 									<td>@user.Email</td>
 									<td>@user.Phone</td>
+									<td>
+										<span class="badge badge-@user.Role.GetBadge()">@user.Role.GetDisplayName()
+										</span>
+									</td>
+									<td>
+										<span class="badge badge-light-@user.Status.GetBadge()">@user.Status.GetDisplayName()
+										</span>
+									</td>
 									<td class="text-truncate" style="max-width: 250px;">
 										<a href="@Url.Action("Edit", "User", new { id = user.Id })"
 										   class="bs-tooltip edit" data-bs-toggle="tooltip"
