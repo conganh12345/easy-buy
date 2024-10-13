@@ -8,7 +8,7 @@ namespace EasyBuy_Backend.Models
     public class InventoryVoucher
     {
         [Key]
-        public int Id { get; set; } // Đổi InID sang kiểu int
+        public int Id { get; set; } 
 
         [Required]
         public DateTime Date { get; set; }
@@ -17,6 +17,7 @@ namespace EasyBuy_Backend.Models
         public double Total { get; set; }
 
         public int? SupplierId { get; set; }
+
         [ForeignKey("SupplierId")]
         public Supplier Supplier { get; set; }
     }

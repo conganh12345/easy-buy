@@ -6,29 +6,29 @@ namespace EasyBuy_Backend.Models
     public class Voucher
     {
         [Key]
-        public int Id { get; set; } // ID của voucher
+        public int Id { get; set; } 
 
         [Required]
         [StringLength(50)]
-        public string VoucherName { get; set; } // Tên của voucher
+        public string VoucherName { get; set; }
 
         [Required]
-        public int Discount { get; set; } // Mức giảm giá
+        public int Discount { get; set; }
 
         [Required]
         [StringLength(5)]
-        public string Unit { get; set; } // Đơn vị của giảm giá
+        public string Unit { get; set; } 
 
         [Required]
-        public DateTime DateFrom { get; set; } // Ngày bắt đầu hiệu lực
+        public DateTime DateFrom { get; set; } 
 
         [Required]
-        public DateTime DateTo { get; set; } // Ngày kết thúc hiệu lực
+        public DateTime DateTo { get; set; }
 
         [Required]
         public VoucherStatus Status { get; set; }
 
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Order>? Orders { get; set; }
     }
 
     public enum VoucherStatus

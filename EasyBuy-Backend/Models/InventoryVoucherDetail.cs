@@ -15,10 +15,12 @@ namespace EasyBuy_Backend.Models
         public double ReceivingUnitPrice { get; set; }
 
         public int InventoryVoucherId { get; set; }
+
         [ForeignKey("InventoryVoucherId")]
         public InventoryVoucher InventoryVoucher { get; set; } 
 
         public int ProductId { get; set; }
+
         [ForeignKey("ProductId")]
         public Product Product { get; set; }
     }

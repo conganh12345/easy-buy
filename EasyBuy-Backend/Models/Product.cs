@@ -46,12 +46,13 @@ namespace EasyBuy_Backend.Models
         public ProductStatus Status { get; set; }
 
         public int? CategoryId { get; set; }
+
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }
 
-        public virtual ICollection<OrderLine> OrderLines { get; set; } 
-        public virtual ICollection<Cart> Carts { get; set; }
-        public virtual ICollection<InventoryVoucherDetail> InventoryVoucherDetails { get; set; }
+        public virtual ICollection<OrderLine>? OrderLines { get; set; } 
+        public virtual ICollection<Cart>? Carts { get; set; }
+        public virtual ICollection<InventoryVoucherDetail>? InventoryVoucherDetails { get; set; }
     }
 
     public enum ProductStatus
