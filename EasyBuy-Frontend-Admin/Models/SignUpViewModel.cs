@@ -18,5 +18,11 @@ namespace EasyBuy_Frontend_Admin.Models
         [Required(ErrorMessage = "Mật khẩu là bắt buộc.")]
         [StringLength(100, MinimumLength = 6, ErrorMessage = "Mật khẩu phải có độ dài từ 6 đến 100 ký tự.")]
         public string Password { get; set; }
+
+        public string Address { get; set; } = "Chưa có địa chỉ"; 
+
+        public UserStatus Status { get; set; } = UserStatus.ENABLE; 
+
+        public UserRole Role { get; set; } = UserRole.USER;
     }
 }

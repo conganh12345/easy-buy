@@ -57,10 +57,8 @@ namespace EasyBuy_Backend.Models
 
     public enum ProductStatus
     {
-        [Display(Name = "Hoạt động")]
         ENABLE = 0,
 
-        [Display(Name = "Không hoạt động")]
         DISABLED = 1
     }
 }

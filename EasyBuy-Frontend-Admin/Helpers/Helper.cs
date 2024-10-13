@@ -1,4 +1,5 @@
 ﻿using EasyBuy_Frontend_Admin.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 
@@ -56,5 +57,5 @@ namespace EasyBuy_Frontend_Admin.Helpers
 
 			return "secondary"; 
 		}
-	}
+    }
 }

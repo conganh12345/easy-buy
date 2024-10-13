@@ -4,6 +4,6 @@ namespace EasyBuy_Backend.Repositories.UserRepo
 {
     public interface IUserRepository : IRepository<User>
     {
-        //
+        Task<User> GetByEmailAsync(string email);
     }
 }

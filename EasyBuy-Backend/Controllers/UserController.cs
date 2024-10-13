@@ -1,7 +1,9 @@
 ﻿using EasyBuy_Backend.Models;
 using EasyBuy_Backend.Repositories.UserRepo;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace EasyBuy_Backend.Controllers
 {
@@ -34,7 +36,7 @@ namespace EasyBuy_Backend.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody]User user)
+        public IActionResult Create([FromBody] User user)
         {
             if (_userRepository.Create(user))
             {

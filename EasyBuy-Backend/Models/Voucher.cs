@@ -33,10 +33,8 @@ namespace EasyBuy_Backend.Models
 
     public enum VoucherStatus
     {
-        [Display(Name = "Hoạt động")]
         ENABLE = 0,
 
-        [Display(Name = "Không hoạt động")]
         DISABLED = 1
     }
 }

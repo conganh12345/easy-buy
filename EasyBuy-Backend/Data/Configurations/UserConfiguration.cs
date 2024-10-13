@@ -10,28 +10,6 @@ namespace EasyBuy_Backend.Data.Configurations
         {
             entity.ToTable("users");
 
-            entity.HasKey(e => e.Id);
-
-            entity.Property(e => e.Id)
-                .IsRequired()
-                .HasColumnName("id");
-
-            entity.Property(e => e.Name)
-                .IsRequired()
-                .HasMaxLength(50)
-                .HasColumnName("name");
-            entity.Property(e => e.Email)
-                .IsRequired()
-                .HasColumnName("email");
-
-            entity.Property(e => e.Phone)
-                .HasMaxLength(15)
-                .HasColumnName("phone"); 
-
-            entity.Property(e => e.Password)
-                .IsRequired()
-                .HasColumnName("password"); 
-
             entity.Property(e => e.Address)
                 .IsRequired()
                 .HasMaxLength(50)

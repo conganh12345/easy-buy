@@ -24,7 +24,8 @@ namespace EasyBuy_Frontend_Admin.Services.UserSvc
 		
 				string data = await response.Content.ReadAsStringAsync();
 				users = JsonSerializer.Deserialize<List<UserViewModel>>(data);
-			}
+          
+            }
 			catch (Exception ex)
 			{
 				Debug.WriteLine("An error occurred: " + ex.Message);
@@ -37,7 +38,7 @@ namespace EasyBuy_Frontend_Admin.Services.UserSvc
 		{
 			try
 			{
-				var response = await _httpClient.PostAsJsonAsync("/api/User", user);
+                var response = await _httpClient.PostAsJsonAsync("/api/User", user);
 
 				if (response.IsSuccessStatusCode)
 				{

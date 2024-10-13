@@ -28,7 +28,7 @@ namespace EasyBuy_Backend.Models
         [Required]
         public OrderStatus Status { get; set; }
 
-        public int? UserId { get; set; }
+        public string? UserId { get; set; }
 
         [ForeignKey("UserId")]
         public User User { get; set; }
@@ -48,13 +48,10 @@ namespace EasyBuy_Backend.Models
 
     public enum OrderStatus
     {
-        [Display(Name = "Thành công")]
         SUCCESS = 0,
 
-        [Display(Name = "Đã hủy")]
         CANCELED = 1,
 
-        [Display(Name = "Đang xét duyệt")]
         PENDING = 2
     }
 }

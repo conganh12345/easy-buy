@@ -29,8 +29,8 @@ namespace EasyBuy_Frontend_Admin.Controllers
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Create(UserViewModel user)
-		{
-			if (await _userService.AddUserAsync(user))
+		{            
+            if (await _userService.AddUserAsync(user))
 			{
                 TempData["Success"] = "Thêm mới người dùng thành công.";
                 return RedirectToAction(nameof(Index));
