@@ -1,6 +1,7 @@
 ﻿using EasyBuy_Backend.Data;
 using EasyBuy_Backend.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace EasyBuy_Backend.Repositories.UserRepo
 {
@@ -17,5 +18,10 @@ namespace EasyBuy_Backend.Repositories.UserRepo
         {
             return await _context.Set<User>().FirstOrDefaultAsync(u => u.Email == email);
         }
+
+        public async Task<User> GetUserIdAsStringAsync(string id)
+        {
+            return await _context.Set<User>().FirstOrDefaultAsync(u => u.Id == id);
+		}
     }
 }

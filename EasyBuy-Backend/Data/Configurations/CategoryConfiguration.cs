@@ -1,4 +1,5 @@
 ﻿using EasyBuy_Backend.Models;
+using EasyBuy_Backend.Models.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

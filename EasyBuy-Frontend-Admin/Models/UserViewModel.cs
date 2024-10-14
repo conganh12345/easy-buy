@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using EasyBuy_Frontend_Admin.Models.Enums;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace EasyBuy_Frontend_Admin.Models
@@ -39,21 +40,5 @@ namespace EasyBuy_Frontend_Admin.Models
         [Required(ErrorMessage = "Vai trò là bắt buộc.")]
         [JsonPropertyName("role")]
         public UserRole Role { get; set; }
-    }
-    public enum UserStatus
-    {
-        [Display(Name = "Hoạt động")]
-        ENABLE = 0,
-
-        [Display(Name = "Không hoạt động")]
-        DISABLED = 1
-    }
-    public enum UserRole
-    {
-        [Display(Name = "Người dùng")]
-        USER = 0,
-
-        [Display(Name = "Quản trị viên")]
-        ADMIN = 1
     }
 }

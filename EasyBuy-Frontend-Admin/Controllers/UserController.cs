@@ -39,7 +39,7 @@ namespace EasyBuy_Frontend_Admin.Controllers
             return View(user);
 		}
 
-		public async Task<IActionResult> Edit(int id)
+		public async Task<IActionResult> Edit(string id)
 		{
 			UserViewModel user = await _userService.GetUserByIdAsync(id);
 

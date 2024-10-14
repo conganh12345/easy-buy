@@ -1,4 +1,5 @@
 ﻿using System;
+using EasyBuy_Backend.Models.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace EasyBuy_Backend.Models
@@ -29,12 +30,5 @@ namespace EasyBuy_Backend.Models
         public VoucherStatus Status { get; set; }
 
         public virtual ICollection<Order>? Orders { get; set; }
-    }
-
-    public enum VoucherStatus
-    {
-        ENABLE = 0,
-
-        DISABLED = 1
     }
 }

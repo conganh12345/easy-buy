@@ -58,10 +58,13 @@
 							</tr>
 						</thead>
 						<tbody>
+							@{
+								int stt = 1; 
+							}
 							@foreach (var user in Model)
 							{
 								<tr>
-									<td>@user.Id</td>
+									<td>@stt</td>
 									<td>@user.UserName</td>
 									<td>@user.Email</td>
 									<td>@user.PhoneNumber</td>
@@ -100,6 +103,8 @@
 										</a>
 									</td>
 								</tr>
+
+								stt++;
 							}
 						</tbody>
 					</table>

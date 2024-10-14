@@ -28,9 +28,9 @@ namespace EasyBuy_Backend.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public IActionResult GetById(string id)
         {
-            var user = _userRepository.GetById(id);
+            var user = _userRepository.GetUserIdAsStringAsync(id);
            
             return Ok(user);
         }

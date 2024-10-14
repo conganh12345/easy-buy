@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using EasyBuy_Frontend_Admin.Models.Enums;
+
 
 namespace EasyBuy_Frontend_Admin.Models
 {

@@ -1,6 +1,7 @@
 ﻿using EasyBuy_Frontend_Admin.Models;
 using System.Diagnostics;
 using System.Text.Json;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace EasyBuy_Frontend_Admin.Services.UserSvc
 {
@@ -53,9 +54,10 @@ namespace EasyBuy_Frontend_Admin.Services.UserSvc
             }
 		}
 
-		public async Task<UserViewModel> GetUserByIdAsync(int id)
+		public async Task<UserViewModel> GetUserByIdAsync(string id)
 		{
 			UserViewModel user = null;
+			Debug.WriteLine("test lại " + id);
 
 			try
 			{

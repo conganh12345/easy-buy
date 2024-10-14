@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using EasyBuy_Backend.Models.Enums;
+using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -16,19 +17,5 @@ namespace EasyBuy_Backend.Models
         public virtual ICollection<Order>? Orders { get; set; }
 
         public virtual ICollection<Cart>? Carts { get; set; }
-    }
-
-    public enum UserStatus
-    {
-        ENABLE = 0,
-
-        DISABLED = 1
-    }
-
-    public enum UserRole
-    {
-        USER = 0,
-
-        ADMIN = 1
     }
 }
