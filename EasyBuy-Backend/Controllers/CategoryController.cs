@@ -1,6 +1,7 @@
 ﻿using EasyBuy_Backend.Models;
 using EasyBuy_Backend.Repositories.CategoryRepo;
 using EasyBuy_Backend.Repositories.UserRepo;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EasyBuy_Backend.Controllers

@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using EasyBuy_Backend.Models.Enums;
+
 
 namespace EasyBuy_Backend.Models
 {
@@ -53,14 +55,5 @@ namespace EasyBuy_Backend.Models
         public virtual ICollection<OrderLine>? OrderLines { get; set; } 
         public virtual ICollection<Cart>? Carts { get; set; }
         public virtual ICollection<InventoryVoucherDetail>? InventoryVoucherDetails { get; set; }
-    }
-
-    public enum ProductStatus
-    {
-        [Display(Name = "Hoạt động")]
-        ENABLE = 0,
-
-        [Display(Name = "Không hoạt động")]
-        DISABLED = 1
     }
 }

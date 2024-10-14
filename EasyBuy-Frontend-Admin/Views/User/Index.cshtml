@@ -58,13 +58,16 @@
 							</tr>
 						</thead>
 						<tbody>
+							@{
+								int stt = 1; 
+							}
 							@foreach (var user in Model)
 							{
 								<tr>
-									<td>@user.Id</td>
-									<td>@user.Name</td>
+									<td>@stt</td>
+									<td>@user.UserName</td>
 									<td>@user.Email</td>
-									<td>@user.Phone</td>
+									<td>@user.PhoneNumber</td>
 									<td>
 										<span class="badge badge-@user.Role.GetBadge()">@user.Role.GetDisplayName()
 										</span>
@@ -100,6 +103,8 @@
 										</a>
 									</td>
 								</tr>
+
+								stt++;
 							}
 						</tbody>
 					</table>

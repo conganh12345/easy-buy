@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using EasyBuy_Frontend_Admin.Models.Enums;
+
 
 namespace EasyBuy_Frontend_Admin.Models
 {
@@ -20,12 +22,4 @@ namespace EasyBuy_Frontend_Admin.Models
         [JsonPropertyName("status")]
         public CategoryStatus Status { get; set; }
     }
-	public enum CategoryStatus
-	{
-		[Display(Name = "Hoạt động")]
-		ENABLE = 0,
-
-		[Display(Name = "Không hoạt động")]
-		DISABLED = 1
-	}
 }

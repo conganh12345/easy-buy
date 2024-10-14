@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using EasyBuy_Backend.Models.Enums;
+
 
 namespace EasyBuy_Backend.Models
 {
@@ -29,15 +31,5 @@ namespace EasyBuy_Backend.Models
         public SupplierStatus Status { get; set; }
 
         public virtual ICollection<InventoryVoucher>? InventoryVouchers { get; set; } 
-
-    }
-
-    public enum SupplierStatus
-    {
-        [Display(Name = "Hoạt động")]
-        ENABLE = 0,
-
-        [Display(Name = "Không hoạt động")]
-        DISABLED = 1
     }
 }

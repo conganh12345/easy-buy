@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using EasyBuy_Backend.Models.Enums;
 
 namespace EasyBuy_Backend.Models
 {
@@ -28,7 +29,7 @@ namespace EasyBuy_Backend.Models
         [Required]
         public OrderStatus Status { get; set; }
 
-        public int? UserId { get; set; }
+        public string? UserId { get; set; }
 
         [ForeignKey("UserId")]
         public User User { get; set; }
@@ -44,17 +45,5 @@ namespace EasyBuy_Backend.Models
         public Voucher Voucher { get; set; }
 
         public virtual ICollection<OrderLine> OrderLines { get; set; }
-    }
-
-    public enum OrderStatus
-    {
-        [Display(Name = "Thành công")]
-        SUCCESS = 0,
-
-        [Display(Name = "Đã hủy")]
-        CANCELED = 1,
-
-        [Display(Name = "Đang xét duyệt")]
-        PENDING = 2
     }
 }

@@ -1,6 +1,7 @@
 ﻿using EasyBuy_Backend.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using EasyBuy_Backend.Models.Enums;
 using static EasyBuy_Backend.Models.Order;
 
 namespace EasyBuy_Backend.Data.Configurations

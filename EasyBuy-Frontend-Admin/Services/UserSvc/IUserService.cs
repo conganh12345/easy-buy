@@ -8,7 +8,7 @@ namespace EasyBuy_Frontend_Admin.Services.UserSvc
 
 		Task<bool> AddUserAsync(UserViewModel user);
 
-		Task<UserViewModel> GetUserByIdAsync(int id);
+		Task<UserViewModel> GetUserByIdAsync(string id);
 
         Task<bool> UpdateUserAsync(UserViewModel user);
 

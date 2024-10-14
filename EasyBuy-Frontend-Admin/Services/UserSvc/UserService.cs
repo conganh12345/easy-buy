@@ -1,6 +1,7 @@
 ﻿using EasyBuy_Frontend_Admin.Models;
 using System.Diagnostics;
 using System.Text.Json;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace EasyBuy_Frontend_Admin.Services.UserSvc
 {
@@ -24,7 +25,8 @@ namespace EasyBuy_Frontend_Admin.Services.UserSvc
 		
 				string data = await response.Content.ReadAsStringAsync();
 				users = JsonSerializer.Deserialize<List<UserViewModel>>(data);
-			}
+          
+            }
 			catch (Exception ex)
 			{
 				Debug.WriteLine("An error occurred: " + ex.Message);
@@ -37,7 +39,7 @@ namespace EasyBuy_Frontend_Admin.Services.UserSvc
 		{
 			try
 			{
-				var response = await _httpClient.PostAsJsonAsync("/api/User", user);
+                var response = await _httpClient.PostAsJsonAsync("/api/User", user);
 
 				if (response.IsSuccessStatusCode)
 				{
@@ -52,9 +54,10 @@ namespace EasyBuy_Frontend_Admin.Services.UserSvc
             }
 		}
 
-		public async Task<UserViewModel> GetUserByIdAsync(int id)
+		public async Task<UserViewModel> GetUserByIdAsync(string id)
 		{
 			UserViewModel user = null;
+			Debug.WriteLine("test lại " + id);
 
 			try
 			{

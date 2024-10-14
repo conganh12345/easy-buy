@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Reflection;
+using EasyBuy_Backend.Models.Enums;
 
 namespace EasyBuy_Backend.Models
 {
@@ -15,13 +16,4 @@ namespace EasyBuy_Backend.Models
 
         public virtual ICollection<Product>? Products { get; set; }
     }
-
-	public enum CategoryStatus
-	{
-		[Display(Name = "Hoạt động")]
-		ENABLE = 0,
-
-		[Display(Name = "Không hoạt động")]
-		DISABLED = 1
-	}
 }

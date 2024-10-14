@@ -37,7 +37,8 @@ namespace EasyBuy_Frontend_Admin.Services.CategorySvc
         {
             try
             {
-                var response = await _httpClient.PostAsJsonAsync("/api/Category", category);
+				Debug.WriteLine($"Status: {category.Status}");
+				var response = await _httpClient.PostAsJsonAsync("/api/Category", category);
 
 				if (response.IsSuccessStatusCode)
 				{
