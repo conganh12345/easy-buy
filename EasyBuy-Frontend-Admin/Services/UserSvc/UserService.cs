@@ -100,7 +100,7 @@ namespace EasyBuy_Frontend_Admin.Services.UserSvc
             }
 		}
 
-		public async Task<bool> DeleteUserAsync(int id)
+		public async Task<bool> DeleteUserAsync(string id)
 		{
 			try
 			{
