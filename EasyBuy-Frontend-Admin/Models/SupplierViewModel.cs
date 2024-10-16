@@ -14,7 +14,7 @@ namespace EasyBuy_Frontend_Admin.Models
         public string Name { get; set; }
 
         [Required(ErrorMessage = "SDT là bắt buộc.")]
-        [JsonPropertyName("number_phone")]
+        [JsonPropertyName("numberPhone")]
         public string Number_phone { get; set; }
 
         [Required(ErrorMessage = "Địa chỉ là bắt buộc.")]
