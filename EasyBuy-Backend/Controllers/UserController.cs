@@ -48,7 +48,8 @@ namespace EasyBuy_Backend.Controllers
         [HttpPut("{id}")]
         public IActionResult Update([FromBody] User user, string id)
         {
-			if (_userRepository.Update(user))
+            user.Id = id;
+            if (_userRepository.Update(user))
             {
 				return Ok();
 			}
