@@ -30,7 +30,7 @@ namespace EasyBuy_Backend.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(string id)
         {
-            var user = _userRepository.GetUserIdAsStringAsync(id);
+            var user = _userRepository.GetUserIdAsString(id);
            
             return Ok(user);
         }
@@ -46,7 +46,7 @@ namespace EasyBuy_Backend.Controllers
 		}
 
         [HttpPut("{id}")]
-        public IActionResult Update([FromBody] User user, int id)
+        public IActionResult Update([FromBody] User user, string id)
         {
 			if (_userRepository.Update(user))
             {
@@ -56,9 +56,9 @@ namespace EasyBuy_Backend.Controllers
 		}
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(string id)
         {
-            var user = _userRepository.GetById(id);
+            var user = _userRepository.GetUserIdAsString(id);
 
             if (_userRepository.Delete(user))
             {

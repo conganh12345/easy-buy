@@ -60,7 +60,7 @@ namespace EasyBuy_Frontend_Admin.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> Delete(int id)
+		public async Task<IActionResult> Delete(string id)
 		{
 			await _userService.DeleteUserAsync(id);
 

@@ -14,14 +14,14 @@ namespace EasyBuy_Backend.Repositories.UserRepo
             _context = context;
         }
 
-        public async Task<User> GetByEmailAsync(string email)
-        {
-            return await _context.Set<User>().FirstOrDefaultAsync(u => u.Email == email);
-        }
-
-        public async Task<User> GetUserIdAsStringAsync(string id)
-        {
-            return await _context.Set<User>().FirstOrDefaultAsync(u => u.Id == id);
+		public User GetByEmail(string email)
+		{
+			return _context.Set<User>().FirstOrDefault(u => u.Email == email);
 		}
-    }
+
+		public User GetUserIdAsString(string id)
+		{
+			return _context.Set<User>().FirstOrDefault(u => u.Id == id);
+		}
+	}
 }
