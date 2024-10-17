@@ -15,35 +15,35 @@ namespace EasyBuy_Backend.Data.Configurations
 
             entity.Property(e => e.Id)
                 .IsRequired()
-                .HasColumnName("VoucherID"); 
+                .HasColumnName("id"); 
 
             entity.Property(e => e.VoucherName)
                 .IsRequired()
                 .HasMaxLength(50)
-                .HasColumnName("VoucherName"); 
+                .HasColumnName("voucher_name"); 
 
             entity.Property(e => e.Discount)
                 .IsRequired()
-                .HasColumnName("Discount"); 
+                .HasColumnName("discount"); 
 
             entity.Property(e => e.Unit)
                 .IsRequired()
                 .HasMaxLength(5)
-                .HasColumnName("Unit"); 
+                .HasColumnName("unit"); 
 
             entity.Property(e => e.DateFrom)
                 .IsRequired()
-                .HasColumnName("DateFrom"); 
+                .HasColumnName("date_from"); 
 
             entity.Property(e => e.DateTo)
                 .IsRequired()
-                .HasColumnName("DateTo"); 
+                .HasColumnName("date_to"); 
 
             entity.Property(e => e.Status)
                 .HasConversion(
                     v => v.ToString(),
                     v => (VoucherStatus)Enum.Parse(typeof(VoucherStatus), v))
-                .HasColumnName("Status"); 
+                .HasColumnName("status"); 
         }
     }
 }
