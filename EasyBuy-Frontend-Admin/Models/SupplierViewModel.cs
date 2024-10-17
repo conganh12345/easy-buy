@@ -14,7 +14,8 @@ namespace EasyBuy_Frontend_Admin.Models
         public string Name { get; set; }
 
         [Required(ErrorMessage = "SDT là bắt buộc.")]
-        [JsonPropertyName("numberPhone")]
+		[RegularExpression(@"^\d+$", ErrorMessage = "SDT chỉ được chứa số.")]
+		[JsonPropertyName("numberPhone")]
         public string Number_phone { get; set; }
 
         [Required(ErrorMessage = "Địa chỉ là bắt buộc.")]
@@ -23,7 +24,8 @@ namespace EasyBuy_Frontend_Admin.Models
 
         [Required(ErrorMessage = "Email là bắt buộc.")]
         [JsonPropertyName("email")]
-        public string Email { get; set; }
+		[EmailAddress(ErrorMessage = "Email không hợp lệ.")]
+		public string Email { get; set; }
 
         [Required(ErrorMessage = "Trạng thái là bắt buộc.")]
         [JsonPropertyName("status")]

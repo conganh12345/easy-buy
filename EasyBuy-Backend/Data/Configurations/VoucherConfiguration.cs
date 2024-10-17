@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using EasyBuy_Backend.Models.Enums;
 
-
 namespace EasyBuy_Backend.Data.Configurations
 {
     public class VoucherConfiguration : IEntityTypeConfiguration<Voucher>
@@ -16,35 +15,35 @@ namespace EasyBuy_Backend.Data.Configurations
 
             entity.Property(e => e.Id)
                 .IsRequired()
-                .HasColumnName("id");
+                .HasColumnName("VoucherID"); 
 
             entity.Property(e => e.VoucherName)
                 .IsRequired()
                 .HasMaxLength(50)
-                .HasColumnName("voucher_name"); 
+                .HasColumnName("VoucherName"); 
 
             entity.Property(e => e.Discount)
                 .IsRequired()
-                .HasColumnName("discount"); 
+                .HasColumnName("Discount"); 
 
             entity.Property(e => e.Unit)
                 .IsRequired()
                 .HasMaxLength(5)
-                .HasColumnName("unit");
+                .HasColumnName("Unit"); 
 
             entity.Property(e => e.DateFrom)
                 .IsRequired()
-                .HasColumnName("date_from"); 
+                .HasColumnName("DateFrom"); 
 
             entity.Property(e => e.DateTo)
                 .IsRequired()
-                .HasColumnName("date_to");
+                .HasColumnName("DateTo"); 
 
             entity.Property(e => e.Status)
                 .HasConversion(
                     v => v.ToString(),
                     v => (VoucherStatus)Enum.Parse(typeof(VoucherStatus), v))
-                .HasColumnName("status");
+                .HasColumnName("Status"); 
         }
     }
 }

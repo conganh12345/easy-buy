@@ -42,7 +42,7 @@ namespace EasyBuy_Backend.Controllers
 		}
 
 		[HttpPut("{id}")]
-		public IActionResult Update([FromBody] Supplier supplier, int id)
+		public IActionResult Update([FromBody] Supplier supplier)
 		{
 			if (_supplierRepository.Update(supplier))
 			{
