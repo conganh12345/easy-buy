@@ -40,6 +40,7 @@ namespace EasyBuy_Backend.Data
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new OrderLineConfiguration());
             modelBuilder.ApplyConfiguration(new InventoryVoucherDetailConfiguration());
+
         }
     }
 }

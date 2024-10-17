@@ -35,11 +35,11 @@ namespace EasyBuy_Backend.Services.AuthSvc
 			}
 		}
 
-		public async Task<bool> Login(string email, string password)
+		public bool Login(string email, string password)
 		{
 			try
 			{
-				var user = await _userRepository.GetByEmailAsync(email);
+				var user = _userRepository.GetByEmail(email);
 				if (user != null && VerifyPassword(user.PasswordHash, password))
 				{
 					return true;

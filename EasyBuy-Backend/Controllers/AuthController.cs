@@ -31,7 +31,7 @@ namespace EasyBuy_Backend.Controllers
 		[HttpPost("Login")]
 		public async Task<IActionResult> Login([FromBody] SignInDTO signInDTO)
 		{
-			if (await _authService.Login(signInDTO.Email, signInDTO.Password))
+			if (_authService.Login(signInDTO.Email, signInDTO.Password))
 			{
 				return Ok();
 			}

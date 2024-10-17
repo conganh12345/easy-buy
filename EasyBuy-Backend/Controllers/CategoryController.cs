@@ -47,6 +47,7 @@ namespace EasyBuy_Backend.Controllers
         [HttpPut("{id}")]
         public IActionResult Update([FromBody] Category category, int id)
         {
+            category.Id = id;
             if(_categoryRepository.Update(category))
 			{
 				return Ok();

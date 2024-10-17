@@ -1,4 +1,5 @@
-﻿using EasyBuy_Frontend_Admin.Models;
+﻿using EasyBuy_Frontend_Admin.Dtos.Auth;
+using EasyBuy_Frontend_Admin.Models;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -16,15 +17,15 @@ namespace EasyBuy_Frontend_Admin.Services.AuthSvc
             _httpClient.BaseAddress = new Uri("https://localhost:7084"); 
         }
 
-        public async Task<SignUpViewModel> Register(SignUpViewModel signUpViewModel)
+        public async Task<SignUpDTO> Register(SignUpDTO signUpDTO)
         {
             try
             {
-                var response = await _httpClient.PostAsJsonAsync("/api/Auth/Register", signUpViewModel);
+                var response = await _httpClient.PostAsJsonAsync("/api/Auth/Register", signUpDTO);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var createdUser = await response.Content.ReadFromJsonAsync<SignUpViewModel>();
+                    var createdUser = await response.Content.ReadFromJsonAsync<SignUpDTO>();
                     return createdUser; 
                 }
                 else
@@ -41,15 +42,15 @@ namespace EasyBuy_Frontend_Admin.Services.AuthSvc
         }
 
         // Phương thức đăng nhập
-        public async Task<SignInViewModel> Login(SignInViewModel signInViewModel)
+        public async Task<SignInDTO> Login(SignInDTO signInDTO)
         {
             try
             {
-                var response = await _httpClient.PostAsJsonAsync("/api/Auth/Login", signInViewModel);
+                var response = await _httpClient.PostAsJsonAsync("/api/Auth/Login", signInDTO);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var user = await response.Content.ReadFromJsonAsync<SignInViewModel>();
+                    var user = await response.Content.ReadFromJsonAsync<SignInDTO>();
                     return user; 
                 }
                 else
