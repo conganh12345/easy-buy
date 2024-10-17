@@ -7,7 +7,7 @@ namespace EasyBuy_Backend.Models
     public class Voucher
     {
         [Key]
-        public int Id { get; set; } 
+        public string Id { get; set; } 
 
         [Required]
         [StringLength(50)]
@@ -29,6 +29,6 @@ namespace EasyBuy_Backend.Models
         [Required]
         public VoucherStatus Status { get; set; }
 
-        public virtual ICollection<Order>? Orders { get; set; }
+        //public virtual ICollection<Order>? Orders { get; set; }
     }
 }
