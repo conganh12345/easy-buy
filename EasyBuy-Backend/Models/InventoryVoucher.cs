@@ -19,6 +19,6 @@ namespace EasyBuy_Backend.Models
         public int? SupplierId { get; set; }
 
         [ForeignKey("SupplierId")]
-        public Supplier Supplier { get; set; }
-    }
+        public Supplier? Supplier { get; set; }
+	}
 }
