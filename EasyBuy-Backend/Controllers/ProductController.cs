@@ -25,13 +25,13 @@ namespace EasyBuy_Backend.Controllers
             return Ok(products);
         }
 
-        //[HttpGet("{id}")]
-        //public IActionResult GetById(string id)
-        //{
-        //    var user = _productRepository.GetProductIdAsStringAsync(id);
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            var product = _productRepository.GetById(id);
 
-        //    return Ok(user);
-        //}
+            return Ok(product);
+        }
 
         [HttpPost]
         public IActionResult Create([FromBody] Product product)
@@ -39,6 +39,7 @@ namespace EasyBuy_Backend.Controllers
             if (_productRepository.Create(product))
             {
                 return Ok();
+
             }
             return BadRequest();
         }
@@ -46,6 +47,7 @@ namespace EasyBuy_Backend.Controllers
         [HttpPut("{id}")]
         public IActionResult Update([FromBody] Product product, int id)
         {
+            product.Id = id;
             if (_productRepository.Update(product))
             {
                 return Ok();
