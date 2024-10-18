@@ -1,6 +1,7 @@
 ﻿using EasyBuy_Frontend_Admin.Services.AuthSvc;
 using EasyBuy_Frontend_Admin.Services.CategorySvc;
 using EasyBuy_Frontend_Admin.Services.SupplierSvc;
+using EasyBuy_Frontend_Admin.Services.ProductSvc;
 using EasyBuy_Frontend_Admin.Services.UserSvc;
 using EasyBuy_Frontend_Admin.Services.VoucherSvc;
 
@@ -16,7 +17,8 @@ namespace EasyBuy_Frontend_Admin.Services
 			services.AddHttpClient<ICategoryService, CategoryService>();
 			services.AddHttpClient<ISupplierService, SupplierService>();
 			services.AddHttpClient<IVoucherService, VoucherService>();
-			return services;		
+			services.AddHttpClient<IProductService, ProductService>();
+			return services;
 		}
 	}
 }
