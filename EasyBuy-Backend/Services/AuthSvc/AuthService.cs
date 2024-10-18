@@ -19,7 +19,7 @@ namespace EasyBuy_Backend.Services.AuthSvc
 		{
 			try
 			{
-				user.PasswordHash = HashPassword(user.PasswordHash);
+				user.Password = HashPassword(user.Password);
 
 				if (_userRepository.Create(user))
 				{
@@ -40,7 +40,7 @@ namespace EasyBuy_Backend.Services.AuthSvc
 			try
 			{
 				var user = _userRepository.GetByEmail(email);
-				if (user != null && VerifyPassword(user.PasswordHash, password))
+				if (user != null && VerifyPassword(user.Password, password))
 				{
 					return true;
 				}

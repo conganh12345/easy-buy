@@ -1,6 +1,8 @@
 ﻿using EasyBuy_Backend.Repositories.CategoryRepo;
 using EasyBuy_Backend.Repositories.UserRepo;
 using EasyBuy_Backend.Repositories.ProductRepo;
+using EasyBuy_Backend.Repositories.SupplierRepo;
+using EasyBuy_Backend.Repositories.VoucherRepo;
 
 
 namespace EasyBuy_Backend.Repositories
@@ -14,7 +16,8 @@ namespace EasyBuy_Backend.Repositories
 			services.AddScoped<IUserRepository, UserRepository>();
 			services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
-
-        }
+			services.AddScoped<ISupplierRepository, SupplierRepository>();
+			services.AddScoped<IVoucherRepository, VoucherRepository>();
+		}
     }
 }

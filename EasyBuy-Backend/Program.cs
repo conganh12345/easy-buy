@@ -21,17 +21,6 @@ builder.Services.AddDbContext<MyDbContext>(options =>
 
 builder.Services.AddRepositories();
 
-//Đăng ký authentication
-builder.Services.AddAuthorization();
-
-builder.Services.AddAuthentication().AddCookie(IdentityConstants.ApplicationScheme);
-
-builder.Services.AddIdentityCore<User>()
-    .AddEntityFrameworkStores<MyDbContext>()
-    .AddApiEndpoints()
-    .AddDefaultTokenProviders(); 
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -40,7 +29,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.MapIdentityApi<User>();
 
 app.UseHttpsRedirection();
 

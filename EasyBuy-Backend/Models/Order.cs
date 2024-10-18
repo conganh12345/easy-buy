@@ -29,7 +29,7 @@ namespace EasyBuy_Backend.Models
         [Required]
         public OrderStatus Status { get; set; }
 
-        public string? UserId { get; set; }
+        public int? UserId { get; set; }
 
         [ForeignKey("UserId")]
         public User User { get; set; }

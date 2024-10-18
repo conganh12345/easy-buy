@@ -20,6 +20,7 @@ namespace EasyBuy_Frontend_Admin.Models
 		public int Discount { get; set; }
 
 		[Required(ErrorMessage = "Đơn vị là bắt buộc.")]
+		[StringLength(200, MinimumLength = 1, ErrorMessage = "Đơn vị phải có độ dài từ 1 đến 200 ký tự.")]
 		[JsonPropertyName("unit")]
 		public string Unit { get; set; }
 

@@ -10,8 +10,7 @@ namespace EasyBuy_Backend.Services
         {
             // Register services here
             services.AddHttpClient<IAuthService, AuthService>();
-			services.AddScoped<ISupplierRepository, SupplierRepository>();
-            services.AddScoped<IVoucherRepository, VoucherRepository>();
+
 			return services;
         }
     }
