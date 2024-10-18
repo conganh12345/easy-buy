@@ -7,18 +7,18 @@ namespace EasyBuy_Backend.Models
 {
     public class Supplier
     {
-        public int Id { get; set; } 
+		public int Id { get; set; } 
 
-        public string Name { get; set; } 
+		public string Name { get; set; }
 
-        public string NumberPhone { get; set; } 
+		public string NumberPhone { get; set; }
 
-        public string Address { get; set; } 
+		public string Address { get; set; } 
 
-        public string Email { get; set; } 
+		public string Email { get; set; } 
 
-        public SupplierStatus Status { get; set; }
+		public SupplierStatus Status { get; set; } 
 
-        public virtual ICollection<InventoryVoucher>? InventoryVouchers { get; set; } 
-    }
+		public virtual ICollection<InventoryVoucher>? InventoryVouchers { get; set; } 
+	}
 }

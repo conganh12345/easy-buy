@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyBuy-Frontend-Admin", "E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyBuy-Frontend-Customer", "EasyBuy-Frontend-Customer\EasyBuy-Frontend-Customer.csproj", "{BA83DCD2-87F2-4D67-84E9-F63D1C5E3B41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyBuy-Backend", "EasyBuy-Backend\EasyBuy-Backend.csproj", "{BD078CE9-8BB5-41FB-BA61-6B47832A1D69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyBuy-Backend", "EasyBuy-Backend\EasyBuy-Backend.csproj", "{BD078CE9-8BB5-41FB-BA61-6B47832A1D69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
