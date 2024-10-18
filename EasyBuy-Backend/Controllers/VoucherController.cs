@@ -25,7 +25,7 @@ namespace EasyBuy_Backend.Controllers
 			return Ok(vouchers);
 		}
 
-		[HttpGet("/api/Voucher/int/{id}")]
+		[HttpGet("{id}")]
 
 		public IActionResult GetById(int id)
 		{
@@ -34,18 +34,7 @@ namespace EasyBuy_Backend.Controllers
 			return Ok(voucher);
 		}
 
-		[HttpGet("{id}")]
-		public async Task<IActionResult> GetByStringId(string id)
-		{
-			var voucher = await _voucherRepository.getVoucherByIdAsync(id);
-
-			if (voucher == null)
-			{
-				return NotFound();
-			}
-
-			return Ok(voucher); 
-		}
+	
 		[HttpPost]
 		public IActionResult Create([FromBody] Voucher voucher)
 		{
@@ -77,31 +66,6 @@ namespace EasyBuy_Backend.Controllers
 			}
 			return BadRequest();
 		}
-		[HttpGet("getLatestId")]
-		public async Task<IActionResult> getLatestId()
-		{
-			try
-			{
-				string latestVoucherId = await _voucherRepository.getLatestIdAsync(); 
-
-				string newVoucherId;
-				if (string.IsNullOrEmpty(latestVoucherId))
-				{
-					newVoucherId = "VO001";
-				}
-				else
-				{
-					int numberPart = int.Parse(latestVoucherId.Substring(2));
-					newVoucherId = "VO" + (numberPart + 1).ToString("D3");
-				}
-
-				return Ok(newVoucherId);
-			}
-			catch (Exception ex)
-			{
-				Debug.WriteLine("Có lỗi xảy ra khi lấy mã Voucher: " + ex.Message);
-				return StatusCode(500, "Có lỗi xảy ra khi lấy mã Voucher.");
-			}
-		}
+		
 	}
 }

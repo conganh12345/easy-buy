@@ -30,13 +30,16 @@ namespace EasyBuy_Frontend_Admin.Controllers
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Create(VoucherViewModel voucher)
 		{
-			Debug.WriteLine("date from "+voucher.DateFrom);
-			Debug.WriteLine("date from " + voucher.DateTo);
-
+			/*
 			if (voucher.DateFrom >= voucher.DateTo)
 			{
 				ViewBag.ErrorMessage = "Ngày bắt đầu phải nhỏ hơn ngày kết thúc.";
 				return View(voucher); 
+			}
+			*/
+			if (!ModelState.IsValid)
+			{
+				return View(voucher);
 			}
 			if (await _voucherService.AddVoucherAsync(voucher))
 			{
@@ -47,7 +50,7 @@ namespace EasyBuy_Frontend_Admin.Controllers
 			return View(voucher);
 		}
 
-		public async Task<IActionResult> Edit(string id)
+		public async Task<IActionResult> Edit(int id)
 		{
 			VoucherViewModel voucher = await _voucherService.GetVoucherByIdAsync(id);
 
@@ -72,7 +75,7 @@ namespace EasyBuy_Frontend_Admin.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> Delete(string id)
+		public async Task<IActionResult> Delete(int id)
 		{
 			await _voucherService.DeleteVoucherAsync(id);
 

@@ -7,7 +7,7 @@ namespace EasyBuy_Frontend_Admin.Models
 	public class VoucherViewModel : IValidatableObject
 	{
 		[JsonPropertyName("id")]
-		public string Id { get; set; }
+		public int Id { get; set; }
 
 		[Required(ErrorMessage = "Tên là bắt buộc.")]
 		[JsonPropertyName("voucherName")]
