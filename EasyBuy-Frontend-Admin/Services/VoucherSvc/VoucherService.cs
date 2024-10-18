@@ -39,8 +39,8 @@ namespace EasyBuy_Frontend_Admin.Services.VoucherSvc
 			voucher.Id = "abcdf";
 			try
 			{
-				Debug.WriteLine($"Status: {voucher.Status}");
 				var res = await _httpClient.GetAsync("/api/Voucher/getLatestId");
+
 				if (res.IsSuccessStatusCode) {
 					string data = await res.Content.ReadAsStringAsync();
 					Debug.WriteLine("Response Data: " + data);
@@ -49,7 +49,6 @@ namespace EasyBuy_Frontend_Admin.Services.VoucherSvc
 				else {
 					return false;
 				}
-				Debug.WriteLine("Response Voucher: " + voucher.Id,voucher.Name,voucher);
 
 				var response = await _httpClient.PostAsJsonAsync("/api/Voucher", voucher);
 
@@ -111,7 +110,7 @@ namespace EasyBuy_Frontend_Admin.Services.VoucherSvc
 			}
 		}
 
-		public async Task<bool> DeleteVoucherAsync(string id)  // Changed int to string for Voucher ID
+		public async Task<bool> DeleteVoucherAsync(string id) 
 		{
 			try
 			{

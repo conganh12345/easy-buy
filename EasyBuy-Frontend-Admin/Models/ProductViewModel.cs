@@ -23,7 +23,8 @@ namespace EasyBuy_Frontend_Admin.Models
         [JsonPropertyName("importPrice")]
         public Double ImportPrice { get; set; }
 
-        [Range(0, double.MaxValue, ErrorMessage = "Giá giảm không hợp lệ.")]
+		[Required(ErrorMessage = "Khuyến mãi là bắt buộc.")]
+		[Range(0, double.MaxValue, ErrorMessage = "Khuyến mãi không hợp lệ.")]
         [JsonPropertyName("discount")]
         public Double? Discount { get; set; }
 
@@ -46,10 +47,8 @@ namespace EasyBuy_Frontend_Admin.Models
         [JsonPropertyName("description")]
         public string? Description { get; set; }
 
-        [Required(ErrorMessage = "Hình ảnh là bắt buộc.")]
-        [StringLength(200, ErrorMessage = "Link ảnh phải có độ dài tối đa 200 ký tự.")]
         [JsonPropertyName("productImg")]
-		public string ProductImg { get; set; }
+		public string? ProductImg { get; set; } = "default_image_path.jpg";
 
 		[Required(ErrorMessage = "Có thể xóa là bắt buộc.")]
 		[Range(0, int.MaxValue, ErrorMessage = "Có thể xóa không hợp lệ.")]
@@ -66,7 +65,7 @@ namespace EasyBuy_Frontend_Admin.Models
         [JsonPropertyName("status")]
         public ProductStatus Status { get; set; }
 
-		[Required(ErrorMessage = "id danh mục là bắt buộc.")]
+		[Required(ErrorMessage = "Danh mục là bắt buộc.")]
 		[Range(0, int.MaxValue, ErrorMessage = "id không hợp lệ.")]
 		[JsonPropertyName("categoryId")]
 		public int CategoryId { get; set; }

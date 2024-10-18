@@ -120,32 +120,55 @@
 			<li class="menu @(ViewContext.RouteData.Values["controller"]?.ToString() == "Supplier" ? "active" : "")">
 				<a href="@Url.Action("Index", "Supplier")" class="dropdown-toggle">
 					<div>
-						<svg xmlns="http://www.w3.org/2000/svg"
-							 width="24" height="24" viewBox="0 0 24 24"
-							 fill="none" stroke="currentColor" stroke-width="2"
-							 stroke-linecap="round" stroke-linejoin="round"
-							 class="feather feather-tag">
-							<path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
-							<line x1="7" y1="7" x2="7.01" y2="7"></line>
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" 
+							height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+							stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
+							class="feather feather-truck"><rect x="1" y="3" width="15" height="13"></rect>
+							<polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+							<circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle>
 						</svg>
 						<span>Nhà cung cấp</span>
 					</div>
 				</a>
 			</li>
+
+			<li class="menu menu-heading">
+				<div class="heading">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+						 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+						 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+						 class="feather feather-minus">
+						<line x1="5" y1="12" x2="19" y2="12"></line>
+					</svg>
+					<span>KHUYẾN MÃI</span>
+				</div>
+			</li>
+
 			<li class="menu @(ViewContext.RouteData.Values["controller"]?.ToString() == "Voucher" ? "active" : "")">
 				<a href="@Url.Action("Index", "Voucher")" class="dropdown-toggle">
 					<div>
-						<svg xmlns="http://www.w3.org/2000/svg"
-							 width="24" height="24" viewBox="0 0 24 24"
-							 fill="none" stroke="currentColor" stroke-width="2"
-							 stroke-linecap="round" stroke-linejoin="round"
-							 class="feather feather-tag">
-							<path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
-							<line x1="7" y1="7" x2="7.01" y2="7"></line>
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+							viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" 
+							stroke-linecap="round" stroke-linejoin="round" class="feather feather-gift">
+							<polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect>
+							<line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+							<path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
 						</svg>
 						<span>Voucher</span>
 					</div>
 				</a>
+			</li>
+
+			<li class="menu menu-heading">
+				<div class="heading">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+						 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+						 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+						 class="feather feather-minus">
+						<line x1="5" y1="12" x2="19" y2="12"></line>
+					</svg>
+					<span>ĐƠN HÀNG</span>
+				</div>
 			</li>
 
 		</ul>

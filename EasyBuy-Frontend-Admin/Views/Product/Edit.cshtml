@@ -7,7 +7,24 @@
 
 <!-- CSS riêng cho lớp con -->
 @section Styles {
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/css/plugins/light/editors/quill/quill.snow.css")">
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/css/plugins/dark/editors/quill/quill.snow.css")">
 
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/css/plugins/light/tomSelect/custom-tomSelect.css")">
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/css/plugins/dark/tomSelect/custom-tomSelect.css")">
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/lib/plugins/tomSelect/tom-select.default.min.css")">
+
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/lib/plugins/filepond/filepond.min.css")">
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/lib/plugins/filepond/FilePondPluginImagePreview.min.css")">
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/CSS/plugins/dark/filepond/custom-filepond.css")">
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/CSS/plugins/light/filepond/custom-filepond.css")">
+
+	<style>
+		.ql-editor {
+			height: 300px;
+		}
+
+	</style>
 }
 
 <div>
@@ -36,6 +53,31 @@
 				<div class="widget-content widget-content-area">
 					<div class="col-12">
 						<form asp-action="Edit" id="general-settings" method="POST">
+							<label for="user">Hình ảnh sản phẩm </label>
+							<div class="col-md-2 mx-auto">
+								<div class="form-group mb-4">
+									<div class="file-upload">
+										
+										<input asp-for="ProductImg"
+											   type="file"
+											   id="ProductImg"
+											   class="filepond"
+											   placeholder="Hình ảnh">
+										<span asp-validation-for="ProductImg" class="invalid-feedback" role="alert"></span>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group mb-4">
+								<label for="category">Tên danh mục<strong class="text-danger">*</strong></label>
+								<select asp-for="CategoryId" id="category"
+										class="form-control @(ViewData.ModelState["CategoryId"]?.Errors?.Count > 0 ? "is-invalid" : "")"
+										asp-items="ViewBag.Categories">
+									<option value="">Chọn</option>
+								</select>
+								<span asp-validation-for="CategoryId" class="invalid-feedback" role="alert"></span>
+							</div>
+								
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group mb-4">
@@ -49,17 +91,16 @@
 
 									</div>
 								</div>
-							</div>
-							<div class="row">
+
 								<div class="col-md-6">
 									<div class="form-group mb-4">
-										<label for="user">Giá bán<strong class="text-danger">*</strong></label>
-										<input asp-for="PriceToSell"
+										<label for="user">Loại<strong class="text-danger">*</strong></label>
+										<input asp-for="Model"
 											   type="text"
 											   id="name"
-											   class="form-control @(ViewData.ModelState["PriceToSell"]?.Errors.Count > 0 ? "is-invalid" : "")"
-											   placeholder="Giá bán">
-										<span asp-validation-for="PriceToSell" class="invalid-feedback" role="alert"></span>
+											   class="form-control @(ViewData.ModelState["Model"]?.Errors.Count > 0 ? "is-invalid" : "")"
+											   placeholder="Loại">
+										<span asp-validation-for="Model" class="invalid-feedback" role="alert"></span>
 
 									</div>
 								</div>
@@ -77,7 +118,26 @@
 
 									</div>
 								</div>
+								<div class="col-md-6">
+									<div class="form-group mb-4">
+										<label for="user">Giá bán<strong class="text-danger">*</strong></label>
+										<input asp-for="PriceToSell"
+											   type="text"
+											   id="name"
+											   class="form-control @(ViewData.ModelState["PriceToSell"]?.Errors.Count > 0 ? "is-invalid" : "")"
+											   placeholder="Giá bán">
+										<span asp-validation-for="PriceToSell" class="invalid-feedback" role="alert"></span>
+									</div>
+								</div>
 							</div>
+
+							<div class="form-group mb-4">
+								<label for="description">Mô tả <strong class="text-danger">*</strong></label>
+								<div asp-for="Description" class="form-control" placeholder="Mô tả" id="description"></div>
+								<span asp-validation-for="Description" class="text-danger"></span>
+								<input type="hidden" asp-for="Description" id="hidden-description">
+							</div>
+							
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group mb-4">
@@ -91,22 +151,6 @@
 
 									</div>
 								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group mb-4">
-										<label for="user">Loại<strong class="text-danger">*</strong></label>
-										<input asp-for="Model"
-											   type="text"
-											   id="name"
-											   class="form-control @(ViewData.ModelState["Model"]?.Errors.Count > 0 ? "is-invalid" : "")"
-											   placeholder="Loại">
-										<span asp-validation-for="Model" class="invalid-feedback" role="alert"></span>
-
-									</div>
-								</div>
-							</div>
-							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group mb-4">
 										<label for="user">Màu sắc<strong class="text-danger">*</strong></label>
@@ -120,46 +164,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group mb-4">
-										<label for="user">Giới tính<strong class="text-danger">*</strong></label>
-										<input asp-for="Gender"
-											   type="text"
-											   id="name"
-											   class="form-control @(ViewData.ModelState["Gender"]?.Errors.Count > 0 ? "is-invalid" : "")"
-											   placeholder="Giới tính">
-										<span asp-validation-for="Gender" class="invalid-feedback" role="alert"></span>
-
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group mb-4">
-										<label for="user">Mô tả</label>
-										<textarea asp-for="Description"
-												  id="description"
-												  class="form-control @(ViewData.ModelState["Description"]?.Errors.Count > 0 ? "is-invalid" : "")"
-												  placeholder="Mô tả">
-										</textarea>
-										<span asp-validation-for="Description" class="invalid-feedback" role="alert"></span>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group mb-4">
-										<label for="user">Hình ảnh<strong class="text-danger">*</strong></label>
-										<input asp-for="ProductImg"
-											   type="file"
-											   id="name"
-											   class="form-control @(ViewData.ModelState["ProductImg"]?.Errors.Count > 0 ? "is-invalid" : "")"
-											   placeholder="Hình ảnh">
-										<span asp-validation-for="ProductImg" class="invalid-feedback" role="alert"></span>
-									</div>
-								</div>
-							</div>
+							
 
 							<div class="row">
 								<div class="col-md-6">
@@ -174,21 +179,20 @@
 										<span asp-validation-for="Status" class="invalid-feedback" role="alert"></span>
 									</div>
 								</div>
-							</div>
-							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group mb-4">
-										<label for="category">Tên danh mục<strong class="text-danger">*</strong></label>
-										<select asp-for="CategoryId" id="category"
-												class="form-control @(ViewData.ModelState["CategoryId"]?.Errors?.Count > 0 ? "is-invalid" : "")"
-												asp-items="ViewBag.Categories">
-											<option value="">Chọn</option>
-										</select>
-										<span asp-validation-for="CategoryId" class="invalid-feedback" role="alert"></span>
+										<label for="user">Giới tính<strong class="text-danger">*</strong></label>
+										<input asp-for="Gender"
+											   type="text"
+											   id="name"
+											   class="form-control @(ViewData.ModelState["Gender"]?.Errors.Count > 0 ? "is-invalid" : "")"
+											   placeholder="Giới tính">
+										<span asp-validation-for="Gender" class="invalid-feedback" role="alert"></span>
+
 									</div>
 								</div>
 							</div>
-
+							
 							<button type="submit" class="btn btn-primary">Hoàn tất</button>
 						</form>
 					</div>
@@ -202,5 +206,100 @@
 
 <!-- Scripts riêng cho lớp con -->
 @section Scripts {
+	<script src="@Url.Content("~/lib/plugins/editors/quill/quill.js")"></script>
+	<script src="@Url.Content("~/lib/plugins/editors/quill/custom-quill.js")"></script>
+
+	<script src="@Url.Content("~/lib/plugins/tomSelect/tom-select.base.js")"></script>
+	<script src="@Url.Content("~/lib/plugins/tomSelect/custom-tom-select.js")"></script>
+
+	<script src="@Url.Content("~/lib/plugins/filepond/filepond.min.js")"></script>
+	<script src="@Url.Content("~/lib/plugins/filepond/FilePondPluginFileValidateType.min.js")"></script>
+	<script src="@Url.Content("~/lib/plugins/filepond/FilePondPluginImageExifOrientation.min.js")"></script>
+	<script src="@Url.Content("~/lib/plugins/filepond/FilePondPluginImagePreview.min.js")"></script>
+	<script src="@Url.Content("~/lib/plugins/filepond/FilePondPluginImageCrop.min.js")"></script>
+	<script src="@Url.Content("~/lib/plugins/filepond/FilePondPluginImageResize.min.js")"></script>
+	<script src="@Url.Content("~/lib/plugins/filepond/FilePondPluginImageTransform.min.js")"></script>
+	<script src="@Url.Content("~/lib/plugins/filepond/filepondPluginFileValidateSize.min.js")"></script>
+	<script src="@Url.Content("~/lib/plugins/filepond/custom-filepond.js")"></script>
+	<script src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
+
+	<script>
+		//file pond
+		FilePond.registerPlugin(
+			FilePondPluginImagePreview,
+			FilePondPluginImageExifOrientation,
+			FilePondPluginFileValidateSize,
+			FilePondPluginImageTransform,
+			FilePondPluginFileEncode,
+			FilePondPluginFileValidateType
+		);
+
+		const ProductImg = FilePond.create(
+			document.querySelector('#ProductImg'),
+			{
+				acceptedFileTypes: ['image/*'],
+				labelFileTypeNotAllowed: 'sai định dạng',
+				fileValidateTypeLabelExpectedTypes: 'phải là hình ảnh',
+				maxFileSize: '5MB',
+				labelMaxFileSizeExceeded: 'Tệp quá lớn',
+				labelMaxFileSize: 'Kích thước ảnh tối đa 5MB',
+				labelIdle: 'Kéo & thả hoặc <span class="filepond--label-action">chọn từ thiết bị</span>',
+				allowPaste: false,
+			}
+		);
+	</script>
+
+	<script type="text/javascript">
+		new TomSelect("#category", {
+			create: true,
+			sortField: {
+				field: "text",
+				direction: "asc"
+			}
+		});
+
+		var quill = new Quill('#description', {
+			modules: {
+				toolbar: [
+					[{
+						'header': [1, 2, 3, 4, 5, 6, false]
+					}],
+					[{
+						'font': []
+					}, {
+						'align': []
+					}],
+					[{
+						'list': 'ordered'
+					}, {
+						'list': 'bullet'
+					}],
+					[{
+						'indent': '-1'
+					}, {
+						'indent': '+1'
+					}],
+					['bold', 'italic', 'underline', {
+						'size': []
+					}],
+					[{
+						'color': []
+					}, {
+						'background': []
+					}],
+					['link', 'image'],
+				]
+			},
+			placeholder: 'Mô tả',
+			theme: 'snow'
+		});
+
+		var initialDescription = $('#hidden-description').val();
+		quill.root.innerHTML = initialDescription;
+
+		$('#general-settings').on('submit', function () {
+			$('#hidden-description').val(quill.root.innerHTML);
+		});
+	</script>
 
 }

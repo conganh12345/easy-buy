@@ -16,9 +16,8 @@ namespace EasyBuy_Backend.Repositories.VoucherRepo
 		}
 		public async Task<string> getLatestIdAsync()
 		{
-			var latestVoucher = await _context.Vouchers
-											   .OrderByDescending(v => v.Id)
-											   .FirstOrDefaultAsync();
+			var latestVoucher = await _context.Vouchers.OrderByDescending(v => v.Id)
+													.FirstOrDefaultAsync();
 
 			if (latestVoucher != null)
 			{
@@ -33,6 +32,5 @@ namespace EasyBuy_Backend.Repositories.VoucherRepo
 								.FirstOrDefaultAsync(v => v.Id == voucherId);
 			return voucher;
 		}
-
 	}
 }

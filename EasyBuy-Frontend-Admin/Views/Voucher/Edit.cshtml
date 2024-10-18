@@ -7,7 +7,9 @@
 
 <!-- CSS riêng cho lớp con -->
 @section Styles {
-
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/lib/plugins/flatpickr/flatpickr.css")">
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/CSS/plugins/dark/flatpickr/custom-flatpickr.css")">
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/CSS/plugins/light/flatpickr/custom-flatpickr.css")">
 }
 
 <div>
@@ -43,20 +45,17 @@
 				<div class="widget-content widget-content-area">
 					<div class="col-12">
 						<form asp-action="Edit" id="general-settings" method="POST">
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group mb-4">
-										<label for="user">Tên<strong class="text-danger">*</strong></label>
-										<input asp-for="Name"
-											   type="text"
-											   id="name"
-											   class="form-control @(ViewData.ModelState["Name"]?.Errors.Count > 0 ? "is-invalid" : "")"
-											   placeholder="Tên">
-										<span asp-validation-for="Name" class="invalid-feedback" role="alert"></span>
+							<div class="form-group mb-4">
+								<label for="user">Tên<strong class="text-danger">*</strong></label>
+								<input asp-for="Name"
+									   type="text"
+									   id="name"
+									   class="form-control @(ViewData.ModelState["Name"]?.Errors.Count > 0 ? "is-invalid" : "")"
+									   placeholder="Tên">
+								<span asp-validation-for="Name" class="invalid-feedback" role="alert"></span>
 
-									</div>
-								</div>
 							</div>
+
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group mb-4">
@@ -70,10 +69,6 @@
 
 									</div>
 								</div>
-							</div>
-
-
-							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group mb-4">
 										<label for="user">Đơn vị<strong class="text-danger">*</strong></label>
@@ -87,8 +82,6 @@
 									</div>
 								</div>
 							</div>
-
-
 
 							<div class="row">
 								<div class="col-md-6">
@@ -115,8 +108,6 @@
 									</div>
 								</div>
 							</div>
-
-
 
 							<div class="row">
 								<div class="col-md-6">
@@ -147,5 +138,19 @@
 
 <!-- Scripts riêng cho lớp con -->
 @section Scripts {
+	<script src="@Url.Content("~/lib/plugins/flatpickr/flatpickr.js")"></script>
+	<script src="@Url.Content("~/lib/plugins/flatpickr/custom-flatpickr.js")"></script>
+	<script>
+		flatpickr("#dateFrom", {
+			enableTime: true,
+			dateFormat: "Y-m-d H:i",
+			minDate: "today",
+		});
 
+		flatpickr("#dateTo", {
+			enableTime: true,
+			dateFormat: "Y-m-d H:i",
+			minDate: "today",
+		});
+	</script>
 }

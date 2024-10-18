@@ -30,17 +30,6 @@ namespace EasyBuy_Frontend_Admin.Controllers
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Create(VoucherViewModel voucher)
 		{
-			/*
-			if (!ModelState.IsValid)
-			{
-				var errors = ModelState.Values.SelectMany(v => v.Errors);
-				foreach (var error in errors)
-				{
-					Debug.WriteLine(error.ErrorMessage);
-				}
-				return View(voucher);
-			}
-			*/
 			Debug.WriteLine("date from "+voucher.DateFrom);
 			Debug.WriteLine("date from " + voucher.DateTo);
 

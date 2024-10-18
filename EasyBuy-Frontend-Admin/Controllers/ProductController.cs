@@ -23,7 +23,6 @@ namespace EasyBuy_Frontend_Admin.Controllers
 			List<ProductViewModel> products = await _productService.GetProductsAsync();
 			List<CategoryViewModel> categories = await _categoryService.GetCategoriesAsync();
 
-			// Gán CategoryName cho từng sản phẩm
 			foreach (var product in products)
 			{
 				product.CategoryName = categories.FirstOrDefault(c => c.Id == product.CategoryId)?.Name;
@@ -33,10 +32,8 @@ namespace EasyBuy_Frontend_Admin.Controllers
 
 		public async Task<IActionResult> Create()
 		{
-			// Lấy danh sách danh mục từ CategoryService
 			List<CategoryViewModel> categories = await _categoryService.GetCategoriesAsync();
 
-			// Truyền danh sách danh mục vào ViewBag
 			ViewBag.Categories = categories.Select(c => new SelectListItem
 			{
 				Value = c.Id.ToString(),
@@ -50,6 +47,7 @@ namespace EasyBuy_Frontend_Admin.Controllers
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Create(ProductViewModel product)
 		{
+			Debug.WriteLine("hay thế " ,product.ProductImg);
 			if (await _productService.AddProductAsync(product))
 				{
 					TempData["Success"] = "Thêm mới sản phẩm thành công.";
@@ -57,7 +55,6 @@ namespace EasyBuy_Frontend_Admin.Controllers
 				}
 				TempData["Error"] = "Đã có lỗi xảy ra";
 
-			// Nếu có lỗi, truyền lại danh sách danh mục để hiển thị trong view
 			List<CategoryViewModel> categories = await _categoryService.GetCategoriesAsync();
 			ViewBag.Categories = categories.Select(c => new SelectListItem
 			{
@@ -71,9 +68,8 @@ namespace EasyBuy_Frontend_Admin.Controllers
 		public async Task<IActionResult> Edit(int id)
 		{
 			ProductViewModel product = await _productService.GetProductByIdAsync(id);
-
-			// Lấy danh sách danh mục để hiển thị trong dropdown
 			List<CategoryViewModel> categories = await _categoryService.GetCategoriesAsync();
+
 			ViewBag.Categories = categories.Select(c => new SelectListItem
 			{
 				Value = c.Id.ToString(),
@@ -100,6 +96,7 @@ namespace EasyBuy_Frontend_Admin.Controllers
 		public async Task<IActionResult> Delete(int id)
 		{
 			await _productService.DeleteProductAsync(id);
+
 			return Ok();
 		}
 	}

@@ -48,18 +48,17 @@
 						<thead>
 							<tr>
 								<th style="width: 5%">STT</th>
+								<th>Hình ảnh</th>
 								<th>Tên sản phẩm</th>
+								<th>Tên danh mục</th>
 								<th>Giá bán</th>
 								<th>Gía nhập</th>
 								<th>Khuyến mãi</th>
 								<th>Loại</th>
 								<th>Màu sắc</th>
 								<th>Giới tính</th>
-								<th>Mô tả</th>
-								<th>Hình ảnh</th>
 								<th>Số lượng tồn</th>
 								<th>Trạng thái</th>
-								<th>Tên danh mục</th>
 								<th class="no-content" style="width: 5%">Thao tác</th>
 							</tr>
 						</thead>
@@ -68,24 +67,23 @@
 							{
 								<tr>
 									<td>@product.Id</td>
+									<td>
+										<img src="@product.ProductImg" alt="Image" style="width: 50px; height: auto;" />
+									</td>
 									<td>@product.ProductName</td>
+									<td>@product.CategoryName</td>
 									<td>@product.PriceToSell</td>
 									<td>@product.ImportPrice</td>
 									<td>@product.Discount</td>
 									<td>@product.Model</td>
 									<td>@product.Color</td>
-									<td>@product.Gender</td>
-									<td>@product.Description</td>
-									<td>
-										<img src="@product.ProductImg" alt="Product Image" style="width: 50px; height: auto;" />
-									</td>									
+									<td>@product.Gender</td>									
 									<td>@product.StockQuantity	</td>
 									<td>
 										<span class="badge badge-light-@product.Status.GetBadge()">
 											@product.Status.GetDisplayName()
 										</span>
 									</td>
-									<td>@product.CategoryName</td>
 
 									<td class="text-truncate" style="max-width: 250px;">
 										<a href="@Url.Action("Edit", "Product", new { id = product.Id })"
