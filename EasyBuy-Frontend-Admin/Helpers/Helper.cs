@@ -33,6 +33,15 @@ namespace EasyBuy_Frontend_Admin.Helpers
 					}
 					break;
 
+				case ProductStatus productStatus:
+					switch (productStatus)
+					{
+						case ProductStatus.ENABLE:
+							return "success";
+						case ProductStatus.DISABLED:
+							return "danger";
+					}
+					break;
 				case UserStatus userStatus:
 					switch (userStatus)
 					{
