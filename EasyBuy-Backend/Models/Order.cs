@@ -39,7 +39,7 @@ namespace EasyBuy_Backend.Models
         [ForeignKey("PaymentId")]
         public Payment Payment { get; set; }
 
-        public string? VoucherId { get; set; }
+        public int? VoucherId { get; set; }
 
         [ForeignKey("VoucherId")]
         public Voucher Voucher { get; set; }

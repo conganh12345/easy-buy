@@ -6,7 +6,7 @@ namespace EasyBuy_Backend.Models
 {
     public class Voucher
     {
-        public string Id { get; set; } 
+        public int Id { get; set; } 
 
         public string VoucherName { get; set; }
 
@@ -20,6 +20,6 @@ namespace EasyBuy_Backend.Models
 
         public VoucherStatus Status { get; set; }
 
-        //public virtual ICollection<Order>? Orders { get; set; }
+        public virtual ICollection<Order>? Orders { get; set; }
     }
 }
