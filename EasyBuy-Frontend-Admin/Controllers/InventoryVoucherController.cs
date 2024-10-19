@@ -48,20 +48,15 @@ namespace EasyBuy_Frontend_Admin.Controllers
 			return View(inventoryvoucher);
 		}
 
-		//public async Task<IActionResult> Edit(int id)
-		//{
-		//	InventoryVoucherViewModel inventoryvoucher = await _inventoryvoucherService.GetInventoryVoucherByIdAsync(id);
-
-		//	return View(inventoryvoucher);
-		//}
-
-		public async Task<IActionResult> Edit()
+		public async Task<IActionResult> Edit(int id)
 		{
+			InventoryVoucherViewModel inventoryvoucher = await _inventoryvoucherService.GetInventoryVoucherByIdAsync(id);
+
 			List<SupplierViewModel> suppliers = await _supplierService.GetSuppliersAsync();
 
 			ViewBag.Suppliers = new SelectList(suppliers, "Id", "Name");
 
-			return View();
+			return View(inventoryvoucher);
 		}
 
 		[HttpPost]

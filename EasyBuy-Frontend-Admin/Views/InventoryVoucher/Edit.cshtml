@@ -7,12 +7,14 @@
 
 <!-- CSS riêng cho lớp con -->
 @section Styles {
-	<!-- TomSelect CSS từ CDN -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.default.min.css">
-	<link rel="stylesheet" type="text/css" href="~/css/plugins/light/tomSelect/custom-tomSelect.css">
-	<link rel="stylesheet" type="text/css" href="~/css/plugins/dark/tomSelect/custom-tomSelect.css">
-	<!-- Flatpickr CSS từ CDN -->
-	<!--	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">-->
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/css/plugins/light/tomSelect/custom-tomSelect.css")">
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/css/plugins/dark/tomSelect/custom-tomSelect.css")">
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/lib/plugins/tomSelect/tom-select.default.min.css")">
+
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/lib/plugins/flatpickr/flatpickr.css")">
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/CSS/plugins/dark/flatpickr/custom-flatpickr.css")">
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/CSS/plugins/light/flatpickr/custom-flatpickr.css")">
+
 }
 
 <div>
@@ -54,7 +56,7 @@
 										<label for="user">Tên nhà cung cấp<strong class="text-danger">*</strong></label>
 
 										<select id="supplier"
-												name="SupplierID"
+												asp-for="SupplierId"
 												asp-items="ViewBag.Suppliers"
 												class="form-control"
 												placeholder="Chọn nhà cung cấp"
@@ -84,14 +86,12 @@
 								<div class="col-md-6">
 									<div class="form-group mb-4">
 										<label for="date">Ngày nhập<strong class="text-danger">*</strong></label>
-										<input asp-for="Date" id="datepicker" type="date" placeholder="Ngày nhập"
+										<input asp-for="Date" id="date" type="date" placeholder="Ngày nhập"
 											   class="form-control @(ViewData.ModelState["Date"]?.Errors?.Count > 0 ? "is-invalid" : "")" />
 										<span asp-validation-for="Date" class="invalid-feedback" role="alert"></span>
 									</div>
 								</div>
 							</div>
-
-
 							<button type="submit" class="btn btn-primary">Hoàn tất</button>
 						</form>
 					</div>
@@ -105,11 +105,11 @@
 
 <!-- Scripts riêng cho lớp con -->
 @section Scripts {
-	<!-- TomSelect JS từ CDN -->
-	<script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.base.min.js"></script>
+	<script src="@Url.Content("~/lib/plugins/tomSelect/tom-select.base.js")"></script>
+	<script src="@Url.Content("~/lib/plugins/tomSelect/custom-tom-select.js")"></script>
 
-	<!-- Flatpickr JS từ CDN -->
-	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+	<script src="@Url.Content("~/lib/plugins/flatpickr/flatpickr.js")"></script>
+	<script src="@Url.Content("~/lib/plugins/flatpickr/custom-flatpickr.js")"></script>
 
 	<script>
 		$(document).ready(function () {
@@ -125,12 +125,11 @@
 
 	</script>
 
-	<!--<script>
-		flatpickr("#datepicker", {
-			dateFormat: "d-m-Y",  // Định dạng ngày kiểu Việt Nam
+	<script>
+		flatpickr("#date", {
+			enableTime: true,
+			dateFormat: "Y-m-d H:i",
 			minDate: "today",
-			locale: "vn"         // Sử dụng ngôn ngữ tiếng Việt
 		});
-	</script>-->
-
+	</script>
 }
