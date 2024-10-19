@@ -19,7 +19,6 @@ namespace EasyBuy_Frontend_Admin.Services
 			services.AddHttpClient<ISupplierService, SupplierService>();
 			services.AddHttpClient<IVoucherService, VoucherService>();
 			services.AddHttpClient<IProductService, ProductService>();
-			return services;
 			services.AddHttpClient<IInventoryVoucherService, InventoryVoucherService>();
 
 			return services;		
