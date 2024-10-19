@@ -7,7 +7,6 @@ namespace EasyBuy_Frontend_Admin.Services.CategorySvc
     public class CategoryService : ICategoryService
     {
         private readonly HttpClient _httpClient;
-
         public CategoryService(HttpClient httpClient)
         {
             _httpClient = httpClient;
@@ -21,7 +20,6 @@ namespace EasyBuy_Frontend_Admin.Services.CategorySvc
             try
             {
                 HttpResponseMessage response = await _httpClient.GetAsync("/api/Category");
-
                 string data = await response.Content.ReadAsStringAsync();
                 categories = JsonSerializer.Deserialize<List<CategoryViewModel>>(data);
             }

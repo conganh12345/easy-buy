@@ -48,12 +48,12 @@
 								<div class="col-md-6">
 									<div class="form-group mb-4">
 										<label for="user">Tên người dùng <strong class="text-danger">*</strong></label>
-										<input asp-for="UserName"
+										<input asp-for="Name"
 											   type="text"
-											   id="UserName"
-											   class="form-control @(ViewData.ModelState["UserName"]?.Errors.Count > 0 ? "is-invalid" : "")"
+											   id="Name"
+											   class="form-control @(ViewData.ModelState["Name"]?.Errors.Count > 0 ? "is-invalid" : "")"
 											   placeholder="Tên người dùng">
-										<span asp-validation-for="UserName" class="invalid-feedback" role="alert"></span>
+										<span asp-validation-for="Name" class="invalid-feedback" role="alert"></span>
 
 									</div>
 								</div>
@@ -75,11 +75,11 @@
 									<div class="form-group mb-4">
 										<label for="user">Mật khẩu <strong class="text-danger">*</strong></label>
 										<input type="text"
-											   asp-for="PasswordHash"
-											   id="PasswordHash"
-											   class="form-control @(ViewData.ModelState["PasswordHash"]?.Errors.Count > 0 ? "is-invalid" : "")"
+											   asp-for="Password"
+											   id="Password"
+											   class="form-control @(ViewData.ModelState["Password"]?.Errors.Count > 0 ? "is-invalid" : "")"
 											   placeholder="Mật khẩu">
-										<span asp-validation-for="PasswordHash" class="invalid-feedback" role="alert"></span>
+										<span asp-validation-for="Password" class="invalid-feedback" role="alert"></span>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -142,7 +142,6 @@
 	</div>
 </div>
 
-</div>
 
 <!-- Scripts riêng cho lớp con -->
 @section Scripts {

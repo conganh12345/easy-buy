@@ -2,90 +2,205 @@
     ViewData["Title"] = "Trang chủ";
 }
 
-<!-- CSS riêng cho lớp con -->
 @section Styles {
     <link rel="stylesheet" type="text/css" href="~/css/assets/light/apps/blog-post.css">
     <link rel="stylesheet" type="text/css" href="~/css/assets/dark/apps/blog-post.css">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/css/plugins/dark/splide/custom-splide.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/css/plugins/light/splide/custom-splide.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/lib/plugins/splide/splide.min.css")">
 }
+
 <div class="middle-content container-xxl p-0">
-
     <div class="row layout-top-spacing">
-
         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4">
-
-
             <div class="single-post-content">
-
                 <div class="featured-image">
-
                     <div class="featured-image-overlay"></div>
-
                     <div class="post-header">
-
                         <div class="post-title">
-                            <h1 class="mb-0">List of Best Restaurant WordPress Themes</h1>
+                            <h1 class="mb-0">Danh Sách Những Mẫu Đồng Hồ Tốt Nhất</h1>
                         </div>
-
                         <div class="post-meta-info d-flex justify-content-between">
                             <div class="media">
                                 <img src="~/images/profile-12.jpeg" alt="profile">
                                 <div class="media-body">
-                                    <h5>Kelly Young</h5>
-                                    <p>15 May 2022</p>
+                                    <h5>Nguyễn Văn A</h5>
+                                    <p>15 Tháng 5 2022</p>
                                 </div>
                             </div>
-              
-
                             <div class="align-self-center">
                                 <button class="btn btn-success btn-icon btn-share btn-rounded">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share-2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share-2">
+                                        <circle cx="18" cy="5" r="3"></circle>
+                                        <circle cx="6" cy="12" r="3"></circle>
+                                        <circle cx="18" cy="19" r="3"></circle>
+                                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                    </svg>
                                 </button>
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
 
                 <div class="post-content">
+                    <p class="mb-5">Đồng hồ là một phụ kiện thời trang không thể thiếu trong cuộc sống hiện đại. Chúng không chỉ giúp bạn theo dõi thời gian mà còn là một phần quan trọng trong phong cách cá nhân của mỗi người. Từ những mẫu đồng hồ cổ điển đến hiện đại, có rất nhiều lựa chọn để bạn tìm kiếm.</p>
 
-                    <p class="mb-5">Aenean non tempor justo. Donec faucibus sapien a urna interdum porta. Quisque fermentum nisi felis, quis aliquam quam volutpat porta. Nullam aliquet scelerisque massa, quis tincidunt velit. Vivamus semper placerat ornare. Maecenas eget accumsan eros. Donec non felis vitae tortor elementum euismod sit amet vitae risus. Nam nunc turpis, porttitor ut tempor eu, efficitur nec risus.</p>
-
-                    <h4>Cinyras ea tulit in inducit qui mater</h4>
-
-                    <p class="mb-5">Lorem markdownum facit? Hinc tutus serisque, mihi iaculum curam, vicibus aliquando se posses gentis quidem. Meta  tenebat diversa dixerat celeberrimus molle require; prendique urnam  Pyreneus? Haut mei sive digna noctisque percussit dicta, in pars certaminis iuvenalis. Praemonuisse esse  inter in huic, Cinyras pallentem vi sistere cubat ne causa.</p>
-
-                    <h4>Utque tu canibus</h4>
-
-                    <p class="mb-5">Possent quippe. Conata fera ab Hersilie iam auditur haesit. Culpa ignis retia Aonides ictus crescendo micantes, petere, ambustaque vicem in digitos iubet cornigeris.</p>
-
-                    <ul class="mb-5">
-                        <li class="mb-1">Consectetur adipiscing elit</li>
-                        <li class="mb-1">Integer massa</li>
-                        <li class="mb-1">Facilisis nisl aliquet</li>
-                    </ul>
-
-                    <h4>Fregit aut Caystro equos</h4>
-
-                    <p>Manet pro aere superest adiacet sua purpura Tereus in multis conantem culpa, inque fingit et referebat? Materiaque mentes et, quo omnia  captiva ore mandat cepit triformis filia. Prius sorte nomina in repellite sentit facunde te aures, vires.</p>
-
-
-
+                    <h4>Các loại đồng hồ phổ biến</h4>
+                    <p class="mb-5">Trên thị trường hiện nay, có nhiều loại đồng hồ khác nhau, bao gồm đồng hồ cơ, đồng hồ điện tử và đồng hồ thông minh. Mỗi loại đều có những ưu điểm riêng và phù hợp với nhu cầu khác nhau của người dùng.</p>
+ 
                     <div class="text-center mb-5">
-                        <img src="~/images/slider-3.jpeg" alt="image-1" class="img-fluid">
+                        <div class="mb-4">
+                            <h2 class="position-relative d-inline-block">
+                                <span class="border-top border-dark mx-2" style="width: 100px;"></span> 
+                                BỘ SƯU TẬP
+                                <span class="border-top border-dark mx-2" style="width: 100px;"></span>
+                            </h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <img src="~/images/slider-1.jpeg" alt="image-1" class="img-fluid">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <img src="~/images/slider-2.jpeg" alt="image-2" class="img-fluid">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <img src="~/images/slider-3.jpeg" alt="image-3" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <img src="~/images/slider-1.jpeg" alt="image-1" class="img-fluid">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <img src="~/images/slider-2.jpeg" alt="image-2" class="img-fluid">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <img src="~/images/slider-3.jpeg" alt="image-3" class="img-fluid">
+                            </div>
+                        </div>
                     </div>
 
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
 
-
+                    <p>Các mẫu đồng hồ tốt nhất hiện nay không chỉ đáp ứng nhu cầu sử dụng mà còn thể hiện phong cách và cá tính của người đeo. Hãy chọn cho mình một chiếc đồng hồ phù hợp để luôn nổi bật trong mắt người khác!</p>
                 </div>
 
+                <div class="row">
+                    <div id="splider_MultipleSlider" class="col-lg-12 col-md-12 layout-spacing">
+                        <div class="statbox widget box box-shadow">
+                            <div class="widget-header">
+                                <div class="row">
+                                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                        <h4>Multiple Slides</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget-content widget-content-area">
+                                <div class="position-relative">
+                                    <div class="container" style="max-width: 700px">
+                                        <div class="splide-multiple">
+                                            <div class="splide__track">
+                                                <ul class="splide__list">
+                                                    <li class="splide__slide">
+                                                        <img alt="slider-image" class="img-fluid" src="~/imgages/product-1.jpg">
+                                                    </li>
+                                                    <li class="splide__slide">
+                                                        <img alt="slider-image" class="img-fluid" src="~/imgages/product-2.jpg">
+                                                    </li>
+                                                    <li class="splide__slide">
+                                                        <img alt="slider-image" class="img-fluid" src="~/imgages/product-3.jpg">
+                                                    </li>
 
+                                                    <li class="splide__slide">
+                                                        <img alt="slider-image" class="img-fluid" src="~/imgages/product-1.jpg">
+                                                    </li>
+                                                    <li class="splide__slide">
+                                                        <img alt="slider-image" class="img-fluid" src="~/imgages/product-2.jpg">
+                                                    </li>
+                                                    <li class="splide__slide">
+                                                        <img alt="slider-image" class="img-fluid" src="~/imgages/product-3.jpg">
+                                                    </li>
+
+                                                    <li class="splide__slide">
+                                                        <img alt="slider-image" class="img-fluid" src="~/imgages/product-1.jpg">
+                                                    </li>
+                                                    <li class="splide__slide">
+                                                        <img alt="slider-image" class="img-fluid" src="~/imgages/product-2.jpg">
+                                                    </li>
+                                                    <li class="splide__slide">
+                                                        <img alt="slider-image" class="img-fluid" src="~/imgages/product-3.jpg">
+                                                    </li>
+
+                                                    <li class="splide__slide">
+                                                        <img alt="slider-image" class="img-fluid" src="~/imgages/product-1.jpg">
+                                                    </li>
+                                                    <li class="splide__slide">
+                                                        <img alt="slider-image" class="img-fluid" src="~/imgages/product-2.jpg">
+                                                    </li>
+                                                    <li class="splide__slide">
+                                                        <img alt="slider-image" class="img-fluid" src="~/imgages/product-3.jpg">
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="code-section-container">
+
+                                    <button class="btn toggle-code-snippet"><span>Code</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down toggle-code-icon"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+
+                                    <div class="code-section text-left">
+                                      
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="splider_Pagination" class="col-lg-12 col-md-12 layout-spacing">
+                        <div class="statbox widget box box-shadow">
+                            <div class="widget-header">
+                                <div class="row">
+                                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                        <h4>Pagination</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget-content widget-content-area">
+                                <div class="position-relative">
+                                    <div class="container" style="max-width: 560px">
+                                        <div class="splide-pagination">
+                                            <div class="splide__track">
+                                                <ul class="splide__list">
+                                                    <li class="splide__slide">
+                                                        <img alt="slider-image" class="img-fluid" src="~/imgages/product-1.jpg">
+                                                    </li>
+                                                    <li class="splide__slide">
+                                                        <img alt="slider-image" class="img-fluid" src="~/imgages/product-2.jpg">
+                                                    </li>
+                                                    <li class="splide__slide">
+                                                        <img alt="slider-image" class="img-fluid" src="~/imgages/product-3.jpg">
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                         
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
         </div>
-
     </div>
 </div>
+
+<!-- Scripts riêng cho lớp con -->
+@section Scripts {
+    <script src="@Url.Content("~/lib/plugins/splide/splide.min.js")"></script>
+    <script src="@Url.Content("~/lib/plugins/splide/custom-splide.js")"></script>
+}

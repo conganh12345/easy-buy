@@ -33,6 +33,15 @@ namespace EasyBuy_Frontend_Admin.Helpers
 					}
 					break;
 
+				case ProductStatus productStatus:
+					switch (productStatus)
+					{
+						case ProductStatus.ENABLE:
+							return "success";
+						case ProductStatus.DISABLED:
+							return "danger";
+					}
+					break;
 				case UserStatus userStatus:
 					switch (userStatus)
 					{
@@ -50,6 +59,16 @@ namespace EasyBuy_Frontend_Admin.Helpers
 							return "info";
 						case UserRole.ADMIN:
 							return "primary";
+					}
+					break;
+
+				case VoucherStatus voucherStatus:
+					switch (voucherStatus)
+					{
+						case VoucherStatus.ENABLE:
+							return "success";
+						case VoucherStatus.DISABLED:
+							return "danger";
 					}
 					break;
 

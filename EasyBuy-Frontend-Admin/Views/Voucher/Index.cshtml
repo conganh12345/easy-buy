@@ -1,7 +1,7 @@
 ﻿@{
-    ViewData["Title"] = "Người dùng";
+	ViewData["Title"] = "Voucher";
 }
-@model List<EasyBuy_Frontend_Admin.Models.UserViewModel>
+@model List<EasyBuy_Frontend_Admin.Models.VoucherViewModel>
 @using EasyBuy_Frontend_Admin.Helpers
 
 <!-- CSS riêng cho lớp con -->
@@ -20,16 +20,15 @@
 	<div class="page-meta">
 		<nav class="breadcrumb-style-one" aria-label="breadcrumb">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="#">Người dùng</a></li>
+				<li class="breadcrumb-item"><a href="#">Voucher</a></li>
 				<li class="breadcrumb-item active" aria-current="page">
 					Quản lý
-					người dùng
+					Voucher
 				</li>
 			</ol>
 		</nav>
 	</div>
 	<!-- /BREADCRUMB -->
-
 	<!-- DATATABLE -->
 	<div class="row layout-top-spacing">
 		<div class="col-xl-12 col-lg-12 col-sm-12">
@@ -37,47 +36,44 @@
 				<div class="widget-header">
 					<div class="row">
 						<div class="col-xl-12 col-md-12 col-sm-12 col-12">
-							<h4>Quản lý người dùng</h4>
+							<h4>Quản lý Voucher</h4>
 						</div>
 					</div>
 				</div>
 				<div class="widget-content widget-content-area">
 					<div class="layout-top-spacing ps-3 pe-3 col-12 mb-3">
-						<a href="@Url.Action("Create", "User")" class="btn btn-primary">Thêm mới</a>
+						<a href="@Url.Action("Create", "Voucher")" class="btn btn-primary">Thêm mới</a>
 					</div>
-					<table id="user-table" class="table style-3 dt-table-hover" style="width: 100%">
+					<table id="voucher-table" class="table style-3 dt-table-hover" style="width: 100%">
 						<thead>
 							<tr>
 								<th style="width: 5%">STT</th>
 								<th>Tên</th>
-								<th>Email</th>
-								<th>Số điện thoại</th>
-								<th>Vai trò</th>
+								<th>Giá trị</th>
+								<th>Đơn vị</th>
+								<th>Từ ngày</th>
+								<th>Đến ngày</th>
 								<th>Trạng thái</th>
 								<th class="no-content" style="width: 5%">Thao tác</th>
 							</tr>
 						</thead>
 						<tbody>
-							@{
-								int stt = 1; 
-							}
-							@foreach (var user in Model)
+							@foreach (var voucher in Model)
 							{
 								<tr>
-									<td>@stt</td>
-									<td>@user.Name</td>
-									<td>@user.Email</td>
-									<td>@user.PhoneNumber</td>
+									<td>@voucher.Id</td>
+									<td>@voucher.Name</td>
+									<td>@voucher.Discount</td>
+									<td>@voucher.Unit</td>
+									<td>@voucher.DateFrom.ToString("dd-MM-yyyy")</td>
+									<td>@voucher.DateTo.ToString("dd-MM-yyyy")</td>
 									<td>
-										<span class="badge badge-@user.Role.GetBadge()">@user.Role.GetDisplayName()
-										</span>
-									</td>
-									<td>
-										<span class="badge badge-light-@user.Status.GetBadge()">@user.Status.GetDisplayName()
+										<span class="badge badge-light-@voucher.Status.GetBadge()">
+											@voucher.Status.GetDisplayName()
 										</span>
 									</td>
 									<td class="text-truncate" style="max-width: 250px;">
-										<a href="@Url.Action("Edit", "User", new { id = user.Id })"
+										<a href="@Url.Action("Edit", "Voucher", new { id = voucher.Id })"
 										   class="bs-tooltip edit" data-bs-toggle="tooltip"
 										   data-bs-placement="top">
 											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -89,7 +85,7 @@
 												</path>
 											</svg>
 										</a>
-										<a href="#" data-user-id="@user.Id"
+										<a href="#" data-voucher-id="@voucher.Id"
 										   class="bs-tooltip delete" data-bs-toggle="tooltip"
 										   data-bs-placement="top">
 											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -103,8 +99,6 @@
 										</a>
 									</td>
 								</tr>
-
-								stt++;
 							}
 						</tbody>
 					</table>
@@ -122,7 +116,7 @@
 	<script src="~/lib/plugins/table/datatable/extensions/col-reorder/col-reorder.datatables.min.js"></script>
 	<script src="~/lib/plugins/table/datatable/extensions/fixed-columns/fixed-columns.datatables.min.js"></script>
 	<script>
-		$('#user-table').DataTable(
+		$('#voucher-table').DataTable(
 			{
 				"dom": "<'dt--top-section'<'row'<'col-12 col-sm-6 d-flex justify-content-sm-start justify-content-center'l><'col-12 col-sm-6 d-flex justify-content-sm-end justify-content-center mt-sm-0 mt-3'f>>>"
 					+ "<'table-responsive'tr>"
@@ -146,25 +140,25 @@
 	</script>
 
 	<script>
-		$(document).ready(function() {
-			 let userIdToDelete;
+		$(document).ready(function () {
+			let voucherIdToDelete;
 
-			 $('.delete').on('click', function(e) {
-					e.preventDefault();
-					userIdToDelete = $(this).data('user-id');
-					$('#deleteModal').modal('show');
-			 });
+			$('.delete').on('click', function (e) {
+				e.preventDefault();
+				voucherIdToDelete = $(this).data('voucher-id');
+				$('#deleteModal').modal('show');
+			});
 
-		  $('#confirmDelete').on('click', function() {
+			$('#confirmDelete').on('click', function () {
 				$.ajax({
-					url: `/User/Delete`,
+					url: `/Voucher/Delete`,
 					type: 'POST',
 					data: {
-						id: userIdToDelete
+						id: voucherIdToDelete
 					},
-					success: function(response) {
+					success: function (response) {
 						Snackbar.show({
-							text: 'Xóa người dùng thành công',
+							text: 'Xóa voucher thành công',
 							textColor: '#ddf5f0',
 							backgroundColor: '#00ab55',
 							actionText: 'Bỏ qua',
@@ -173,9 +167,9 @@
 
 						location.reload();
 					},
-					error: function(xhr, status, error) {
+					error: function (xhr, status, error) {
 						Snackbar.show({
-							text: 'Xóa người dùng thất bại',
+							text: 'Xóa voucher thất bại',
 							textColor: '#fbeced',
 							backgroundColor: '#e7515a',
 							actionText: 'Bỏ qua',
