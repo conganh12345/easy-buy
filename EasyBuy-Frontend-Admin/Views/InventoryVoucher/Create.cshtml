@@ -14,7 +14,6 @@
 	<link rel="stylesheet" type="text/css" href="@Url.Content("~/lib/plugins/flatpickr/flatpickr.css")">
 	<link rel="stylesheet" type="text/css" href="@Url.Content("~/CSS/plugins/dark/flatpickr/custom-flatpickr.css")">
 	<link rel="stylesheet" type="text/css" href="@Url.Content("~/CSS/plugins/light/flatpickr/custom-flatpickr.css")">
-
 }
 
 <div>
@@ -56,14 +55,14 @@
 										<label for="user">Tên nhà cung cấp<strong class="text-danger">*</strong></label>
 
 										<select id="supplier" 
-											name="SupplierID" 
-											asp-items="ViewBag.Suppliers" 
-											class="form-control" 
+											asp-for="SupplierId" 
+											asp-items="ViewBag.Suppliers"
+											class="form-control @(ViewData.ModelState["SupplierId"]?.Errors?.Count > 0 ? "is-invalid" : "")"
 											placeholder="Chọn nhà cung cấp" 
 											autocomplete="off">
 											<option value="">Chọn nhà cung cấp...</option>
 										</select>
-
+										<span asp-validation-for="SupplierId" class="invalid-feedback" role="alert"></span>
 									</div>
 								</div>
 							</div>

@@ -3,7 +3,7 @@ using EasyBuy_Frontend_Admin.Services.CategorySvc;
 using EasyBuy_Frontend_Admin.Services.ProductSvc;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Diagnostics; // Thêm thư viện này
+using System.Diagnostics; 
 
 namespace EasyBuy_Frontend_Admin.Controllers
 {
@@ -12,8 +12,10 @@ namespace EasyBuy_Frontend_Admin.Controllers
 		private readonly IProductService _productService;
 		private readonly ICategoryService _categoryService;
 
-		public ProductController(IProductService productService, ICategoryService categoryService)
-		{
+		public ProductController(
+			IProductService productService, 
+			ICategoryService categoryService
+		) {
 			_productService = productService;
 			_categoryService = categoryService;
 		}
@@ -33,12 +35,7 @@ namespace EasyBuy_Frontend_Admin.Controllers
 		public async Task<IActionResult> Create()
 		{
 			List<CategoryViewModel> categories = await _categoryService.GetCategoriesAsync();
-
-			ViewBag.Categories = categories.Select(c => new SelectListItem
-			{
-				Value = c.Id.ToString(),
-				Text = c.Name
-			}).ToList();
+			ViewBag.Categories = new SelectList(categories, "Id", "Name");
 
 			return View();
 		}
@@ -47,20 +44,15 @@ namespace EasyBuy_Frontend_Admin.Controllers
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Create(ProductViewModel product)
 		{
-			Debug.WriteLine("hay thế " ,product.ProductImg);
 			if (await _productService.AddProductAsync(product))
-				{
-					TempData["Success"] = "Thêm mới sản phẩm thành công.";
-					return RedirectToAction(nameof(Index));
-				}
-				TempData["Error"] = "Đã có lỗi xảy ra";
+			{
+				TempData["Success"] = "Thêm mới sản phẩm thành công.";
+				return RedirectToAction(nameof(Index));
+			}
+			TempData["Error"] = "Đã có lỗi xảy ra";
 
 			List<CategoryViewModel> categories = await _categoryService.GetCategoriesAsync();
-			ViewBag.Categories = categories.Select(c => new SelectListItem
-			{
-				Value = c.Id.ToString(),
-				Text = c.Name
-			}).ToList();
+			ViewBag.Categories = new SelectList(categories, "Id", "Name");
 
 			return View(product);
 		}
@@ -70,11 +62,7 @@ namespace EasyBuy_Frontend_Admin.Controllers
 			ProductViewModel product = await _productService.GetProductByIdAsync(id);
 			List<CategoryViewModel> categories = await _categoryService.GetCategoriesAsync();
 
-			ViewBag.Categories = categories.Select(c => new SelectListItem
-			{
-				Value = c.Id.ToString(),
-				Text = c.Name
-			}).ToList();
+			ViewBag.Categories = new SelectList(categories, "Id", "Name");
 
 			return View(product);
 		}

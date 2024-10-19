@@ -12,10 +12,6 @@ namespace EasyBuy_Frontend_Admin.Models
 		[JsonPropertyName("supplierId")]
 		public int SupplierId { get; set; }
 
-		[Required(ErrorMessage = "Tên nhà cung cấp là bắt buộc.")]
-		[JsonPropertyName("supplierName")]
-		public String SupplierName { get; set; }
-
 		[Required(ErrorMessage = "Tổng cộng là bắt buộc.")]
 		[JsonPropertyName("total")]
 		public double Total { get; set; } 
