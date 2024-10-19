@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using EasyBuy_Backend.Models.Enums;
 
 
@@ -9,7 +10,6 @@ namespace EasyBuy_Backend.Models
     {
         [Key]
         public int Id { get; set; }
-
   
         public string ProductName { get; set; } 
 
@@ -43,8 +43,13 @@ namespace EasyBuy_Backend.Models
         [ForeignKey("CategoryId")]
         public Category? Category { get; set; }
 
-        public virtual ICollection<OrderLine>? OrderLines { get; set; } 
+        [JsonIgnore]
+        public virtual ICollection<OrderLine>? OrderLines { get; set; }
+
+        [JsonIgnore]
         public virtual ICollection<Cart>? Carts { get; set; }
+
+        [JsonIgnore]
         public virtual ICollection<InventoryVoucherDetail>? InventoryVoucherDetails { get; set; }
     }
 }

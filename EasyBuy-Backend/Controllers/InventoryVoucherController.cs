@@ -18,9 +18,9 @@ namespace EasyBuy_Backend.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var inventoryVouchers = _inventoryVoucherRepository.GetAll();
+            var inventoryVouchers = await _inventoryVoucherRepository.GetAllAsync();
 
             return Ok(inventoryVouchers);
         }

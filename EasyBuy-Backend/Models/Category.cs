@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Reflection;
+using System.Text.Json.Serialization;
 using EasyBuy_Backend.Models.Enums;
 
 namespace EasyBuy_Backend.Models
@@ -14,6 +15,7 @@ namespace EasyBuy_Backend.Models
 
 		public CategoryStatus Status { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Product>? Products { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace EasyBuy_Backend.Models
 {
@@ -11,6 +12,7 @@ namespace EasyBuy_Backend.Models
         [StringLength(50)]
         public string PaymentName { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Order>? Orders { get; set; }
     }
 }
