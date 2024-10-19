@@ -20,6 +20,7 @@ namespace EasyBuy_Frontend_Admin.Models
 		[JsonPropertyName("date")]
 		public DateTime Date { get; set; }
 
-        public string? SupplierName { get; set; }
-    }
+		[JsonPropertyName("supplier")]
+		public SupplierViewModel? Supplier { get; set; }
+	}
 }
