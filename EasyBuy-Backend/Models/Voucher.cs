@@ -1,6 +1,7 @@
 ﻿using System;
 using EasyBuy_Backend.Models.Enums;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace EasyBuy_Backend.Models
 {
@@ -20,6 +21,7 @@ namespace EasyBuy_Backend.Models
 
         public VoucherStatus Status { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Order>? Orders { get; set; }
     }
 }

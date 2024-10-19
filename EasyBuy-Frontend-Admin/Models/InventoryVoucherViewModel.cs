@@ -18,6 +18,9 @@ namespace EasyBuy_Frontend_Admin.Models
 
 		[Required(ErrorMessage = "Ngày nhập là bắt buộc.")]
 		[JsonPropertyName("date")]
-		public DateTime Date { get; set; }  
+		public DateTime Date { get; set; }
+
+		[JsonPropertyName("supplier")]
+		public SupplierViewModel? Supplier { get; set; }
 	}
 }
