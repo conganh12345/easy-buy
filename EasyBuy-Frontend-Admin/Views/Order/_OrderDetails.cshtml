@@ -1,0 +1,11 @@
+﻿@using EasyBuy_Frontend_Admin.Helpers
+@model EasyBuy_Frontend_Admin.Models.OrderViewModel
+
+<p><strong>Tên người dùng:</strong> @Model.User.Name</p>
+<p><strong>Voucher:</strong> @(Model.Voucher != null ? Model.Voucher.Name : "Không xác định")</p>
+<p><strong>Phí vận chuyển:</strong> @Model.ShippingFee</p>
+<p><strong>Ngày đặt hàng:</strong> @Model.OrderDate</p>
+<p><strong>Giá giảm:</strong> @Model.OrderDiscount</p>
+<p><strong>Tổng tiền:</strong> @Model.OrderTotal</p>
+<p><strong>Địa chỉ:</strong> @Model.Address</p>
+<p><strong>Trạng thái:</strong> <span class="badge badge-light-@Model.Status.GetBadge()">@Model.Status.GetDisplayName()</span></p>
