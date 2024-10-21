@@ -30,20 +30,9 @@ namespace EasyBuy_Frontend_Admin.Controllers
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Create(VoucherViewModel voucher)
 		{
-			/*
-			if (voucher.DateFrom >= voucher.DateTo)
-			{
-				ViewBag.ErrorMessage = "Ngày bắt đầu phải nhỏ hơn ngày kết thúc.";
-				return View(voucher); 
-			}
-			*/
-			if (!ModelState.IsValid)
-			{
-				return View(voucher);
-			}
 			if (await _voucherService.AddVoucherAsync(voucher))
 			{
-				TempData["Success"] = "Thêm mới voucher thành công.";
+				TempData["Success"] = "Thêm mới phiếu giảm giá thành công.";
 				return RedirectToAction(nameof(Index));
 			}
 			TempData["Error"] = "Đã có lỗi xảy ra";
@@ -61,13 +50,9 @@ namespace EasyBuy_Frontend_Admin.Controllers
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Edit(VoucherViewModel voucher)
 		{
-			if (!ModelState.IsValid)
-			{
-				return View(voucher);
-			}
 			if (await _voucherService.UpdateVoucherAsync(voucher))
 			{
-				TempData["Success"] = "Chỉnh sửa voucher thành công.";
+				TempData["Success"] = "Chỉnh sửa phiếu giảm giá thành công.";
 				return RedirectToAction(nameof(Index));
 			}
 			TempData["Error"] = "Đã có lỗi xảy ra";

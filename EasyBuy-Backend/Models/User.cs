@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace EasyBuy_Backend.Models
 {
@@ -23,8 +24,10 @@ namespace EasyBuy_Backend.Models
 
         public UserRole Role { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Order>? Orders { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Cart>? Carts { get; set; }
     }
 }

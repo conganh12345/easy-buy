@@ -1,7 +1,7 @@
 ﻿@{
-	ViewData["Title"] = "Phiếu giảm giá";
+	ViewData["Title"] = "Phiếu nhập";
 }
-@model List<EasyBuy_Frontend_Admin.Models.VoucherViewModel>
+@model List<EasyBuy_Frontend_Admin.Models.InventoryVoucherViewModel>
 @using EasyBuy_Frontend_Admin.Helpers
 
 <!-- CSS riêng cho lớp con -->
@@ -20,10 +20,10 @@
 	<div class="page-meta">
 		<nav class="breadcrumb-style-one" aria-label="breadcrumb">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="#">Phiếu giảm giá</a></li>
+				<li class="breadcrumb-item"><a href="#">Phiếu nhập</a></li>
 				<li class="breadcrumb-item active" aria-current="page">
 					Quản lý
-					phiếu giảm giá
+					phiếu nhập
 				</li>
 			</ol>
 		</nav>
@@ -36,44 +36,34 @@
 				<div class="widget-header">
 					<div class="row">
 						<div class="col-xl-12 col-md-12 col-sm-12 col-12">
-							<h4>Quản lý phiếu giảm giá</h4>
+							<h4>Quản lý Phiếu nhập</h4>
 						</div>
 					</div>
 				</div>
 				<div class="widget-content widget-content-area">
 					<div class="layout-top-spacing ps-3 pe-3 col-12 mb-3">
-						<a href="@Url.Action("Create", "Voucher")" class="btn btn-primary">Thêm mới</a>
+						<a href="@Url.Action("Create", "InventoryVoucher")" class="btn btn-primary">Thêm mới</a>
 					</div>
-					<table id="voucher-table" class="table style-3 dt-table-hover" style="width: 100%">
+					<table id="inventoryvoucher-table" class="table style-3 dt-table-hover" style="width: 100%">
 						<thead>
 							<tr>
 								<th style="width: 5%">STT</th>
-								<th>Tên</th>
-								<th>Giá trị</th>
-								<th>Đơn vị</th>
-								<th>Từ ngày</th>
-								<th>Đến ngày</th>
-								<th>Trạng thái</th>
+								<th>Nhà cung cấp</th>
+								<th>Tổng cộng</th>
+								<th>Ngày nhập</th>
 								<th class="no-content" style="width: 5%">Thao tác</th>
 							</tr>
 						</thead>
 						<tbody>
-							@foreach (var voucher in Model)
+							@foreach (var inventoryvoucher in Model)
 							{
 								<tr>
-									<td>@voucher.Id</td>
-									<td>@voucher.Name</td>
-									<td>@voucher.Discount</td>
-									<td>@voucher.Unit</td>
-									<td>@voucher.DateFrom.ToString("dd-MM-yyyy")</td>
-									<td>@voucher.DateTo.ToString("dd-MM-yyyy")</td>
-									<td>
-										<span class="badge badge-light-@voucher.Status.GetBadge()">
-											@voucher.Status.GetDisplayName()
-										</span>
-									</td>
+									<td>@inventoryvoucher.Id</td>
+									<td>@inventoryvoucher.Supplier.Name</td>
+									<td>@inventoryvoucher.Total</td>
+									<td>@inventoryvoucher.Date</td>
 									<td class="text-truncate" style="max-width: 250px;">
-										<a href="@Url.Action("Edit", "Voucher", new { id = voucher.Id })"
+										<a href="@Url.Action("Edit", "InventoryVoucher", new { id = inventoryvoucher.Id })"
 										   class="bs-tooltip edit" data-bs-toggle="tooltip"
 										   data-bs-placement="top">
 											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -85,7 +75,7 @@
 												</path>
 											</svg>
 										</a>
-										<a href="#" data-voucher-id="@voucher.Id"
+										<a href="#" data-inventoryvoucher-id="@inventoryvoucher.Id"
 										   class="bs-tooltip delete" data-bs-toggle="tooltip"
 										   data-bs-placement="top">
 											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -116,7 +106,7 @@
 	<script src="~/lib/plugins/table/datatable/extensions/col-reorder/col-reorder.datatables.min.js"></script>
 	<script src="~/lib/plugins/table/datatable/extensions/fixed-columns/fixed-columns.datatables.min.js"></script>
 	<script>
-		$('#voucher-table').DataTable(
+		$('#inventoryvoucher-table').DataTable(
 			{
 				"dom": "<'dt--top-section'<'row'<'col-12 col-sm-6 d-flex justify-content-sm-start justify-content-center'l><'col-12 col-sm-6 d-flex justify-content-sm-end justify-content-center mt-sm-0 mt-3'f>>>"
 					+ "<'table-responsive'tr>"
@@ -140,25 +130,25 @@
 	</script>
 
 	<script>
-		$(document).ready(function () {
-			let voucherIdToDelete;
+		$(document).ready(function() {
+			let inventoryvoucherIdToDelete;
 
-			$('.delete').on('click', function (e) {
-				e.preventDefault();
-				voucherIdToDelete = $(this).data('voucher-id');
-				$('#deleteModal').modal('show');
-			});
+			 $('.delete').on('click', function(e) {
+					e.preventDefault();
+					inventoryvoucherIdToDelete = $(this).data('inventoryvoucher-id');
+					$('#deleteModal').modal('show');
+			 });
 
-			$('#confirmDelete').on('click', function () {
+		  $('#confirmDelete').on('click', function() {
 				$.ajax({
-					url: `/Voucher/Delete`,
+					url: `/InventoryVoucher/Delete`,
 					type: 'POST',
 					data: {
-						id: voucherIdToDelete
+						id: inventoryvoucherIdToDelete
 					},
-					success: function (response) {
+					success: function(response) {
 						Snackbar.show({
-							text: 'Xóa phiếu giảm giá thành công',
+							text: 'Xóa Phiếu nhập thành công',
 							textColor: '#ddf5f0',
 							backgroundColor: '#00ab55',
 							actionText: 'Bỏ qua',
@@ -167,9 +157,9 @@
 
 						location.reload();
 					},
-					error: function (xhr, status, error) {
+					error: function(xhr, status, error) {
 						Snackbar.show({
-							text: 'Xóa phiếu giảm giá thất bại',
+							text: 'Xóa Phiếu nhập thất bại',
 							textColor: '#fbeced',
 							backgroundColor: '#e7515a',
 							actionText: 'Bỏ qua',

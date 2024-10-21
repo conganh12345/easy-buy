@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using EasyBuy_Backend.Models.Enums;
 
 namespace EasyBuy_Backend.Models
@@ -44,6 +45,7 @@ namespace EasyBuy_Backend.Models
         [ForeignKey("VoucherId")]
         public Voucher Voucher { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<OrderLine> OrderLines { get; set; }
     }
 }

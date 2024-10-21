@@ -17,11 +17,11 @@ namespace EasyBuy_Backend.Models
         public int InventoryVoucherId { get; set; }
 
         [ForeignKey("InventoryVoucherId")]
-        public InventoryVoucher InventoryVoucher { get; set; } 
+        public InventoryVoucher? InventoryVoucher { get; set; } 
 
         public int ProductId { get; set; }
 
         [ForeignKey("ProductId")]
-        public Product Product { get; set; }
+        public Product? Product { get; set; }
     }
 }

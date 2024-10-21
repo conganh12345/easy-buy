@@ -1,7 +1,7 @@
-﻿using EasyBuy_Frontend_Admin.Dtos.Auth;
-using EasyBuy_Frontend_Admin.Models;
+﻿using EasyBuy_Frontend_Customer.Dtos.Auth;
+using Microsoft.AspNetCore.Mvc;
 
-namespace EasyBuy_Frontend_Admin.Services.AuthSvc
+namespace EasyBuy_Frontend_Customer.Services.AuthSvc
 {
     public interface IAuthService
     {

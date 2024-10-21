@@ -1,11 +1,8 @@
-﻿using EasyBuy_Frontend_Admin.Dtos.Auth;
-using EasyBuy_Frontend_Admin.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using System.Net.Http;
-using System.Net.Http.Json;
-using System.Text.Json;
+using EasyBuy_Frontend_Customer.Dtos.Auth;
 
-namespace EasyBuy_Frontend_Admin.Services.AuthSvc
+namespace EasyBuy_Frontend_Customer.Services.AuthSvc
 {
     public class AuthService : IAuthService
     {
@@ -14,7 +11,7 @@ namespace EasyBuy_Frontend_Admin.Services.AuthSvc
         public AuthService(HttpClient httpClient)
         {
             _httpClient = httpClient;
-            _httpClient.BaseAddress = new Uri("https://localhost:7084"); 
+            _httpClient.BaseAddress = new Uri("https://localhost:7084");
         }
 
         public async Task<bool> Register(SignUpDTO signUpDTO)
@@ -46,7 +43,7 @@ namespace EasyBuy_Frontend_Admin.Services.AuthSvc
                 if (response.IsSuccessStatusCode)
                 {
                     var user = await response.Content.ReadFromJsonAsync<SignInDTO>();
-                    return user; 
+                    return user;
                 }
                 else
                 {

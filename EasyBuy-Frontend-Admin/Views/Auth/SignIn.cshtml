@@ -30,6 +30,11 @@
 
     <link href="~/css/layouts/modern-light-menu/dark/plugins.css" rel="stylesheet" type="text/css" />
     <link href="~/css/assets/dark/authentication/auth-cover.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/lib/plugins/notification/snackbar/snackbar.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/lib/plugins/light/sweetalerts2/custom-sweetalert.css" rel="stylesheet" type="text/css" />
+    <link href="~/lib/plugins/dark/sweetalerts2/custom-sweetalert.css" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
 
 </head>
@@ -138,7 +143,40 @@
 
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
     <script src="~js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/plugins/notification/snackbar/snackbar.min.js"></script>
+    <script src="~/lib/plugins/sweetalerts2/sweetalerts2.min.js"></script>
+
     <!-- END GLOBAL MANDATORY SCRIPTS -->
+
+    <div>
+        @if (TempData["Success"] != null)
+        {
+            <script>
+                Snackbar.show({
+                    text: '@TempData["Success"]',
+                    textColor: '#ddf5f0',
+                    backgroundColor: '#00ab55',
+                    actionText: 'Bỏ qua',
+                    actionTextColor: '#3b3f5c'
+                });
+            </script>
+        }
+    </div>
+
+    <div>
+        @if (TempData["Error"] != null)
+        {
+            <script>
+                Snackbar.show({
+                    text: '@TempData["Error"]',
+                    textColor: '#fbeced',
+                    backgroundColor: '#e7515a',
+                    actionText: 'Bỏ qua',
+                    actionTextColor: '#3b3f5c'
+                });
+            </script>
+        }
+    </div>
 
 </body>
 

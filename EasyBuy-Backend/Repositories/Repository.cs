@@ -30,7 +30,7 @@ namespace EasyBuy_Backend.Repositories
 			return _context.SaveChanges() > 0; 
 		}
 
-		public bool Update(T entity)
+		public bool Update(T entity)                    
 		{
 			_dbSet.Update(entity);
 			return _context.SaveChanges() > 0; 
