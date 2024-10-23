@@ -33,19 +33,20 @@ namespace EasyBuy_Backend.Models
         public int? UserId { get; set; }
 
         [ForeignKey("UserId")]
-        public User User { get; set; }
+        public User? User { get; set; }
 
         public int? PaymentId { get; set; }
 
         [ForeignKey("PaymentId")]
-        public Payment Payment { get; set; }
+        public Payment? Payment { get; set; }
 
         public int? VoucherId { get; set; }
 
         [ForeignKey("VoucherId")]
-        public Voucher Voucher { get; set; }
+        public Voucher? Voucher { get; set; }
 
-        [JsonIgnore]
-        public virtual ICollection<OrderLine> OrderLines { get; set; }
+        public virtual ICollection<OrderLine>? OrderLines { get; set; }
+        
+
     }
 }
