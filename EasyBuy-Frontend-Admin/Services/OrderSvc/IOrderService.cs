@@ -1,4 +1,5 @@
-﻿using EasyBuy_Frontend_Admin.Models;
+﻿using EasyBuy_Frontend_Admin.Dtos.Order;
+using EasyBuy_Frontend_Admin.Models;
 
 namespace EasyBuy_Frontend_Admin.Services.OrderSvc
 {
@@ -10,7 +11,7 @@ namespace EasyBuy_Frontend_Admin.Services.OrderSvc
 
 		Task<OrderViewModel> GetOrderByIdAsync(int id);
 
-		Task<bool> UpdateOrderAsync(OrderViewModel order);
+		Task<bool> UpdateOrderAsync(UpdateOrderDTO order);
 
 		Task<bool> DeleteOrderAsync(int id);
 	}

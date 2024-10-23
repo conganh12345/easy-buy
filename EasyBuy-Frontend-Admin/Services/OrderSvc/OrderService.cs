@@ -1,4 +1,5 @@
-﻿using EasyBuy_Frontend_Admin.Models;
+﻿using EasyBuy_Frontend_Admin.Dtos.Order;
+using EasyBuy_Frontend_Admin.Models;
 using System.Diagnostics;
 using System.Text.Json;
 
@@ -72,7 +73,7 @@ namespace EasyBuy_Frontend_Admin.Services.OrderSvc
 			return order;
 		}
 
-		public async Task<bool> UpdateOrderAsync(OrderViewModel order)
+		public async Task<bool> UpdateOrderAsync(UpdateOrderDTO order)
 		{
 			try
 			{

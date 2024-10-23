@@ -1,69 +1,72 @@
-﻿using EasyBuy_Backend.Models;
+﻿using EasyBuy_Backend.Dtos.Order;
+using EasyBuy_Backend.Models;
 using EasyBuy_Backend.Repositories.OrderRepo;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EasyBuy_Backend.Controllers
 {
-	//localhost:xxxx/api/Order
-	[Route("api/[controller]")]
-	[ApiController]
-	public class OrderController : ControllerBase
-	{
-		private readonly IOrderRepository _orderRepository;
+    //localhost:xxxx/api/Category
+    [Route("api/[controller]")]
+    [ApiController]
+    public class OrderController : ControllerBase
+    {
+        private readonly IOrderRepository _orderRepository;
 
-		public OrderController(IOrderRepository orderRepository)
-		{
-			_orderRepository = orderRepository;
-		}
+        public OrderController(IOrderRepository orderRepositor)
+        {
+            _orderRepository = orderRepositor;
+        }
 
-		[HttpGet]
-		public IActionResult GetAll()
-		{
-			var categories = _orderRepository.GetAll();
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var orders = await _orderRepository.GetAllAsync();
 
-			return Ok(categories);
-		}
+            return Ok(orders);
+        }
 
-		[HttpGet("{id}")]
-		public IActionResult GetById(int id)
-		{
-			var order = _orderRepository.GetById(id);
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var order = await _orderRepository.GetOrderById(id);
 
-			return Ok(order);
-		}
+            return Ok(order);
+        }
 
-		[HttpPost]
-		public IActionResult Create([FromBody] Order order)
-		{
-			if (_orderRepository.Create(order))
-			{
-				return Ok();
-			}
-			return BadRequest();
-		}
 
-		[HttpPut("{id}")]
-		public IActionResult Update([FromBody] Order order, int id)
-		{
-			order.Id = id;
-			if (_orderRepository.Update(order))
-			{
-				return Ok();
-			}
-			return BadRequest();
-		}
+        [HttpPost]
+        public IActionResult Create([FromBody] Order order)
+        {
+            if (_orderRepository.Create(order))
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
 
-		[HttpDelete("{id}")]
-		public IActionResult Delete(int id)
-		{
-			var order = _orderRepository.GetById(id);
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update([FromBody] UpdateOrderDTO updateOrderDTO, int id)
+        {
+            var order = await _orderRepository.GetOrderById(id);
 
-			if (_orderRepository.Delete(order))
-			{
-				return Ok();
-			}
-			return BadRequest();
-		}
-	}
+            if (await _orderRepository.UpdateOrderStatusAsync(order, updateOrderDTO))
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var order = _orderRepository.GetById(id);
+
+            if (_orderRepository.Delete(order))
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
+    }
 }

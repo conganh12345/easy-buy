@@ -13,6 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="~/css/plugins/dark/table/datatable/dt-global_style.css">
 	<link rel="stylesheet" type="text/css" href="~/css/plugins/light/table/datatable/custom_dt_custom.css">
 	<link rel="stylesheet" type="text/css" href="~/css/plugins/dark/table/datatable/custom_dt_custom.css">
+	<link rel="stylesheet" type="text/css" href="~/css/plugins/dark/table/datatable/custom_dt_custom.css">
 }
 
 <div>
@@ -41,20 +42,14 @@
 					</div>
 				</div>
 				<div class="widget-content widget-content-area">
-					<div class="layout-top-spacing ps-3 pe-3 col-12 mb-3">
-						<a href="@Url.Action("Create", "Order")" class="btn btn-primary">Thêm mới</a>
-					</div>
 					<table id="order-table" class="table style-3 dt-table-hover" style="width: 100%">
 						<thead>
 						<tr>
 							<th style="width: 5%">STT</th>
 							<th>Tên người dùng</th>
-							<th>Voucher</th>
-							<th>Phí vận chuyển</th>
 							<th>Ngày đặt hàng</th>
 							<th>Giá giảm</th>
 							<th>Tổng tiền</th>
-							<th>Địa chỉ</th>
 							<th>Trạng thái</th>
 							<th class="no-content" style="width: 5%">Chi tiết</th> <!-- Cột cho chi tiết -->
 						</tr>
@@ -65,51 +60,31 @@
 							<tr>
 								<td>@order.Id</td>
 								<td>@(order.User != null ? order.User.Name : "Không xác định")</td>
-								<td>@(order.Payment != null ? order.Payment.Name : "Không xác định")</td>
-								<td>@order.ShippingFee</td>
 								<td>@order.OrderDate</td>
 								<td>@order.OrderDiscount</td>
 								<td>@order.OrderTotal</td>
-								<td>@order.Address</td>
 								<td>
-									<span class="badge badge-light-@order.Status.GetBadge()">
-										@order.Status.GetDisplayName()
-									</span>
+										<span class="badge badge-light-@order.Status.GetBadge()">
+											@order.Status.GetDisplayName()
+										</span>
 								</td>
-								<td>
-									<a href="#" class="bs-tooltip view-detail" data-order-id="@order.Id"
-									   data-bs-toggle="tooltip" data-bs-placement="top">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-											 viewBox="0 0 24 24" fill="none" stroke="currentColor"
-											 stroke-width="2" stroke-linecap="round"
-											 stroke-linejoin="round"
-											 class="feather feather-eye p-1 br-6 mb-1">
-											<path d="M1 12c0 5.25 10 10 10 10s10-4.75 10-10-10-10-10-10-10 4.75-10 10"></path>
-											<path d="M12 6c-3.5 0-5.75 2.25-5.75 2.25S8.5 12 12 12s5.75-2.25 5.75-2.25S15.5 6 12 6z"></path>
-										</svg>
-									</a>
-								</td>
+									<td>
+										<a href="@Url.Action("Show", "Order", new { id = order.Id })" class="bs-tooltip view-detail"
+										   data-bs-toggle="tooltip"
+										   data-bs-placement="top">
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+											viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+											stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
+											class="feather feather-eye">
+											<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z">
+											</path><circle cx="12" cy="12" r="3"></circle></svg>
+										</a>
+									</td>
 							</tr>
 						}
 					</tbody>
 
 					</table>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Modal cho chi tiết đơn hàng -->
-	<div class="modal fade" id="orderDetailModal" tabindex="-1" aria-labelledby="orderDetailModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="orderDetailModalLabel">Chi tiết đơn hàng</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<!-- Nội dung chi tiết đơn hàng sẽ được nạp bằng AJAX -->
-					<div id="order-detail-content"></div>
 				</div>
 			</div>
 		</div>
@@ -146,30 +121,4 @@
 				"pageLength": 10
 			});
 	</script>
-
-	<script>
-		$(document).ready(function () {
-			$('.view-detail').on('click', function (e) {
-				e.preventDefault();
-				const orderId = $(this).data('order-id');
-
-				// Gọi AJAX để lấy thông tin chi tiết đơn hàng
-				$.ajax({
-					url: `/Order/Details/${orderId}`, // Thay đổi URL cho phù hợp với controller của bạn
-					type: 'GET',
-					success: function (data) {
-						$('#order-detail-content').html(data);
-						$('#orderDetailModal').modal('show');
-					},
-					error: function () {
-						$('#order-detail-content').html('<p>Không thể tải thông tin chi tiết.</p>');
-					}
-				});
-			});
-		});
-	</script>
-		
-
-	
-	
 }

@@ -45,7 +45,6 @@ namespace EasyBuy_Backend.Models
         [ForeignKey("VoucherId")]
         public Voucher? Voucher { get; set; }
 
-        [JsonIgnore]
         public virtual ICollection<OrderLine>? OrderLines { get; set; }
         
 
