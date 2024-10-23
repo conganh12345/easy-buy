@@ -19,6 +19,9 @@
 	<link rel="stylesheet" type="text/css" href="@Url.Content("~/CSS/plugins/dark/filepond/custom-filepond.css")">
 	<link rel="stylesheet" type="text/css" href="@Url.Content("~/CSS/plugins/light/filepond/custom-filepond.css")">
 
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/CSS/assets/dark/apps/ecommerce-create.css")">
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/CSS/assets/light/apps/ecommerce-create.css")">
+
 	<style>
 		.ql-editor {
 			height: 300px;
@@ -27,7 +30,7 @@
 	</style>
 }
 
-<div>
+<div class="middle-content container-xxl p-0">
 	<!-- BREADCRUMB -->
 	<div class="page-meta">
 		<nav class="breadcrumb-style-one" aria-label="breadcrumb">
@@ -47,19 +50,12 @@
 
 	</div>
 
-	<div class="row layout-top-spacing">
-		<div id="user-management" class="col-lg-12 layout-spacing">
-			<div class="statbox widget box box-shadow">
-				<div class="widget-header">
-					<div class="row">
-						<div class="col-xl-12 col-md-12 col-sm-12 col-12">
-							<h4>Thêm mới</h4>
-						</div>
-					</div>
-				</div>
-				<div class="widget-content widget-content-area">
+	<form asp-action="Create" id="general-settings" method="POST">
+	<div class="row mb-4 layout-spacing layout-top-spacing">
+			<div class="col-xxl-9 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="widget-content widget-content-area ecommerce-create-section">
 					<div class="col-12">
-						<form asp-action="Create" id="general-settings" method="POST">
+						
 							<label for="user">Hình ảnh sản phẩm </label>
 							<div class="col-md-2 mx-auto">
 								<div class="form-group mb-4">
@@ -111,31 +107,6 @@
 									</div>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group mb-4">
-										<label for="user">Giá nhập<strong class="text-danger">*</strong></label>
-										<input asp-for="ImportPrice"
-											   type="text"
-											   id="name"
-											   class="form-control @(ViewData.ModelState["ImportPrice"]?.Errors.Count > 0 ? "is-invalid" : "")"
-											   placeholder="Giá nhập">
-										<span asp-validation-for="ImportPrice" class="invalid-feedback" role="alert"></span>
-
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group mb-4">
-										<label for="user">Giá bán<strong class="text-danger">*</strong></label>
-										<input asp-for="PriceToSell"
-											   type="text"
-											   id="name"
-											   class="form-control @(ViewData.ModelState["PriceToSell"]?.Errors.Count > 0 ? "is-invalid" : "")"
-											   placeholder="Giá bán">
-										<span asp-validation-for="PriceToSell" class="invalid-feedback" role="alert"></span>
-									</div>
-								</div>
-							</div>
 
 							<div class="form-group mb-4">
 								<label for="description">Mô tả <strong class="text-danger">*</strong></label>
@@ -144,75 +115,101 @@
 								<input type="hidden" asp-for="Description" id="hidden-description">
 							</div>
 
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group mb-4">
-										<label for="user">Khuyến mãi</label>
-										<input asp-for="Discount"
-											   type="text"
-											   id="name"
-											   class="form-control @(ViewData.ModelState["Discount"]?.Errors.Count > 0 ? "is-invalid" : "")"
-											   placeholder="Khuyến mãi">
-										<span asp-validation-for="Discount" class="invalid-feedback" role="alert"></span>
-
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group mb-4">
-										<label for="user">Màu sắc<strong class="text-danger">*</strong></label>
-										<input asp-for="Color"
-											   type="text"
-											   id="name"
-											   class="form-control @(ViewData.ModelState["Color"]?.Errors.Count > 0 ? "is-invalid" : "")"
-											   placeholder="Màu sắc">
-										<span asp-validation-for="Color" class="invalid-feedback" role="alert"></span>
-
-									</div>
-								</div>
-							</div>
-
-
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group mb-4">
-										<label for="user">Trạng thái <strong class="text-danger">*</strong></label>
-										<select asp-for="Status" id="Status"
-												class="form-control @(ViewData.ModelState["Status"]?.Errors?.Count > 0 ? "is-invalid" : "")"
-												asp-items="Html.GetEnumSelectList<ProductStatus>()">
-											<option value="">Chọn</option>
-
-										</select>
-										<span asp-validation-for="Status" class="invalid-feedback" role="alert"></span>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group mb-4">
-										<label for="user">Giới tính<strong class="text-danger">*</strong></label>
-										<input asp-for="Gender"
-											   type="text"
-											   id="name"
-											   class="form-control @(ViewData.ModelState["Gender"]?.Errors.Count > 0 ? "is-invalid" : "")"
-											   placeholder="Giới tính">
-										<span asp-validation-for="Gender" class="invalid-feedback" role="alert"></span>
-
-									</div>
-								</div>
-							</div>
-
 							<button type="submit" class="btn btn-primary">Hoàn tất</button>
+					</div>
+				</div>
+			</div>
 
-						</form>
+			<div class="col-xxl-3 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="row">
+					<div class="col-xxl-12 col-xl-8 col-lg-8 col-md-7 mt-xxl-0 mt-4">
+						<div class="widget-content widget-content-area ecommerce-create-section">
+							<div class="row">
+								<div class="col-xxl-12 col-md-6 mb-4">
+									<label for="user">Giá nhập<strong class="text-danger">*</strong></label>
+									<input asp-for="ImportPrice"
+										   type="text"
+										   id="name"
+										   class="form-control @(ViewData.ModelState["ImportPrice"]?.Errors.Count > 0 ? "is-invalid" : "")"
+										   placeholder="Giá nhập">
+									<span asp-validation-for="ImportPrice" class="invalid-feedback" role="alert"></span>
+								</div>
+								<div class="col-xxl-12 col-md-6 mb-4">
+									<label for="user">Giá bán<strong class="text-danger">*</strong></label>
+									<input asp-for="PriceToSell"
+										   type="text"
+										   id="name"
+										   class="form-control @(ViewData.ModelState["PriceToSell"]?.Errors.Count > 0 ? "is-invalid" : "")"
+										   placeholder="Giá bán">
+									<span asp-validation-for="PriceToSell" class="invalid-feedback" role="alert"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-xxl-12 col-xl-4 col-lg-4 col-md-5 mt-4">
+						<div class="widget-content widget-content-area ecommerce-create-section">
+							<div class="row">
+								<div class="col-sm-12 mb-4">
+									<label for="user">Khuyến mãi <strong class="text-danger">*</strong></label>
+									<input asp-for="Discount"
+										   type="text"
+										   id="name"
+										   class="form-control @(ViewData.ModelState["Discount"]?.Errors.Count > 0 ? "is-invalid" : "")"
+										   placeholder="Khuyến mãi">
+									<span asp-validation-for="Discount" class="invalid-feedback" role="alert"></span>
+								</div>
+								<div class="col-sm-12 mb-4">
+									<label for="user">Màu sắc<strong class="text-danger">*</strong></label>
+									<input asp-for="Color"
+										   type="text"
+										   id="name"
+										   class="form-control @(ViewData.ModelState["Color"]?.Errors.Count > 0 ? "is-invalid" : "")"
+										   placeholder="Màu sắc">
+									<span asp-validation-for="Color" class="invalid-feedback" role="alert"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-xxl-12 col-xl-4 col-lg-4 col-md-5 mt-4">
+						<div class="widget-content widget-content-area ecommerce-create-section">
+							<div class="row">
+								<div class="col-sm-12 mb-4">
+									<label for="user">Trạng thái <strong class="text-danger">*</strong></label>
+									<select asp-for="Status" id="Status"
+											class="form-control @(ViewData.ModelState["Status"]?.Errors?.Count > 0 ? "is-invalid" : "")"
+											asp-items="Html.GetEnumSelectList<ProductStatus>()">
+										<option value="">Chọn</option>
+									</select>
+									<span asp-validation-for="Status" class="invalid-feedback" role="alert"></span>
+								</div>
+								<div class="col-sm-12 mb-4">
+									<label for="user">Giới tính<strong class="text-danger">*</strong></label>
+									<input asp-for="Gender"
+										   type="text"
+										   id="name"
+										   class="form-control @(ViewData.ModelState["Gender"]?.Errors.Count > 0 ? "is-invalid" : "")"
+										   placeholder="Giới tính">
+									<span asp-validation-for="Gender" class="invalid-feedback" role="alert"></span>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+
+	</form>
+
 </div>
 
 </div>
 
 <!-- Scripts riêng cho lớp con -->
 @section Scripts {
+	<script src="@Url.Content("~/js/assets/apps/ecommerce-create.js")"></script>
+
 	<script src="@Url.Content("~/lib/plugins/editors/quill/quill.js")"></script>
 	<script src="@Url.Content("~/lib/plugins/editors/quill/custom-quill.js")"></script>
 
