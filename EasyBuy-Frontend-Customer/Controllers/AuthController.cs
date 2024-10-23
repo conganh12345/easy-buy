@@ -1,12 +1,10 @@
-﻿using EasyBuy_Frontend_Admin.Dtos.Auth;
-using EasyBuy_Frontend_Admin.Models;
-using EasyBuy_Frontend_Admin.Services.AuthSvc;
-using EasyBuy_Frontend_Admin.Services.UserSvc;
+﻿using EasyBuy_Frontend_Customer.Dtos.Auth;
+using EasyBuy_Frontend_Customer.Services.AuthSvc;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EasyBuy_Frontend_Admin.Controllers
+namespace EasyBuy_Frontend_Customer.Controllers
 {
-    public class AuthController : Controller
+     public class AuthController : Controller
     {
         private readonly IAuthService _authService;
 
@@ -27,22 +25,6 @@ namespace EasyBuy_Frontend_Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SignIn(SignInDTO signInDTO)
-        {
-            if (ModelState.IsValid)
-            {
-                var result = await _authService.Login(signInDTO);
-                if (result != null)
-                {
-                    return RedirectToAction("Index", "Home"); 
-                }
-                ModelState.AddModelError("", "Đăng nhập không thành công.");
-            }
-            return View(signInDTO);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> SignUp(SignUpDTO signUpDTO)
         {
             if (ModelState.IsValid)
@@ -59,4 +41,3 @@ namespace EasyBuy_Frontend_Admin.Controllers
         }
     }
 }
-

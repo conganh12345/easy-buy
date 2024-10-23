@@ -1,5 +1,5 @@
 ﻿@{
-	ViewData["Title"] = "Voucher";
+	ViewData["Title"] = "Phiếu giảm giá";
 }
 @model List<EasyBuy_Frontend_Admin.Models.VoucherViewModel>
 @using EasyBuy_Frontend_Admin.Helpers
@@ -20,10 +20,10 @@
 	<div class="page-meta">
 		<nav class="breadcrumb-style-one" aria-label="breadcrumb">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="#">Voucher</a></li>
+				<li class="breadcrumb-item"><a href="#">Phiếu giảm giá</a></li>
 				<li class="breadcrumb-item active" aria-current="page">
 					Quản lý
-					Voucher
+					phiếu giảm giá
 				</li>
 			</ol>
 		</nav>
@@ -36,7 +36,7 @@
 				<div class="widget-header">
 					<div class="row">
 						<div class="col-xl-12 col-md-12 col-sm-12 col-12">
-							<h4>Quản lý Voucher</h4>
+							<h4>Quản lý phiếu giảm giá</h4>
 						</div>
 					</div>
 				</div>
@@ -158,7 +158,7 @@
 					},
 					success: function (response) {
 						Snackbar.show({
-							text: 'Xóa voucher thành công',
+							text: 'Xóa phiếu giảm giá thành công',
 							textColor: '#ddf5f0',
 							backgroundColor: '#00ab55',
 							actionText: 'Bỏ qua',
@@ -169,7 +169,7 @@
 					},
 					error: function (xhr, status, error) {
 						Snackbar.show({
-							text: 'Xóa voucher thất bại',
+							text: 'Xóa phiếu giảm giá thất bại',
 							textColor: '#fbeced',
 							backgroundColor: '#e7515a',
 							actionText: 'Bỏ qua',

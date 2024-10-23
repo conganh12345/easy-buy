@@ -73,6 +73,16 @@ namespace EasyBuy_Frontend_Admin.Helpers
 					}
 					break;
 
+				case SupplierStatus supplierStatus:
+					switch (supplierStatus)
+					{
+						case SupplierStatus.ENABLE:
+							return "success";
+						case SupplierStatus.DISABLED:
+							return "danger";
+					}
+					break;
+
 				case OrderStatus orderStatus:
 					switch (orderStatus)
 					{
