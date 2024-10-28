@@ -34,39 +34,40 @@
     <div class="row layout-top-spacing">
         <div class="col-xl-12 col-lg-12 col-sm-12">
             <div class="statbox widget box box-shadow">
-                <div class="widget-header">
-                    <h4>Quản lý Đơn hàng</h4>
-                </div>            
+                <div class="widget-header d-flex justify-content-between align-items-center">
+                    <h4 class="m-0">Quản lý Đơn hàng</h4>
+
+                    <button id="reset-filters" class="btn btn-secondary">Xóa bộ lọc</button>
+                </div>
+
                 <!-- Bảng dữ liệu -->
                 <div class="widget-content widget-content-area">
+
                     <!-- Bộ lọc -->
-                    <div class="row mb-3">
-                        <div class="col-md-3">
-                            <input type="text" id="user-name-filter" class="form-control" placeholder="Tìm theo tên người dùng">
+                    <div class="filter-container p-3 mb-4 rounded shadow-sm bg-light">
+                        <div class="row">
+                            <div class="col-md-3 mb-2">
+                                <input type="text" id="user-name-filter" class="form-control" placeholder="Tìm theo tên người dùng">
+                            </div>
+                            <div class="col-md-3 mb-2">
+                                <input type="number" id="discount-filter" class="form-control" placeholder="Tìm theo giá giảm">
+                            </div>
+                            <div class="col-md-3 mb-2">
+                                <select id="status-filter" class="form-control">
+                                    <option value="">Tất cả trạng thái</option>
+                                    <option value="Thành công">Thành công</option>
+                                    <option value="Đã hủy">Đã hủy</option>
+                                    <option value="Đang xét duyệt">Đang xét duyệt</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 mb-2">
+                                <input type="text" id="date-range-filter" class="form-control" placeholder="Chọn khoảng thời gian">
+                            </div>
                         </div>
-                        <div class="col-md-3">
-                            <input type="number" id="discount-filter" class="form-control" placeholder="Tìm theo giá giảm">
-                        </div>
-                        <div class="col-md-3">
-                            <select id="status-filter" class="form-control">
-                                <option value="">Tất cả trạng thái</option>
-                                <option value="Thành công">Thành công</option>
-                                <option value="Đã hủy">Đã hủy</option>
-                                <option value="Đang xét duyệt">Đang xét duyệt</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="text" id="date-range-filter" class="form-control" placeholder="Chọn khoảng thời gian">
-                        </div>
+              
                     </div>
 
-                    <!-- Nút Reset -->
-                    <div class="row mb-3">
-                        <div class="col-md-12 d-flex justify-content-end">
-                            <button id="reset-filters" class="btn btn-secondary">Reset</button>
-                        </div>
-                    </div>
-
+                    <!-- Bảng dữ liệu -->
                     <table id="order-table" class="table style-3 dt-table-hover" style="width: 100%">
                         <thead>
                             <tr>
@@ -110,6 +111,7 @@
         </div>
     </div>
     <!-- /DATATABLE -->
+
 </div>
 
 <!-- Scripts riêng cho lớp con -->
