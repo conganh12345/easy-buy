@@ -26,7 +26,7 @@ namespace EasyBuy_Frontend_Admin.Models
 		[Required(ErrorMessage = "Khuyến mãi là bắt buộc.")]
 		[Range(0, double.MaxValue, ErrorMessage = "Khuyến mãi không hợp lệ.")]
         [JsonPropertyName("discount")]
-        public Double? Discount { get; set; }
+        public Double Discount { get; set; }
 
         [Required(ErrorMessage = "Kiểu là bắt buộc.")]
         [StringLength(200, MinimumLength = 1, ErrorMessage = "Kiểu phải có độ dài từ 1 đến 200 ký tự.")]

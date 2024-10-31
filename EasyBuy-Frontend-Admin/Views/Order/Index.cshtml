@@ -34,17 +34,18 @@
     <div class="row layout-top-spacing">
         <div class="col-xl-12 col-lg-12 col-sm-12">
             <div class="statbox widget box box-shadow">
-                <div class="widget-header d-flex justify-content-between align-items-center">
+                <div class="widget-header d-flex align-items-center ">
                     <h4 class="m-0">Quản lý Đơn hàng</h4>
-
-                    <button id="reset-filters" class="btn btn-secondary">Xóa bộ lọc</button>
+                    <div class="ms-auto">
+                        <button id="reset-filters" class="btn btn-secondary">Xóa bộ lọc</button>
+                    </div>
                 </div>
 
                 <!-- Bảng dữ liệu -->
                 <div class="widget-content widget-content-area">
 
                     <!-- Bộ lọc -->
-                    <div class="filter-container p-3 mb-4 rounded shadow-sm bg-light">
+                    <div class="filter-container p-3 mb-4 rounded shadow-sm">
                         <div class="row">
                             <div class="col-md-3 mb-2">
                                 <input type="text" id="user-name-filter" class="form-control" placeholder="Tìm theo tên người dùng">
@@ -54,7 +55,7 @@
                             </div>
                             <div class="col-md-3 mb-2">
                                 <select id="status-filter" class="form-control">
-                                    <option value="">Tất cả trạng thái</option>
+                                    <option value="">Trạng thái</option>
                                     <option value="Thành công">Thành công</option>
                                     <option value="Đã hủy">Đã hủy</option>
                                     <option value="Đang xét duyệt">Đang xét duyệt</option>
@@ -141,7 +142,9 @@
                     },
                     "stripeClasses": [],
                     "lengthMenu": [7, 10, 20, 50],
-                    "pageLength": 10
+                    "pageLength": 10,
+                    "ordering": false,
+                    "searching": false
                 });
 
                 // Lọc theo tên người dùng
