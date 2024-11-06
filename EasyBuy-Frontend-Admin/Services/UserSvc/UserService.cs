@@ -24,6 +24,7 @@ namespace EasyBuy_Frontend_Admin.Services.UserSvc
 				HttpResponseMessage response = await _httpClient.GetAsync("/api/User");
 		
 				string data = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine("An error occurred: " + data);
 				users = JsonSerializer.Deserialize<List<UserViewModel>>(data);
           
             }
@@ -54,10 +55,9 @@ namespace EasyBuy_Frontend_Admin.Services.UserSvc
             }
 		}
 
-		public async Task<UserViewModel> GetUserByIdAsync(string id)
+		public async Task<UserViewModel> GetUserByIdAsync(int id)
 		{
 			UserViewModel user = null;
-			Debug.WriteLine("test lại " + id);
 
 			try
 			{
@@ -100,7 +100,7 @@ namespace EasyBuy_Frontend_Admin.Services.UserSvc
             }
 		}
 
-		public async Task<bool> DeleteUserAsync(string id)
+		public async Task<bool> DeleteUserAsync(int id)
 		{
 			try
 			{

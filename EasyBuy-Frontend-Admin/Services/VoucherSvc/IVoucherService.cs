@@ -8,11 +8,11 @@ namespace EasyBuy_Frontend_Admin.Services.VoucherSvc
 
 		Task<bool> AddVoucherAsync(VoucherViewModel voucher);
 
-		Task<VoucherViewModel> GetVoucherByIdAsync(string id);
+		Task<VoucherViewModel> GetVoucherByIdAsync(int id);
 
 		Task<bool> UpdateVoucherAsync(VoucherViewModel voucher);
 
-		Task<bool> DeleteVoucherAsync(string id);
+		Task<bool> DeleteVoucherAsync(int id);
 
 	}
 }

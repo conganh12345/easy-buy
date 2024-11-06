@@ -39,7 +39,7 @@ namespace EasyBuy_Frontend_Admin.Controllers
             return View(user);
 		}
 
-		public async Task<IActionResult> Edit(string id)
+		public async Task<IActionResult> Edit(int id)
 		{
 			UserViewModel user = await _userService.GetUserByIdAsync(id);
 
@@ -60,7 +60,7 @@ namespace EasyBuy_Frontend_Admin.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> Delete(string id)
+		public async Task<IActionResult> Delete(int id)
 		{
 			await _userService.DeleteUserAsync(id);
 

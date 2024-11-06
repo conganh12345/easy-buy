@@ -20,10 +20,12 @@ namespace EasyBuy_Frontend_Admin.Dtos.Auth
 		[StringLength(100, MinimumLength = 6, ErrorMessage = "Mật khẩu phải có độ dài từ 6 đến 100 ký tự.")]
 		public string Password { get; set; }
 
-		public string Address { get; set; } = "Chưa có địa chỉ";
+		[Required(ErrorMessage = "Địa chỉ là bắt buộc.")]
+		[StringLength(200, MinimumLength = 6, ErrorMessage = "Địa chỉ phải có độ dài từ 6 đến 200 ký tự.")]
+		public string Address { get; set; }
 
 		public UserStatus Status { get; set; } = UserStatus.ENABLE;
 
-		public UserRole Role { get; set; } = UserRole.USER;
+		public UserRole Role { get; set; } = UserRole.ADMIN;
 	}
 }

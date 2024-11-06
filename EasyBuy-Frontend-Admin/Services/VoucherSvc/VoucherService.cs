@@ -36,21 +36,9 @@ namespace EasyBuy_Frontend_Admin.Services.VoucherSvc
 
 		public async Task<bool> AddVoucherAsync(VoucherViewModel voucher)
 		{
-			voucher.Id = "abcdf";
 			try
 			{
 				Debug.WriteLine($"Status: {voucher.Status}");
-				var res = await _httpClient.GetAsync("/api/Voucher/getLatestId");
-				if (res.IsSuccessStatusCode) {
-					string data = await res.Content.ReadAsStringAsync();
-					Debug.WriteLine("Response Data: " + data);
-					voucher.Id = data;
-				}
-				else {
-					return false;
-				}
-				Debug.WriteLine("Response Voucher: " + voucher.Id,voucher.Name,voucher);
-
 				var response = await _httpClient.PostAsJsonAsync("/api/Voucher", voucher);
 
 				if (response.IsSuccessStatusCode)
@@ -61,12 +49,12 @@ namespace EasyBuy_Frontend_Admin.Services.VoucherSvc
 			}
 			catch (Exception ex)
 			{
-				Debug.WriteLine("An error occurred while adding voucher: " + ex.Message);
+				Debug.WriteLine("An error occurred while adding Voucher: " + ex.Message);
 				return false;
 			}
 		}
 
-		public async Task<VoucherViewModel> GetVoucherByIdAsync(string id)  
+		public async Task<VoucherViewModel> GetVoucherByIdAsync(int id)  
 		{
 			VoucherViewModel voucher = null;
 
@@ -111,7 +99,7 @@ namespace EasyBuy_Frontend_Admin.Services.VoucherSvc
 			}
 		}
 
-		public async Task<bool> DeleteVoucherAsync(string id)  // Changed int to string for Voucher ID
+		public async Task<bool> DeleteVoucherAsync(int id) 
 		{
 			try
 			{

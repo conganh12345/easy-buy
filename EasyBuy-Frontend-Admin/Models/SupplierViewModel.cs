@@ -16,7 +16,7 @@ namespace EasyBuy_Frontend_Admin.Models
         [Required(ErrorMessage = "SDT là bắt buộc.")]
 		[RegularExpression(@"^\d+$", ErrorMessage = "SDT chỉ được chứa số.")]
 		[JsonPropertyName("numberPhone")]
-        public string Number_phone { get; set; }
+        public string NumberPhone { get; set; }
 
         [Required(ErrorMessage = "Địa chỉ là bắt buộc.")]
         [JsonPropertyName("address")]

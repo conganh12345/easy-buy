@@ -62,6 +62,26 @@ namespace EasyBuy_Frontend_Admin.Helpers
 					}
 					break;
 
+				case VoucherStatus voucherStatus:
+					switch (voucherStatus)
+					{
+						case VoucherStatus.ENABLE:
+							return "success";
+						case VoucherStatus.DISABLED:
+							return "danger";
+					}
+					break;
+
+				case SupplierStatus supplierStatus:
+					switch (supplierStatus)
+					{
+						case SupplierStatus.ENABLE:
+							return "success";
+						case SupplierStatus.DISABLED:
+							return "danger";
+					}
+					break;
+
 				default:
 					return "secondary";
 			}

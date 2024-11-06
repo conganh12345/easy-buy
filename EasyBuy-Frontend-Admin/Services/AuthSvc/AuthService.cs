@@ -17,27 +17,22 @@ namespace EasyBuy_Frontend_Admin.Services.AuthSvc
             _httpClient.BaseAddress = new Uri("https://localhost:7084"); 
         }
 
-        public async Task<SignUpDTO> Register(SignUpDTO signUpDTO)
+        public async Task<bool> Register(SignUpDTO signUpDTO)
         {
             try
             {
-                var response = await _httpClient.PostAsJsonAsync("/api/Auth/Register", signUpDTO);
+                var response = await _httpClient.PostAsJsonAsync("/api/User", signUpDTO);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var createdUser = await response.Content.ReadFromJsonAsync<SignUpDTO>();
-                    return createdUser; 
+                    return true;
                 }
-                else
-                {
-                    Debug.WriteLine("Đăng ký không thành công. Trạng thái: " + response.StatusCode);
-                    return null;
-                }
+                return false;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("An error occurred while registering: " + ex.Message);
-                return null;
+                return false;
             }
         }
 

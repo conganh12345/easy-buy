@@ -7,18 +7,19 @@ namespace EasyBuy_Backend.Models
 {
     public class InventoryVoucher
     {
-        [Key]
-        public int Id { get; set; } 
+		[Key]
+		public int Id { get; set; }
 
-        [Required]
-        public DateTime Date { get; set; }
+		[Required]
+		public DateTime Date { get; set; }
 
-        [Required]
-        public double Total { get; set; }
+		[Required]
+		public double Total { get; set; }
 
-        public int? SupplierId { get; set; }
+		[Required]
+		public int? SupplierId { get; set; }
 
         [ForeignKey("SupplierId")]
-        public Supplier Supplier { get; set; }
-    }
+        public Supplier? Supplier { get; set; }
+	}
 }

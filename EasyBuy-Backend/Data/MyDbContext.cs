@@ -6,10 +6,10 @@ using EasyBuy_Backend.Data.Configurations;
 
 namespace EasyBuy_Backend.Data
 {
-    public class MyDbContext : IdentityDbContext<User>
-    {
-        public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
-        {
+    public class MyDbContext : DbContext
+	{
+		public MyDbContext(DbContextOptions options) : base(options)
+		{
             //
         }
 
@@ -27,8 +27,6 @@ namespace EasyBuy_Backend.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new SupplierConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
@@ -40,7 +38,7 @@ namespace EasyBuy_Backend.Data
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new OrderLineConfiguration());
             modelBuilder.ApplyConfiguration(new InventoryVoucherDetailConfiguration());
-
         }
     }
 }
+

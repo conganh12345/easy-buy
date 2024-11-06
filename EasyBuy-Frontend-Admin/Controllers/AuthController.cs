@@ -50,6 +50,7 @@ namespace EasyBuy_Frontend_Admin.Controllers
                 var result = await _authService.Register(signUpDTO);
                 if (result != null)
                 {
+                    TempData["Success"] = "Đăng ký tài khoản thành công.";
                     return RedirectToAction("SignIn");
                 }
                 ModelState.AddModelError("", "Đăng ký không thành công.");

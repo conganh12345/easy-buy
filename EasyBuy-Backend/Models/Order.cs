@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using EasyBuy_Backend.Models.Enums;
 
 namespace EasyBuy_Backend.Models
@@ -29,7 +30,7 @@ namespace EasyBuy_Backend.Models
         [Required]
         public OrderStatus Status { get; set; }
 
-        public string? UserId { get; set; }
+        public int? UserId { get; set; }
 
         [ForeignKey("UserId")]
         public User User { get; set; }
@@ -39,11 +40,12 @@ namespace EasyBuy_Backend.Models
         [ForeignKey("PaymentId")]
         public Payment Payment { get; set; }
 
-        public string? VoucherId { get; set; }
+        public int? VoucherId { get; set; }
 
         [ForeignKey("VoucherId")]
         public Voucher Voucher { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<OrderLine> OrderLines { get; set; }
     }
 }
