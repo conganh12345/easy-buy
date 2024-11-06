@@ -1,0 +1,195 @@
+﻿@model EasyBuy_Frontend_Admin.Models.OrderViewModel
+@using EasyBuy_Backend.Models.Enums
+@using EasyBuy_Frontend_Admin.Helpers
+
+<!-- BREADCRUMB -->
+<div class="page-meta">
+    <nav class="breadcrumb-style-one" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Đơn hàng</a></li>
+            <li class="breadcrumb-item" aria-current="page"><a href="@Url.Action("Index", "Order")">Quản lý Đơn hàng</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Chi tiết Đơn hàng</li>
+        </ol>
+    </nav>
+</div>
+<!-- /BREADCRUMB -->
+
+<div id="change-status" class="d-flex justify-content-end">
+    <button id="#furloughStatusModal"
+            class="btn btn-block btn-outline-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#furloughStatusModal">
+                Cập nhật trạng thái
+    </button>
+</div>
+
+<div class="row layout-top-spacing">
+    <div id="user-management" class="col-lg-12 layout-spacing">
+        <div class="statbox widget box box-shadow">
+            <div class="widget-header">
+                <h4 class="widget-title">Chi tiết Đơn hàng</h4>
+            </div>
+            <div class="widget-content widget-content-area">
+                <div class="order-details">
+                    <div class="order-summary">
+                        <h5 class="text-info mb-3">Thông tin đơn hàng</h5>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <p><strong>Mã đơn hàng:</strong> #@Model.Id</p>
+                                <p><strong>Tên người dùng:</strong> @Model.User.Name</p>
+                                <p><strong>Ngày đặt hàng:</strong> @Model.OrderDate.ToString("dd/MM/yyyy")</p>
+                                <p><strong>Địa chỉ:</strong> @Model.Address</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>Voucher áp dụng:</strong> @Model.Voucher.Name</p>
+                                <p><strong>Phí vận chuyển:</strong> @String.Format("{0:N0} VND", Model.ShippingFee)</p>
+                                <p><strong>Giá giảm:</strong> @String.Format("{0:N0} VND", Model.OrderDiscount)</p>
+                                <p><strong>Tổng tiền:</strong> <span class="text-success">@String.Format("{0:N0} VND", Model.OrderTotal)</span></p>
+
+                            </div>
+                        </div>
+                        <hr>
+                        <h5 class="text-info">Chi tiết sản phẩm</h5>
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Sản phẩm</th>
+                                        <th>Số lượng</th>
+                                        <th>Đơn giá</th>
+                                        <th>Tổng cộng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.OrderLines)
+                                    {
+                                    <tr>
+                                        <td>@item.Product.ProductName</td>
+                                        <td>@item.Quantity</td>
+                                        <td>@item.UnitPrice</td>
+                                        <td>@item.TotalPrice</td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="order-status mt-4">
+                        <p>
+                            <strong>Trạng thái đơn hàng:</strong>
+                            <span class="badge badge-light-@Model.Status.GetBadge()">
+                                @Model.Status.GetDisplayName()
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="furloughStatusModal" tabindex="-1" role="dialog" aria-labelledby="furloughStatusModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="furloughStatusModalLabel" style="color: #3b3f5c;">
+                    Cập nhật trạng thái
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="form" method="post">
+                <div class="modal-body">
+                    <div class="form-group mb-4">
+                        <input type="hidden" name="Id" value="@Model.Id" />
+                            <label for="user">Trang thái <strong class="text-danger">*</strong></label>
+                            <select asp-for="Status" id="Status"
+                                    class="form-control @(ViewData.ModelState["Status"]?.Errors?.Count > 0 ? "is-invalid" : "")"
+                                    asp-items="Html.GetEnumSelectList<OrderStatus>()">
+                                <option value="">Chọn</option>
+
+                            </select>
+                            <span asp-validation-for="Status" class="invalid-feedback" role="alert"></span>
+                   
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-bs-dismiss="modal">Đóng</button>
+                    <button id="submit-button" type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function resetForm() {
+            $('.invalid-feedback').text(''); 
+            $('.is-invalid').removeClass('is-invalid'); 
+        }
+
+        function handleErrors(errors) {
+            $.each(errors, function (key, message) {
+                let input = $(`#${key}`);
+                if (input.length) {
+                    input.addClass('is-invalid');
+                    let errorSpan = input.siblings('.invalid-feedback');
+                    if (errorSpan.length) {
+                        errorSpan.html(`<strong>${message}</strong>`);
+                    } else {
+                        let newErrorSpan = $('<span>', {
+                            class: 'invalid-feedback',
+                            role: 'alert',
+                            html: `<strong>${message}</strong>`
+                        });
+                        input.after(newErrorSpan);
+                    }
+                }
+            });
+            $('#submit-button').prop('disabled', false).text('Lưu');
+        }
+
+        function handleSuccess(message, statusBadge, statusName) {
+            Snackbar.show({
+                text: message,
+                textColor: '#ddf5f0',
+                backgroundColor: '#00ab55',
+                actionText: 'Thay đổi trạng thái thành công',
+                actionTextColor: '#3b3f5c'
+            });
+
+            $('#furloughStatusModal').modal('hide');
+            $('#submit-button').prop('disabled', false).text('Lưu');
+        }
+
+        $('#form').on('submit', function (e) {
+            $('#submit-button').prop('disabled', true).text('Đang xử lý...');
+            resetForm();  
+
+            let formData = new FormData(this);  
+
+            $.ajax({
+                url: `/Order/Edit`, 
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')  
+                },
+                success: function (response) {
+             
+                    if (response.message) {
+                        handleSuccess(response.message, response.statusBadge, response.statusName);
+                    }
+                },
+                error: function (xhr) {
+                    const errors = xhr.responseJSON.errors;
+                    handleErrors(errors);
+                }
+            });
+        });
+    </script>
+
+}

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace EasyBuy_Backend.Models
 {
@@ -17,11 +18,12 @@ namespace EasyBuy_Backend.Models
         public int OrderId { get; set; }
 
         [ForeignKey("OrderId")]
-        public Order Order { get; set; } 
+        [JsonIgnore]
+        public Order? Order { get; set; } 
 
         public int ProductId { get; set; }
 
         [ForeignKey("ProductId")]
-        public Product Product { get; set; }
+        public Product? Product { get; set; }
     }
 }
