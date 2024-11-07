@@ -254,8 +254,13 @@ namespace EasyBuy_Backend.Migrations
                         .HasColumnName("id");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+					b.Property<string>("Code")
+						.IsRequired()
+						.HasMaxLength(10)
+						.HasColumnType("nvarchar(10)")
+						.HasColumnName("code");
 
-                    b.Property<int>("CanDel")
+					b.Property<int>("CanDel")
                         .HasColumnType("int")
                         .HasColumnName("can_del");
 

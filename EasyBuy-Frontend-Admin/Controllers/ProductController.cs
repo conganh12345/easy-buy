@@ -35,8 +35,21 @@ namespace EasyBuy_Frontend_Admin.Controllers
 		public async Task<IActionResult> Create()
 		{
 			List<CategoryViewModel> categories = await _categoryService.GetCategoriesAsync();
+			string highestCode = await _productService.GetHighestCodeAsync();
+			if (string.IsNullOrEmpty(highestCode))
+			{
+				highestCode = "DH - 001";
+			}
+			else
+			{
+				var parts = highestCode.Split(" - ");
+				if (parts.Length == 2 && int.TryParse(parts[1], out int number))
+				{
+					highestCode = $"{parts[0]} - {number + 1:D3}"; 
+				}
+			}
+			ViewBag.HighestCode = highestCode;
 			ViewBag.Categories = new SelectList(categories, "Id", "Name");
-
 			return View();
 		}
 
