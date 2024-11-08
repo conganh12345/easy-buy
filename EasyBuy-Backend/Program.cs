@@ -7,6 +7,19 @@ using EasyBuy_Backend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+// **Bước 1: Thêm dịch vụ CORS**
+builder.Services.AddCors(options =>
+{
+	options.AddPolicy("AllowAllOrigins", builder =>
+	{
+		builder
+			.AllowAnyOrigin() // Cho phép tất cả các nguồn
+			.AllowAnyMethod() // Cho phép tất cả các phương thức
+			.AllowAnyHeader(); // Cho phép tất cả các header
+	});
+});
+
 // Add services to the container.
 builder.Services.AddServices();
 
@@ -29,8 +42,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+// **Bước 2: Áp dụng chính sách CORS**
 app.UseHttpsRedirection();
+// Thêm dòng này để áp dụng chính sách CORS
+app.UseCors("AllowAllOrigins");
 
 app.UseAuthorization();
 

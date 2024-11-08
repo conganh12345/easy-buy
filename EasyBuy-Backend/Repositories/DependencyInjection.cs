@@ -23,7 +23,8 @@ namespace EasyBuy_Backend.Repositories
 			services.AddScoped<IVoucherRepository, VoucherRepository>();
             services.AddScoped<IInventoryVoucherRepository, InventoryVoucherRepository >();
             services.AddScoped<IOrderRepository, OrderRepository>();
-            services.AddScoped<ICartRepository, CartRepository>();
+			services.AddScoped<ICartRepository, CartRepository>();
+
 		}
-    }
+	}
 }
