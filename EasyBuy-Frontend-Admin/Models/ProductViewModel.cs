@@ -8,8 +8,10 @@ namespace EasyBuy_Frontend_Admin.Models
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }
+		[JsonPropertyName("code")]
+		public string Code { get; set; }
 
-        [Required(ErrorMessage = "Tên là bắt buộc.")]
+		[Required(ErrorMessage = "Tên là bắt buộc.")]
         [JsonPropertyName("productName")]
         public string ProductName { get; set; }
 

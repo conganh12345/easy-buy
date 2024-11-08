@@ -8,7 +8,7 @@ namespace EasyBuy_Backend.Repositories.CartRepo
 	{
 		public CartRepository(MyDbContext context) : base(context)
 		{
-			
+
 		}
 	}
 }

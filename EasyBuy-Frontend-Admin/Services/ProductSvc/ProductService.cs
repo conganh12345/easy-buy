@@ -23,7 +23,6 @@ namespace EasyBuy_Frontend_Admin.Services.ProductSvc
 				string data = await response.Content.ReadAsStringAsync();
 				products = JsonSerializer.Deserialize<List<ProductViewModel>>(data);
 				Debug.WriteLine("An error occurred: " ,data);
-
 			}
 			catch (Exception ex)
 			{
@@ -114,6 +113,36 @@ namespace EasyBuy_Frontend_Admin.Services.ProductSvc
 				return false;
 			}
 		}
+		public async Task<string> GetHighestCodeAsync()
+		{
+			try
+			{
+				HttpResponseMessage response = await _httpClient.GetAsync("/api/Product");
+				string data = await response.Content.ReadAsStringAsync();
+				List<ProductViewModel> products = JsonSerializer.Deserialize<List<ProductViewModel>>(data);
+				if (products != null && products.Any())
+				{
+					var highestCode = products
+										.Where(p => !string.IsNullOrEmpty(p.Code)) 
+										.Select(p => new
+										{
+											Code = p.Code,
+											Number = p.Code.Split(" - ").Length == 2 && int.TryParse(p.Code.Split(" - ")[1].Trim(), out int number) ? number : 0
+										})
+										.Where(x => x.Number > 0) 
+										.OrderByDescending(x => x.Number) 
+										.FirstOrDefault()?.Code; 
+					return highestCode;
+				}
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine("An error occurred: " + ex.Message);
+			}
+			return null;
+		}
+
+
 
 	}
 }

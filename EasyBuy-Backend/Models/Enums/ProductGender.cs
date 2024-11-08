@@ -2,12 +2,10 @@
 
 namespace EasyBuy_Backend.Models.Enums
 {
-	public enum ProductStatus
+	public enum ProductGender
 	{
-		ENABLE = 1,
+		ENABLE = 0,
 
-		OUT_OF_STOCK = 2,
-
-		DISCONTINUED = 3
+		DISABLED = 1
 	}
 }

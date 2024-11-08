@@ -15,5 +15,6 @@ namespace EasyBuy_Backend.Models
 		public int UserId { get; set; }  
 
 		public int ProductId { get; set; }  
+
 	}
 }
