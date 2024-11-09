@@ -10,4 +10,7 @@ public interface IOrderRepository : IRepository<Order>
     Task<Order> GetOrderById(int id);
 
     Task<bool> UpdateOrderStatusAsync(Order order, UpdateOrderDTO updateOrderDTO);
+
+	Task<Order> CreateOrderAsync(Order order);
+
 }

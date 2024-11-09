@@ -68,5 +68,17 @@ namespace EasyBuy_Backend.Controllers
             }
             return BadRequest();
         }
-    }
+		[HttpPost("AddOrder")]
+		public async Task<IActionResult> AddOrder([FromBody] Order order)
+		{
+			var createdOrder = await _orderRepository.CreateOrderAsync(order);
+
+			if (createdOrder != null)
+			{
+				return Ok(createdOrder);
+			}
+
+			return BadRequest("Error creating order");
+		}
+	}
 }

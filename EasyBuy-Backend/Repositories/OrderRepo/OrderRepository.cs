@@ -52,6 +52,13 @@ namespace EasyBuy_Backend.Repositories.OrderRepo
                 return false; 
             }
         }
-    }
+		public async Task<Order> CreateOrderAsync(Order order)
+		{
+			await _context.Orders.AddAsync(order);
+			await _context.SaveChangesAsync();
+
+			return order;
+		}
+	}
 }
 

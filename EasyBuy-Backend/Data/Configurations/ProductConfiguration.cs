@@ -17,11 +17,11 @@ namespace EasyBuy_Backend.Data.Configurations
             entity.Property(e => e.Id)
                 .IsRequired()
                 .HasColumnName("id");
-
+            
 			entity.Property(e => e.Code)
 				.IsRequired()
 				.HasColumnName("code");
-
+            
 			entity.Property(e => e.ProductName)
                 .IsRequired()
                 .HasMaxLength(300)
