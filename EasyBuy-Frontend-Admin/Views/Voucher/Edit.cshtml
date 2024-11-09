@@ -53,7 +53,32 @@
 									   class="form-control @(ViewData.ModelState["Name"]?.Errors.Count > 0 ? "is-invalid" : "")"
 									   placeholder="Tên">
 								<span asp-validation-for="Name" class="invalid-feedback" role="alert"></span>
+							</div>
 
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group mb-4">
+										<label for="dateFrom">Ngày bắt đầu<strong class="text-danger">*</strong></label>
+										<input asp-for="DateFrom"
+											   type="date"
+											   id="dateFrom"
+											   class="form-control @(ViewData.ModelState["DateFrom"]?.Errors.Count > 0 ? "is-invalid" : "")"
+											   placeholder="Chọn ngày bắt đầu">
+										<span asp-validation-for="DateFrom" class="invalid-feedback" role="alert"></span>
+									</div>
+								</div>
+
+								<div class="col-md-6">
+									<div class="form-group mb-4">
+										<label for="dateTo">Ngày kết thúc<strong class="text-danger">*</strong></label>
+										<input asp-for="DateTo"
+											   type="date"
+											   id="dateTo"
+											   class="form-control @(ViewData.ModelState["DateTo"]?.Errors.Count > 0 ? "is-invalid" : "")"
+											   placeholder="Chọn ngày kết thúc">
+										<span asp-validation-for="DateTo" class="invalid-feedback" role="alert"></span>
+									</div>
+								</div>
 							</div>
 
 							<div class="row">
@@ -79,32 +104,6 @@
 											   placeholder="Đơn vị">
 										<span asp-validation-for="Unit" class="invalid-feedback" role="alert"></span>
 
-									</div>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group mb-4">
-										<label for="dateFrom">Ngày bắt đầu<strong class="text-danger">*</strong></label>
-										<input asp-for="DateFrom"
-											   type="date"
-											   id="dateFrom"
-											   class="form-control @(ViewData.ModelState["DateFrom"]?.Errors.Count > 0 ? "is-invalid" : "")"
-											   placeholder="Chọn ngày bắt đầu">
-										<span asp-validation-for="DateFrom" class="invalid-feedback" role="alert"></span>
-									</div>
-								</div>
-
-								<div class="col-md-6">
-									<div class="form-group mb-4">
-										<label for="dateTo">Ngày kết thúc<strong class="text-danger">*</strong></label>
-										<input asp-for="DateTo"
-											   type="date"
-											   id="dateTo"
-											   class="form-control @(ViewData.ModelState["DateTo"]?.Errors.Count > 0 ? "is-invalid" : "")"
-											   placeholder="Chọn ngày kết thúc">
-										<span asp-validation-for="DateTo" class="invalid-feedback" role="alert"></span>
 									</div>
 								</div>
 							</div>

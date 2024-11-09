@@ -5,6 +5,7 @@ using EasyBuy_Frontend_Admin.Services.SupplierSvc;
 using EasyBuy_Frontend_Admin.Services.ProductSvc;
 using EasyBuy_Frontend_Admin.Services.UserSvc;
 using EasyBuy_Frontend_Admin.Services.VoucherSvc;
+using EasyBuy_Frontend_Admin.Services.OrderSvc;
 
 namespace EasyBuy_Frontend_Admin.Services
 {
@@ -20,7 +21,7 @@ namespace EasyBuy_Frontend_Admin.Services
 			services.AddHttpClient<IVoucherService, VoucherService>();
 			services.AddHttpClient<IProductService, ProductService>();
 			services.AddHttpClient<IInventoryVoucherService, InventoryVoucherService>();
-
+			services.AddHttpClient<IOrderService, OrderService>();
 			return services;		
 		}
 	}

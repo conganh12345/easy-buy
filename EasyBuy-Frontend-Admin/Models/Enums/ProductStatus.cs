@@ -4,10 +4,13 @@ namespace EasyBuy_Frontend_Admin.Models.Enums
 {
 	public enum ProductStatus
 	{
-		[Display(Name = "Hoạt động")]
-		ENABLE = 0,
+		[Display(Name = "Còn Hàng")]
+		ENABLE = 1,
 
-		[Display(Name = "Không hoạt động")]
-		DISABLED = 1
+		[Display(Name = "Hết Hàng")]
+		OUT_OF_STOCK = 2,
+
+		[Display(Name = "Ngừng Kinh Doanh")]
+		DISCONTINUED = 3
 	}
 }

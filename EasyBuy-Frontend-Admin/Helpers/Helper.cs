@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using EasyBuy_Frontend_Admin.Models.Enums;
+using EasyBuy_Backend.Models.Enums;
 
 
 namespace EasyBuy_Frontend_Admin.Helpers
@@ -38,7 +39,9 @@ namespace EasyBuy_Frontend_Admin.Helpers
 					{
 						case ProductStatus.ENABLE:
 							return "success";
-						case ProductStatus.DISABLED:
+						case ProductStatus.OUT_OF_STOCK:
+							return "warning";
+						case ProductStatus.DISCONTINUED:
 							return "danger";
 					}
 					break;
@@ -79,6 +82,18 @@ namespace EasyBuy_Frontend_Admin.Helpers
 							return "success";
 						case SupplierStatus.DISABLED:
 							return "danger";
+					}
+					break;
+
+				case OrderStatus orderStatus:
+					switch (orderStatus)
+					{
+						case OrderStatus.SUCCESS:
+							return "success";
+						case OrderStatus.CANCELED:
+							return "danger";
+						case OrderStatus.PENDING:
+							return "warning";
 					}
 					break;
 

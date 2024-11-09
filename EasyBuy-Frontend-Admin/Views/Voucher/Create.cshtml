@@ -59,33 +59,6 @@
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group mb-4">
-										<label for="user">Giá trị<strong class="text-danger">*</strong></label>
-										<input asp-for="Discount"
-											   type="text"
-											   id="discount"
-											   class="form-control @(ViewData.ModelState["Discount"]?.Errors.Count > 0 ? "is-invalid" : "")"
-											   placeholder="Giá trị">
-										<span asp-validation-for="Discount" class="invalid-feedback" role="alert"></span>
-
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group mb-4">
-										<label for="user">Đơn vị<strong class="text-danger">*</strong></label>
-										<input asp-for="Unit"
-											   type="text"
-											   id="unit"
-											   class="form-control @(ViewData.ModelState["Unit"]?.Errors.Count > 0 ? "is-invalid" : "")"
-											   placeholder="Đơn vị">
-										<span asp-validation-for="Unit" class="invalid-feedback" role="alert"></span>
-
-									</div>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group mb-4">
 										<label for="dateFrom">Ngày bắt đầu<strong class="text-danger">*</strong></label>
 										<input asp-for="DateFrom"
 											   type="date"
@@ -105,6 +78,34 @@
 											   class="form-control @(ViewData.ModelState["DateTo"]?.Errors.Count > 0 ? "is-invalid" : "")"
 											   placeholder="Chọn ngày kết thúc">
 										<span asp-validation-for="DateTo" class="invalid-feedback" role="alert"></span>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group mb-4">
+										<label for="user">Giá trị<strong class="text-danger">*</strong></label>
+										<input asp-for="Discount"
+											   type="text"
+											   id="discount"
+											   class="form-control @(ViewData.ModelState["Discount"]?.Errors.Count > 0 ? "is-invalid" : "")"
+											   placeholder="Giá trị">
+										<span asp-validation-for="Discount" class="invalid-feedback" role="alert"></span>
+
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group mb-4">
+										<label for="user">Đơn vị<strong class="text-danger">*</strong></label>
+										<select asp-for="Unit" id="Unit"
+												class="form-control @(ViewData.ModelState["Unit"]?.Errors?.Count > 0 ? "is-invalid" : "")"
+												asp-items="Html.GetEnumSelectList<VoucherUnit>()">
+											<option value="">Chọn</option>
+
+										</select>
+										<span asp-validation-for="Unit" class="invalid-feedback" role="alert"></span>
+
 									</div>
 								</div>
 							</div>

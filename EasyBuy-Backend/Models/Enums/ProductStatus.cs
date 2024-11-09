@@ -1,9 +1,13 @@
-﻿namespace EasyBuy_Backend.Models.Enums
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace EasyBuy_Backend.Models.Enums
 {
 	public enum ProductStatus
 	{
-		ENABLE = 0,
+		ENABLE = 1,
 
-		DISABLED = 1
+		OUT_OF_STOCK = 2,
+
+		DISCONTINUED = 3
 	}
 }
