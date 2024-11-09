@@ -6,6 +6,7 @@ namespace EasyBuy_Backend.Repositories.CartRepo
 {
 	public interface ICartRepository : IRepository<Cart>
 	{
-		
+		Task<bool> DeleteCartByUserIdAsync(int userId);
+
 	}
 }
