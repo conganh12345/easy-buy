@@ -30,6 +30,8 @@ namespace EasyBuy_Backend.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
+            //var user = _userRepository.GetUserIdAsString(id);
+
             var user = _userRepository.GetById(id);
            
             return Ok(user);

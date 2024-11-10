@@ -12,5 +12,8 @@ namespace EasyBuy_Frontend_Admin.Services.ProductSvc
 		Task<bool> UpdateProductAsync(ProductViewModel product);
 
 		Task<bool> DeleteProductAsync(int id);
+
+		Task<string> GetHighestCodeAsync();
+
 	}
 }

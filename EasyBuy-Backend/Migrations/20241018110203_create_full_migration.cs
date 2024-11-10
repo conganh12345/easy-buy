@@ -99,7 +99,8 @@ namespace EasyBuy_Backend.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    product_name = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+					code = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+					product_name = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     price_to_sell = table.Column<double>(type: "float", nullable: false),
                     import_price = table.Column<double>(type: "float", nullable: false),
                     discount = table.Column<double>(type: "float", nullable: true),

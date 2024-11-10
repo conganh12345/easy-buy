@@ -39,7 +39,9 @@ namespace EasyBuy_Frontend_Admin.Helpers
 					{
 						case ProductStatus.ENABLE:
 							return "success";
-						case ProductStatus.DISABLED:
+						case ProductStatus.OUT_OF_STOCK:
+							return "warning";
+						case ProductStatus.DISCONTINUED:
 							return "danger";
 					}
 					break;

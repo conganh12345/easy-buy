@@ -1,3 +1,4 @@
+using EasyBuy_Backend.Repositories.CartRepo;
 using EasyBuy_Backend.Repositories.InventoryVoucherRepo;
 using EasyBuy_Backend.Repositories.SupplierRepo;
 using EasyBuy_Backend.Repositories.VoucherRepo;
@@ -13,7 +14,7 @@ namespace EasyBuy_Backend.Services
             services.AddHttpClient<IAuthService, AuthService>();
 			services.AddScoped<ISupplierRepository, SupplierRepository>();
             services.AddScoped<IInventoryVoucherRepository, InventoryVoucherRepository>();
-
+            services.AddScoped<ICartRepository, CartRepository>();
 			return services;
         }
     }
