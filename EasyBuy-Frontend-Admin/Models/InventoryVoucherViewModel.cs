@@ -14,7 +14,7 @@ namespace EasyBuy_Frontend_Admin.Models
 
 		[Required(ErrorMessage = "Tổng cộng là bắt buộc.")]
 		[JsonPropertyName("total")]
-		public double Total { get; set; } 
+		public decimal Total { get; set; } 
 
 		[Required(ErrorMessage = "Ngày nhập là bắt buộc.")]
 		[JsonPropertyName("date")]
@@ -22,5 +22,8 @@ namespace EasyBuy_Frontend_Admin.Models
 
 		[JsonPropertyName("supplier")]
 		public SupplierViewModel? Supplier { get; set; }
+
+		[JsonPropertyName("inventoryVoucherDetails")]
+		public List<InventoryVoucherDetailViewModel>? InventoryVoucherDetailViewModels { get; set; }
 	}
 }

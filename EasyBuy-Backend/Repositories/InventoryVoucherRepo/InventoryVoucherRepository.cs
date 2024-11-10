@@ -16,8 +16,17 @@ namespace EasyBuy_Backend.Repositories.InventoryVoucherRepo
         public async Task<List<InventoryVoucher>> GetAllAsync()
         {
             return await _context.InventoryVouchers
-                .Include(iv => iv.Supplier) 
+                .Include(iv => iv.Supplier)
                 .ToListAsync();
+        }
+
+        public async Task<InventoryVoucher> GetInventoryVoucherById(int id)
+        {
+            return await _context.InventoryVouchers
+                .Include(iv => iv.Supplier)
+                .Include(o => o.InventoryVoucherDetails)
+                    .ThenInclude(ol => ol.Product)
+                .FirstOrDefaultAsync(o => o.Id == id);
         }
     }
 }

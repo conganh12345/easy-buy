@@ -26,9 +26,9 @@ namespace EasyBuy_Backend.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var inventoryVoucher = _inventoryVoucherRepository.GetById(id);
+            var inventoryVoucher = await _inventoryVoucherRepository.GetInventoryVoucherById(id);
 
             return Ok(inventoryVoucher);
         }
@@ -38,7 +38,7 @@ namespace EasyBuy_Backend.Controllers
         {
             if (_inventoryVoucherRepository.Create(inventoryVoucher))
             {
-                return Ok();
+                return Ok(inventoryVoucher);
             }
             return BadRequest();
         }

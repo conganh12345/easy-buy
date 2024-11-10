@@ -1,4 +1,5 @@
-﻿using EasyBuy_Frontend_Admin.Models;
+﻿using EasyBuy_Frontend_Admin.Dtos.InventoryVoucherDetail;
+using EasyBuy_Frontend_Admin.Models;
 using System.Diagnostics;
 using System.Text.Json;
 
@@ -33,26 +34,52 @@ namespace EasyBuy_Frontend_Admin.Services.InventoryVoucherSvc
 			return inventoryvoucheries;
 		}
 
-		public async Task<bool> AddInventoryVoucherAsync(InventoryVoucherViewModel inventoryvoucher)
-		{
-			try
-			{
-				var response = await _httpClient.PostAsJsonAsync("/api/InventoryVoucher", inventoryvoucher);
+        public bool AddInventoryVoucher(List<InventoryVoucherDetailDTO> details)
+        {
+            try
+            {
+                var firstDetail = details.FirstOrDefault();
 
-				if (response.IsSuccessStatusCode)
-				{
-					return true;
-				}
-				return false;
-			}
-			catch (Exception ex)
-			{
-				Debug.WriteLine("An error occurred while adding inventoryvoucher: " + ex.Message);
-				return false;
-			}
-		}
+                var inventoryvoucher = new InventoryVoucherViewModel
+                {
+                    SupplierId = firstDetail.SupplierId,
+                    Total = details.Sum(d => d.ReceivingUnitPrice * d.Quantity),
+                    Date = firstDetail.Date
+                };
 
-		public async Task<InventoryVoucherViewModel> GetInventoryVoucherByIdAsync(int id)
+                var response = _httpClient.PostAsJsonAsync("/api/InventoryVoucher", inventoryvoucher).Result;
+               
+                var responseData = response.Content.ReadAsStringAsync().Result;
+
+                var createdVoucher = JsonSerializer.Deserialize<InventoryVoucherViewModel>(responseData);
+                    if (createdVoucher != null)
+                    {
+                        foreach (var detail in details)
+                        {
+                            var voucherDetail = new InventoryVoucherDetailViewModel
+                            {
+                                InventoryVoucherId = createdVoucher.Id,
+                                ProductId = detail.ProductId,
+                                Quantity = detail.Quantity,
+                                ReceivingUnitPrice = detail.ReceivingUnitPrice
+                            };
+
+                            _httpClient.PostAsJsonAsync("/api/InventoryVoucherDetail", voucherDetail).Wait();
+                        }
+                        return true;
+                    }
+             
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("An error occurred while adding inventoryvoucher: " + ex.Message);
+                return false;
+            }
+        }
+
+
+        public async Task<InventoryVoucherViewModel> GetInventoryVoucherByIdAsync(int id)
 		{
 			InventoryVoucherViewModel inventoryvoucher = null;
 
