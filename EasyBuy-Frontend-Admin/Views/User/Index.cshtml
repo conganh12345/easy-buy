@@ -172,7 +172,9 @@
 							actionTextColor: '#3b3f5c'
 						});
 
-						location.reload();
+						setTimeout(function () {
+							location.reload();
+						}, 1000);
 					},
 					error: function(xhr, status, error) {
 						Snackbar.show({

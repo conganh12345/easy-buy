@@ -74,16 +74,22 @@
                                 </div>
                             </div>
                         </div>
+                        <p class="text-muted mb-4">!!! Vui lòng chọn nhà cung cấp và ngày nhập trước khi chọn sản phẩm.</p>
 
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group mb-4">
                                     <label for="product">Chọn sản phẩm</label>
                                     <select id="productSelect" class="form-control">
-                                        <option value="">Chọn sản phẩm...</option>
+                                        <option value="">--- Chọn sản phẩm ---</option>
                                         @foreach (var product in ViewBag.Products)
                                         {
-                                            <option value="@product.Id" data-name="@product.ProductName" data-price="@product.ImportPrice">@product.ProductName</option>
+                                            <option value="@product.Id" 
+                                                data-code="@product.Code" 
+                                                data-name="@product.ProductName" 
+                                                data-price="@product.ImportPrice">
+                                                (@product.Code) @product.ProductName
+                                            </option>
                                         }
                                     </select>
                                 </div>
@@ -113,6 +119,7 @@
                                 <thead>
                                     <tr>
                                         <th style="width:10%">ID</th>
+                                        <th>Mã sản phẩm</th>
                                         <th>Tên sản phẩm</th>
                                         <th>Số lượng</th>
                                         <th>Giá nhập</th>
@@ -164,6 +171,7 @@
                 const supplierId = $('#supplier').val();
                 const date = $('#date').val();
                 const formattedDate = new Date(date).toISOString(); 
+                const productCode = $('#productSelect option:selected').data('code');
                 const productName = $('#productSelect option:selected').data('name');
                 const productPrice = $('#productSelect option:selected').data('price');
 
@@ -171,6 +179,7 @@
                     $('#productTable tbody').append(`
                         <tr>
                             <td>${productId}</td>
+                            <td><span class="badge badge-light-dark">${productCode}</span></td>
                             <td>${productName}</td>
                             <td><input type="number" class="form-control quantity" value="1" min="1"></td>
                             <td class="product-price" data-price="${productPrice}">${formatCurrency(productPrice)}</td>
@@ -235,11 +244,17 @@
                     contentType: 'application/json',
                     data: JSON.stringify(products),
                     success: function (data) {
-                        if (data.success) {
-                            window.location.href = "/InventoryVoucher"; 
-                        } else {
-                            alert(data.message); 
-                        }
+                        Snackbar.show({
+                            text: 'Tạo Phiếu nhập thành công. Vui lòng chờ trong giây lát',
+                            textColor: '#ddf5f0',
+                            backgroundColor: '#00ab55',
+                            actionText: 'Bỏ qua',
+                            actionTextColor: '#3b3f5c'
+                        });
+                        setTimeout(function () {
+                            window.location.href = "/InventoryVoucher";
+                        }, 2000); 
+                        
                     },
                     error: function (xhr, status, error) {
                         console.error("Error gửi yêu cầu: ", error);
@@ -251,7 +266,7 @@
 
             flatpickr("#date", {
                 enableTime: true,
-                dateFormat: "Y-m-d H:i",
+                dateFormat: "Y-m-d",
                 minDate: "today",
             });
         });

@@ -60,7 +60,7 @@
 								<tr>
 									<td>@inventoryvoucher.Id</td>
 									<td>@inventoryvoucher.Supplier.Name</td>
-									<td>@inventoryvoucher.Total</td>
+									<td>@inventoryvoucher.Total.ToString("N0") VNĐ</td>
 									<td>@inventoryvoucher.Date</td>
 									<td class="text-truncate" style="max-width: 250px;">
 										<a href="@Url.Action("Show", "InventoryVoucher", new { id = inventoryvoucher.Id })"
@@ -154,8 +154,10 @@
 							actionText: 'Bỏ qua',
 							actionTextColor: '#3b3f5c'
 						});
+						setTimeout(function () {
+							location.reload();
+						}, 1000);
 
-						location.reload();
 					},
 					error: function(xhr, status, error) {
 						Snackbar.show({

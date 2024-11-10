@@ -68,7 +68,7 @@
 							{
 								<tr>
 									<td>@product.Id</td>
-									<td>@product.Code</td>
+									<td><span class="badge badge-light-dark">@product.Code</span></td>
 									<td>
 										<img src="@product.ProductImg" alt="Image" style="width: 50px; height: auto;" />
 									</td>
@@ -181,7 +181,9 @@
 							actionTextColor: '#3b3f5c'
 						});
 
-						location.reload();
+						setTimeout(function () {
+							location.reload();
+						}, 1000);
 					},
 					error: function (xhr, status, error) {
 						Snackbar.show({

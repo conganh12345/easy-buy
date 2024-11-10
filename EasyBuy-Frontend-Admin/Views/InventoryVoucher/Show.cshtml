@@ -55,6 +55,7 @@
 			<div class="d-flex align-items-start">
 				<h5 class="text-bold">CHI TIẾT PHIẾU NHẬP</h5>
 			</div>
+			<p class="text-primary">Ngày nhập: @Model.Date</p>
 		</div>
 		<div>
 			<iframe id="pdfFrame" style="display:none;"></iframe>
@@ -77,7 +78,8 @@
 								<thead>
 									<tr>
 										<th style="width: 5%">STT</th>
-										<th>Sản phẩm</th>
+										<th>Mã sản phẩm</th>
+										<th>Tên sản phẩm</th>
 										<th>Số lượng</th>
 										<th>Tổng cộng</th>
 									</tr>
@@ -87,6 +89,7 @@
 									{
 										<tr>
 											<td>@item.Id</td>
+											<td><span class="badge badge-light-dark">@item.Product.Code</span></td>
 											<td>@item.Product.ProductName</td>
 											<td>@item.Quantity</td>
 											<td>@item.ReceivingUnitPrice.ToString("N0") VNĐ</td>
