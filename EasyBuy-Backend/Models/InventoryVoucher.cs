@@ -21,5 +21,7 @@ namespace EasyBuy_Backend.Models
 
         [ForeignKey("SupplierId")]
         public Supplier? Supplier { get; set; }
-	}
+
+        public virtual ICollection<InventoryVoucherDetail>? InventoryVoucherDetails { get; set; }
+    }
 }

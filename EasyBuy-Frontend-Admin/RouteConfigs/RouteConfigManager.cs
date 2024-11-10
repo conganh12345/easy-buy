@@ -14,6 +14,7 @@ namespace EasyBuy_Frontend_Admin.RouteConfigs
             Supplier.RegisterRoutes(endpoints);
             Voucher.RegisterRoutes(endpoints);
             Product.RegisterRoutes(endpoints);
+            InventoryVoucher.RegisterRoutes(endpoints);
         }
     }
 }

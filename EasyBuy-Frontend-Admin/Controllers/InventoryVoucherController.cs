@@ -1,8 +1,13 @@
-﻿using EasyBuy_Frontend_Admin.Models;
+﻿using EasyBuy_Frontend_Admin.Dtos.InventoryVoucher;
+using EasyBuy_Frontend_Admin.Dtos.InventoryVoucherDetail;
+using EasyBuy_Frontend_Admin.Models;
 using EasyBuy_Frontend_Admin.Services.InventoryVoucherSvc;
+using EasyBuy_Frontend_Admin.Services.ProductSvc;
 using EasyBuy_Frontend_Admin.Services.SupplierSvc;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace EasyBuy_Frontend_Admin.Controllers
 {
@@ -10,13 +15,16 @@ namespace EasyBuy_Frontend_Admin.Controllers
 	{
 		private readonly IInventoryVoucherService _inventoryvoucherService;
 		private readonly ISupplierService _supplierService;
+		private readonly IProductService _productService;
 
 		public InventoryVoucherController(
+			IProductService productService,
 			IInventoryVoucherService inventoryVoucherService,
 			ISupplierService supplierService
 		) {
 			_inventoryvoucherService = inventoryVoucherService;
 			_supplierService = supplierService;
+			_productService = productService;
 		}
 
 		public async Task<IActionResult> Index()
@@ -29,26 +37,31 @@ namespace EasyBuy_Frontend_Admin.Controllers
 		public async Task<IActionResult> Create()
 		{
 			List<SupplierViewModel> suppliers = await _supplierService.GetSuppliersAsync();
+			List<ProductViewModel> products = await _productService.GetProductsAsync();
 
 			ViewBag.Suppliers = new SelectList(suppliers, "Id", "Name");
+			ViewBag.Products = products;
 
 			return View();
 		}
 
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Create(InventoryVoucherViewModel inventoryvoucher)
-		{
-			if (await _inventoryvoucherService.AddInventoryVoucherAsync(inventoryvoucher))
-			{
-				TempData["Success"] = "Thêm mới phiếu nhập thành công.";
-				return RedirectToAction(nameof(Index));
-			}
-			TempData["Error"] = "Đã có lỗi xảy ra";
-			return View(inventoryvoucher);
-		}
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] List<InventoryVoucherDetailDTO> inventoryvoucher)
+        {
+            try
+            {
+                var result = _inventoryvoucherService.AddInventoryVoucher(inventoryvoucher);
 
-		public async Task<IActionResult> Edit(int id)
+                return Json(new { success = true, message = "Taọ mới phiếu nhập thành công" });
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Lỗi: " + ex.Message);
+                return Json(new { success = false, message = "Đã có lỗi xảy ra trong quá trình xử lý dữ liệu." });
+            }
+        }
+
+        public async Task<IActionResult> Edit(int id)
 		{
 			InventoryVoucherViewModel inventoryvoucher = await _inventoryvoucherService.GetInventoryVoucherByIdAsync(id);
 

@@ -46,7 +46,5 @@ namespace EasyBuy_Backend.Models
         public Voucher? Voucher { get; set; }
 
         public virtual ICollection<OrderLine>? OrderLines { get; set; }
-        
-
     }
 }
