@@ -66,12 +66,7 @@ namespace EasyBuy_Backend.Controllers
 		public async Task<IActionResult> DeleteCart(int userId)
 		{
 			var result = await _cartRepository.DeleteCartByUserIdAsync(userId);
-			if (result)
-			{
-				return Ok("Giỏ hàng đã được xóa thành công.");
-			}
-
-			return NotFound("Không tìm thấy giỏ hàng của người dùng.");
+			return Ok(result); // Trả về kết quả boolean trực tiếp
 		}
 	}
 
