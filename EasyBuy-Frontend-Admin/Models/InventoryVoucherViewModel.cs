@@ -22,5 +22,8 @@ namespace EasyBuy_Frontend_Admin.Models
 
 		[JsonPropertyName("supplier")]
 		public SupplierViewModel? Supplier { get; set; }
+
+		[JsonPropertyName("inventoryVoucherDetails")]
+		public List<InventoryVoucherDetailViewModel>? InventoryVoucherDetailViewModels { get; set; }
 	}
 }

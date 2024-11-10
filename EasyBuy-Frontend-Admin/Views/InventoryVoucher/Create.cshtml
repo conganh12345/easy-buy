@@ -12,6 +12,11 @@
         <link rel="stylesheet" href="@Url.Content("~/lib/plugins/flatpickr/flatpickr.css")">
         <link rel="stylesheet" href="@Url.Content("~/CSS/plugins/dark/flatpickr/custom-flatpickr.css")">
         <link rel="stylesheet" href="@Url.Content("~/CSS/plugins/light/flatpickr/custom-flatpickr.css")">
+        <style>
+            .ts-control{
+                 padding: 12px;
+            }
+        </style>
 }
 
 <div>
@@ -48,7 +53,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group mb-4">
-                                    <label for="supplier">Tên nhà cung cấp<strong class="text-danger">*</strong></label>
+                                    <label for="supplier">Nhà cung cấp<strong class="text-danger">*</strong></label>
                                     <select id="supplier" asp-for="SupplierId" asp-items="ViewBag.Suppliers"
                                             class="form-control @(ViewData.ModelState["SupplierId"]?.Errors?.Count > 0 ? "is-invalid" : "")"
                                             placeholder="Chọn nhà cung cấp" autocomplete="off">
@@ -64,7 +69,7 @@
                             <div class="col-md-6">
                                 <div class="form-group mb-4">
                                     <label for="date">Ngày nhập<strong class="text-danger">*</strong></label>
-                                    <input asp-for="Date" id="date" type="date" class="form-control @(ViewData.ModelState["Date"]?.Errors?.Count > 0 ? "is-invalid" : "")" />
+                                    <input asp-for="Date" id="date" placeholder="Chọn ngày nhập" type="date" class="form-control @(ViewData.ModelState["Date"]?.Errors?.Count > 0 ? "is-invalid" : "")" />
                                     <span asp-validation-for="Date" class="invalid-feedback" role="alert"></span>
                                 </div>
                             </div>
@@ -186,6 +191,15 @@
 
                     $('#productSelect')[0].tomselect.clear();
                 }
+            });
+
+             $('#productTable').on('click', '.removeProduct', function () {
+                const row = $(this).closest('tr');
+                const productId = row.find('td').first().text();
+
+                products = products.filter(p => p.productId !== productId);
+
+                row.remove();
             });
 
             $('#productTable').on('input', '.quantity', function () {

@@ -1,5 +1,4 @@
-﻿using EasyBuy_Frontend_Admin.Dtos.InventoryVoucher;
-using EasyBuy_Frontend_Admin.Dtos.InventoryVoucherDetail;
+﻿using EasyBuy_Frontend_Admin.Dtos.InventoryVoucherDetail;
 using EasyBuy_Frontend_Admin.Models;
 using EasyBuy_Frontend_Admin.Services.InventoryVoucherSvc;
 using EasyBuy_Frontend_Admin.Services.ProductSvc;
@@ -61,29 +60,27 @@ namespace EasyBuy_Frontend_Admin.Controllers
             }
         }
 
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Show(int id)
 		{
 			InventoryVoucherViewModel inventoryvoucher = await _inventoryvoucherService.GetInventoryVoucherByIdAsync(id);
 
 			List<SupplierViewModel> suppliers = await _supplierService.GetSuppliersAsync();
 
-			ViewBag.Suppliers = new SelectList(suppliers, "Id", "Name");
-
 			return View(inventoryvoucher);
 		}
 
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(InventoryVoucherViewModel inventoryvoucher)
-		{
-			if (await _inventoryvoucherService.UpdateInventoryVoucherAsync(inventoryvoucher))
-			{
-				TempData["Success"] = "Chỉnh sửa phiếu nhập thành công.";
-				return RedirectToAction(nameof(Index));
-			}
-			TempData["Error"] = "Đã có lỗi xảy ra";
-			return View(inventoryvoucher);
-		}
+		//[HttpPost]
+		//[ValidateAntiForgeryToken]
+		//public async Task<IActionResult> Edit(InventoryVoucherViewModel inventoryvoucher)
+		//{
+		//	if (await _inventoryvoucherService.UpdateInventoryVoucherAsync(inventoryvoucher))
+		//	{
+		//		TempData["Success"] = "Chỉnh sửa phiếu nhập thành công.";
+		//		return RedirectToAction(nameof(Index));
+		//	}
+		//	TempData["Error"] = "Đã có lỗi xảy ra";
+		//	return View(inventoryvoucher);
+		//}
 
 		[HttpPost]
 		public async Task<IActionResult> Delete(int id)
