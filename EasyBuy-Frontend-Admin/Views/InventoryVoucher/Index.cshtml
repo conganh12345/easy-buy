@@ -62,7 +62,8 @@
 									<td>@inventoryvoucher.Supplier.Name</td>
 									<td>@inventoryvoucher.Total.ToString("N0") VNĐ</td>
 									<td>@inventoryvoucher.Date</td>
-									<td class="text-truncate" style="max-width: 250px;">
+									<td class="table-controls d-flex justify-content-center align-items-center pt-2">
+										<li>
 										<a href="@Url.Action("Show", "InventoryVoucher", new { id = inventoryvoucher.Id })"
 										   class="bs-tooltip show" data-bs-toggle="tooltip"
 										   data-bs-placement="top">
@@ -74,6 +75,8 @@
 												<circle cx="12" cy="12" r="3"></circle>
 											</svg>
 										</a>
+										</li>
+										<li>
 										<a href="#" data-inventoryvoucher-id="@inventoryvoucher.Id"
 										   class="bs-tooltip delete" data-bs-toggle="tooltip"
 										   data-bs-placement="top">
@@ -86,6 +89,7 @@
 												<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
 											</svg>
 										</a>
+										</li>
 									</td>
 								</tr>
 							}
