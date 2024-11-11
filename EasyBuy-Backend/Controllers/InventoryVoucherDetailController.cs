@@ -1,8 +1,10 @@
-using EasyBuy_Backend.Models;
+﻿using EasyBuy_Backend.Models;
 using EasyBuy_Backend.Repositories.InventoryVoucherDetailRepo;
 using EasyBuy_Backend.Repositories.InventoryVoucherRepo;
+using EasyBuy_Backend.Repositories.ProductRepo;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace EasyBuy_Backend.Controllers
 {
@@ -11,11 +13,14 @@ namespace EasyBuy_Backend.Controllers
     public class InventoryVoucherDetailController : ControllerBase
     {
         private readonly IInventoryVoucherDetailRepository _inventoryVoucherDetailRepository;
+        private readonly IProductRepository _productRepository;
 
         public InventoryVoucherDetailController(
-            IInventoryVoucherDetailRepository inventoryVoucherDetailRepository
+            IInventoryVoucherDetailRepository inventoryVoucherDetailRepository,
+            IProductRepository productRepository
         ) {
             _inventoryVoucherDetailRepository = inventoryVoucherDetailRepository;
+            _productRepository = productRepository;
         }
 
         [HttpGet]
@@ -39,6 +44,14 @@ namespace EasyBuy_Backend.Controllers
         {
             if (_inventoryVoucherDetailRepository.Create(inventoryVoucher))
             {
+                var product = _productRepository.GetById(inventoryVoucher.ProductId);
+                Debug.WriteLine("An error occurred while adding inventoryvoucher: " + inventoryVoucher.ProductId);
+                if (product != null)
+                {
+                    product.StockQuantity += inventoryVoucher.Quantity;
+
+                    _productRepository.Update(product);
+                }
                 return Ok();
             }
             return BadRequest();
