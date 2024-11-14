@@ -68,7 +68,7 @@
 							{
 								<tr>
 									<td>@product.Id</td>
-									<td>@product.Code</td>
+									<td><span class="badge badge-light-dark">@product.Code</span></td>
 									<td>
 										<img src="@product.ProductImg" alt="Image" style="width: 50px; height: auto;" />
 									</td>
@@ -80,14 +80,15 @@
 									<td>@product.Model</td>
 									<td>@product.Color</td>
 									<td>@product.Gender</td>									
-									<td>@product.StockQuantity	</td>
+									<td>@product.StockQuantity</td>
 									<td>
 										<span class="badge badge-light-@product.Status.GetBadge()">
 											@product.Status.GetDisplayName()
 										</span>
 									</td>
 
-									<td class="text-truncate" style="max-width: 250px;">
+									<td class="table-controls d-flex justify-content-center align-items-center pt-2">
+										<li>
 										<a href="@Url.Action("Edit", "Product", new { id = product.Id })"
 										   class="bs-tooltip edit" data-bs-toggle="tooltip"
 										   data-bs-placement="top">
@@ -100,6 +101,8 @@
 												</path>
 											</svg>
 										</a>
+										</li>
+										<li>
 										<a href="#" data-product-id="@product.Id"
 										   class="bs-tooltip delete" data-bs-toggle="tooltip"
 										   data-bs-placement="top">
@@ -112,6 +115,8 @@
 												<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
 											</svg>
 										</a>
+										
+										</li>
 									</td>
 								</tr>
 							}
@@ -181,7 +186,9 @@
 							actionTextColor: '#3b3f5c'
 						});
 
-						location.reload();
+						setTimeout(function () {
+							location.reload();
+						}, 1000);
 					},
 					error: function (xhr, status, error) {
 						Snackbar.show({

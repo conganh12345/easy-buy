@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace EasyBuy_Backend.Models
 {
@@ -17,6 +18,7 @@ namespace EasyBuy_Backend.Models
         public int InventoryVoucherId { get; set; }
 
         [ForeignKey("InventoryVoucherId")]
+        [JsonIgnore]
         public InventoryVoucher? InventoryVoucher { get; set; } 
 
         public int ProductId { get; set; }

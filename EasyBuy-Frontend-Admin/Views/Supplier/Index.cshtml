@@ -71,7 +71,8 @@
 											@supplier.Status.GetDisplayName()
 										</span>
 									</td>
-									<td class="text-truncate" style="max-width: 250px;">
+									<td class="table-controls d-flex justify-content-center align-items-center pt-2">
+										<li>
 										<a href="@Url.Action("Edit", "Supplier", new { id = supplier.Id })"
 										   class="bs-tooltip edit" data-bs-toggle="tooltip"
 										   data-bs-placement="top">
@@ -84,6 +85,8 @@
 												</path>
 											</svg>
 										</a>
+										</li>
+										<li>
 										<a href="#" data-supplier-id="@supplier.Id"
 										   class="bs-tooltip delete" data-bs-toggle="tooltip"
 										   data-bs-placement="top">
@@ -96,6 +99,7 @@
 												<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
 											</svg>
 										</a>
+										</li>
 									</td>
 								</tr>
 							}
@@ -165,7 +169,9 @@
 							actionTextColor: '#3b3f5c'
 						});
 
-						location.reload();
+						setTimeout(function () {
+							location.reload();
+						}, 1000);
 					},
 					error: function(xhr, status, error) {
 						Snackbar.show({

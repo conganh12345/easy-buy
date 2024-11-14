@@ -95,13 +95,15 @@
                                             @order.Status.GetDisplayName()
                                         </span>
                                     </td>
-                                    <td>
+                                    <td class="table-controls d-flex justify-content-center align-items-center pt-2">
+                                        <li>
                                         <a href="@Url.Action("Show", "Order", new { id = order.Id })" class="bs-tooltip view-detail" data-bs-toggle="tooltip" data-bs-placement="top">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
                                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                                 <circle cx="12" cy="12" r="3"></circle>
                                             </svg>
                                         </a>
+                                        </li>
                                     </td>
                                 </tr>
                             }

@@ -54,12 +54,12 @@ namespace EasyBuy_Frontend_Admin.Models
 
 		[Required(ErrorMessage = "Có thể xóa là bắt buộc.")]
 		[Range(0, int.MaxValue, ErrorMessage = "Có thể xóa không hợp lệ.")]
-		[JsonPropertyName("can_del")]
+		[JsonPropertyName("canDel")]
 		public int CanDel { get; set; }
 
 		[Required(ErrorMessage = "Số lượng tồn là bắt buộc.")]
 		[Range(0, int.MaxValue, ErrorMessage = "Số lượng tồn phải lớn hơn hoặc bằng 0.")]
-		[JsonPropertyName("stock_quantity")]
+		[JsonPropertyName("stockQuantity")]
 		public int StockQuantity { get; set; }
 
 		[Required(ErrorMessage = "Trạng thái là bắt buộc.")]

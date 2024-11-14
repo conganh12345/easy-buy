@@ -8,6 +8,7 @@ using EasyBuy_Backend.Repositories.OrderRepo;
 using EasyBuy_Backend.Repositories.CartRepo;
 using EasyBuy_Backend.Repositories.PaymentRepo;
 using EasyBuy_Backend.Repositories.OrderlineRepo;
+using EasyBuy_Backend.Repositories.InventoryVoucherDetailRepo;
 
 
 namespace EasyBuy_Backend.Repositories
@@ -28,7 +29,7 @@ namespace EasyBuy_Backend.Repositories
 			services.AddScoped<ICartRepository, CartRepository>();
 			services.AddScoped<IPaymentRepository, PaymentRepository>();
 			services.AddScoped<IOrderlineRepository, OrderlineRepository>();
-
+            services.AddScoped<IInventoryVoucherDetailRepository, InventoryVoucherDetailRepository>();
 		}
 	}
 }
