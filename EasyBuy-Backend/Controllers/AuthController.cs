@@ -20,9 +20,10 @@ namespace EasyBuy_Backend.Controllers
 		[HttpPost("Register")]
 		public async Task<IActionResult> Register([FromBody] User user)
 		{
-			if (await _authService.Register(user))
+			var token = await _authService.Register(user);
+			if (!string.IsNullOrEmpty(token))
 			{
-				return Ok();
+				return Ok(new { Token = token }); 
 			}
 
 			return BadRequest(new { message = "Đăng ký không thành công." });
@@ -31,12 +32,14 @@ namespace EasyBuy_Backend.Controllers
 		[HttpPost("Login")]
 		public async Task<IActionResult> Login([FromBody] SignInDTO signInDTO)
 		{
-			if (_authService.Login(signInDTO.Email, signInDTO.Password))
+			var token = _authService.Login(signInDTO.Email, signInDTO.Password);
+			if (!string.IsNullOrEmpty(token))
 			{
-				return Ok();
+				return Ok(new { Token = token });
 			}
 
 			return Unauthorized(new { message = "Email hoặc mật khẩu không đúng." });
 		}
+
 	}
 }
