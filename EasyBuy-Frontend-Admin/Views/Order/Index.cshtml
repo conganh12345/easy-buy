@@ -30,45 +30,53 @@
         </nav>
     </div>
     <!-- /BREADCRUMB -->
+    <div class="row layout-top-spacing">
+        <div class="col-xl-12 col-lg-12 col-sm-12">
+            <div class="statbox widget box box-shadow">
+                <div class="widget-header d-flex align-items-center ">
+                    <h4 class="m-0">Bộ lọc</h4>
+                </div>
+                <div class="widget-content widget-content-area">
+                <div class="col-lg-12 p-4">
+                    <div id="filterBody" class="row align-items-center">
+                        <div class="col-md-3">
+                            <input type="text" id="user-name-filter" class="form-control" placeholder="Tìm theo tên người dùng">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" id="discount-filter" class="form-control" placeholder="Tìm theo giá giảm">
+                        </div>
+                        <div class="col-md-3">
+                            <select id="status-filter" class="form-control">
+                                <option value="">Trạng thái</option>
+                                <option value="Thành công">Thành công</option>
+                                <option value="Đã hủy">Đã hủy</option>
+                                <option value="Đang xét duyệt">Đang xét duyệt</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" id="date-range-filter" class="form-control" placeholder="Chọn khoảng thời gian">
+                        </div>
+                        <hr>
+                        <div class="filter-header d-flex justify-content-end align-items-center">
+
+                            <button type="button" class="btn btn-secondary" id="reset-filters">Xoá bộ lọc</button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </div>
+</div>
     <!-- DATATABLE -->
     <div class="row layout-top-spacing">
         <div class="col-xl-12 col-lg-12 col-sm-12">
             <div class="statbox widget box box-shadow">
                 <div class="widget-header d-flex align-items-center ">
                     <h4 class="m-0">Quản lý Đơn hàng</h4>
-                    <div class="ms-auto">
-                        <button id="reset-filters" class="btn btn-secondary">Xóa bộ lọc</button>
-                    </div>
+                   
                 </div>
-
                 <!-- Bảng dữ liệu -->
                 <div class="widget-content widget-content-area">
-
-                    <!-- Bộ lọc -->
-                    <div class="filter-container p-3 mb-4 rounded shadow-sm">
-                        <div class="row">
-                            <div class="col-md-3 mb-2">
-                                <input type="text" id="user-name-filter" class="form-control" placeholder="Tìm theo tên người dùng">
-                            </div>
-                            <div class="col-md-3 mb-2">
-                                <input type="number" id="discount-filter" class="form-control" placeholder="Tìm theo giá giảm">
-                            </div>
-                            <div class="col-md-3 mb-2">
-                                <select id="status-filter" class="form-control">
-                                    <option value="">Trạng thái</option>
-                                    <option value="Thành công">Thành công</option>
-                                    <option value="Đã hủy">Đã hủy</option>
-                                    <option value="Đang xét duyệt">Đang xét duyệt</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3 mb-2">
-                                <input type="text" id="date-range-filter" class="form-control" placeholder="Chọn khoảng thời gian">
-                            </div>
-                        </div>
-              
-                    </div>
-
-                    <!-- Bảng dữ liệu -->
                     <table id="order-table" class="table style-3 dt-table-hover" style="width: 100%">
                         <thead>
                             <tr>
