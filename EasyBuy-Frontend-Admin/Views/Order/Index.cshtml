@@ -153,26 +153,21 @@
                     "stripeClasses": [],
                     "lengthMenu": [7, 10, 20, 50],
                     "pageLength": 10,
-                    "ordering": false,
-                    "searching": false
+                    "ordering": false
                 });
 
-                // Lọc theo tên người dùng
                 $('#user-name-filter').on('keyup', function () {
                     table.columns(1).search(this.value).draw();
                 });
 
-                // Lọc theo giá giảm
                 $('#discount-filter').on('keyup change', function () {
                     table.columns(3).search(this.value).draw();
                 });
 
-                // Lọc theo trạng thái
                 $('#status-filter').on('change', function () {
                     table.columns(5).search(this.value).draw();
                 });
 
-                // Thiết lập flatpickr cho khoảng thời gian
                 flatpickr("#date-range-filter", {
                     mode: "range",
                     dateFormat: "Y-m-d",
@@ -183,7 +178,7 @@
 
                             $.fn.dataTable.ext.search.push(
                                 function (settings, data, dataIndex) {
-                                    var orderDate = data[2]; // Cột ngày đặt hàng (vị trí cột 2)
+                                    var orderDate = data[2]; 
                                     if (orderDate) {
                                         var orderDateParsed = new Date(orderDate).toISOString().split('T')[0];
                                         return (orderDateParsed >= startDate && orderDateParsed <= endDate);
@@ -192,26 +187,21 @@
                                 }
                             );
 
-                            // Vẽ lại bảng với dữ liệu đã lọc
                             table.draw();
 
-                            // Reset bộ lọc để không ảnh hưởng đến các tìm kiếm khác
                             $.fn.dataTable.ext.search.pop();
                         }
                     }
                 });
 
-                // Nút Reset
                 $('#reset-filters').on('click', function () {
-                    // Reset giá trị các bộ lọc
                     $('#user-name-filter').val('');
                     $('#discount-filter').val('');
                     $('#status-filter').val('');
                     $('#date-range-filter').val('');
 
-                    // Reset tìm kiếm trong DataTable
                     table.columns().search('').draw();
-                    table.rows().show(); // Hiển thị tất cả các dòng
+                    table.rows().show(); 
                 });
             }
         });
