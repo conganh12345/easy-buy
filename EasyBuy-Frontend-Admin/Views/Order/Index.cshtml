@@ -40,20 +40,24 @@
                 <div class="col-lg-12 p-4">
                     <div id="filterBody" class="row align-items-center">
                         <div class="col-md-3">
+                            <label for="trainId">Tên người dùng</label>
                             <input type="text" id="user-name-filter" class="form-control" placeholder="Tìm theo tên người dùng">
                         </div>
                         <div class="col-md-3">
+                                <label for="trainId">Giá bán</label>
                             <input type="number" id="discount-filter" class="form-control" placeholder="Tìm theo giá giảm">
                         </div>
                         <div class="col-md-3">
+                                <label for="trainId">Trạng thái</label>
                             <select id="status-filter" class="form-control">
-                                <option value="">Trạng thái</option>
+                                <option value="">Chọn</option>
                                 <option value="Thành công">Thành công</option>
                                 <option value="Đã hủy">Đã hủy</option>
                                 <option value="Đang xét duyệt">Đang xét duyệt</option>
                             </select>
                         </div>
                         <div class="col-md-3">
+                                <label for="trainId">Khoảng thời gian</label>
                             <input type="text" id="date-range-filter" class="form-control" placeholder="Chọn khoảng thời gian">
                         </div>
                         <hr>
@@ -94,16 +98,31 @@
                             {
                                 <tr>
                                     <td>@order.Id</td>
-                                    <td>@(order.User != null ? order.User.Name : "Không xác định")</td>
+
+                                    <td>
+                                        <p class="text-start me-1">
+                                            Tên:
+                                            <span class="text-primary">@(order.User != null ? order.User.Name : "Không xác định")</span>
+                                        </p>
+                                        <p class="text-start me-1">
+                                            Email:
+                                            <span class="text-primary">@order.User.Email</span>
+                                        </p>
+                                        <p class="text-start me-1">
+                                            Số điện thoại:
+                                            <span class="text-primary">@order.User.PhoneNumber</span>
+                                        </p>
+
+                                    </td>
                                     <td>@order.OrderDate</td>
-                                    <td>@order.OrderDiscount</td>
-                                    <td>@order.OrderTotal</td>
+                                    <td>@order.OrderDiscount.ToString("N0") VNĐ</td>
+                                    <td>@order.OrderTotal.ToString("N0") VNĐ</td>
                                     <td>
                                         <span class="badge badge-light-@order.Status.GetBadge()">
                                             @order.Status.GetDisplayName()
                                         </span>
                                     </td>
-                                    <td class="table-controls d-flex justify-content-center align-items-center pt-2">
+                                    <td class="table-controls d-flex justify-content-center align-items-center pt-5">
                                         <li>
                                         <a href="@Url.Action("Show", "Order", new { id = order.Id })" class="bs-tooltip view-detail" data-bs-toggle="tooltip" data-bs-placement="top">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">

@@ -48,16 +48,12 @@
 						<thead>
 							<tr>
 								<th style="width: 5%">STT</th>
-								<th>Code</th>
+								<th>Mã sản phẩm</th>
 								<th>Hình ảnh</th>
 								<th>Tên sản phẩm</th>
 								<th>Danh mục</th>
-								<th>Giá bán</th>
-								<th>Giá nhập</th>
-								<th>Khuyến mãi</th>
-								<th>Loại</th>
-								<th>Màu sắc</th>
-								<th>Giới tính</th>
+								<th>Mức Giá</th>
+								<th>Thuộc tính</th>
 								<th>Số lượng tồn</th>
 								<th>Trạng thái</th>
 								<th class="no-content" style="width: 5%">Thao tác</th>
@@ -74,12 +70,40 @@
 									</td>
 									<td>@product.ProductName</td>
 									<td>@product.CategoryName</td>
-									<td>@product.PriceToSell.ToString("N0") VNĐ</td>
-									<td>@product.ImportPrice.ToString("N0") VNĐ</td>
-									<td>@product.Discount.ToString("N0") VNĐ</td>
-									<td>@product.Model</td>
-									<td>@product.Color</td>
-									<td>@product.Gender</td>									
+
+									<td>
+										<p class="text-start me-1">
+											Giá nhập:
+											<span class="text-primary">@product.ImportPrice.ToString("N0") VNĐ</span>
+										</p>
+										<p class="text-start me-1">
+											Giá khuyến mãi:
+											<span class="text-primary">@product.Discount.ToString("N0") VNĐ</span>
+										</p>
+										<p class="text-start me-1">
+											Giá bán:
+											<span class="text-primary">@product.PriceToSell.ToString("N0") VNĐ</span>
+										</p>
+
+									</td>
+
+									<td>
+										<p class="text-start me-1">
+											Loại:
+											<span class="text-primary">@product.Model</span>
+										</p>
+										<p class="text-start me-1">
+											Màu sắc:
+											<span class="text-primary">@product.Color</span>
+										</p>
+										<p class="text-start me-1">
+											Giới tính:
+											<span class="text-primary">@product.Gender</span>
+										</p>
+
+									</td>
+
+								
 									<td>@product.StockQuantity</td>
 									<td>
 										<span class="badge badge-light-@product.Status.GetBadge()">
@@ -87,35 +111,35 @@
 										</span>
 									</td>
 
-									<td class="table-controls d-flex justify-content-center align-items-center pt-2">
+									<td class="table-controls d-flex justify-content-center align-items-center pt-5">
 										<li>
-										<a href="@Url.Action("Edit", "Product", new { id = product.Id })"
-										   class="bs-tooltip edit" data-bs-toggle="tooltip"
-										   data-bs-placement="top">
-											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-												 viewBox="0 0 24 24" fill="none" stroke="currentColor"
-												 stroke-width="2" stroke-linecap="round"
-												 stroke-linejoin="round"
-												 class="feather feather-edit-2 p-1 br-6 mb-1">
-												<path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
-												</path>
-											</svg>
-										</a>
+											<a href="@Url.Action("Edit", "Product", new { id = product.Id })"
+											   class="bs-tooltip edit" data-bs-toggle="tooltip"
+											   data-bs-placement="top">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+													 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+													 stroke-width="2" stroke-linecap="round"
+													 stroke-linejoin="round"
+													 class="feather feather-edit-2 p-1 br-6 mb-1">
+													<path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
+													</path>
+												</svg>
+											</a>
 										</li>
 										<li>
-										<a href="#" data-product-id="@product.Id"
-										   class="bs-tooltip delete" data-bs-toggle="tooltip"
-										   data-bs-placement="top">
-											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-												 viewBox="0 0 24 24" fill="none" stroke="currentColor"
-												 stroke-width="2" stroke-linecap="round"
-												 stroke-linejoin="round"
-												 class="feather feather-trash p-1 br-6 mb-1">
-												<polyline points="3 6 5 6 21 6"></polyline>
-												<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-											</svg>
-										</a>
-										
+											<a href="#" data-product-id="@product.Id"
+											   class="bs-tooltip delete" data-bs-toggle="tooltip"
+											   data-bs-placement="top">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+													 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+													 stroke-width="2" stroke-linecap="round"
+													 stroke-linejoin="round"
+													 class="feather feather-trash p-1 br-6 mb-1">
+													<polyline points="3 6 5 6 21 6"></polyline>
+													<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+												</svg>
+											</a>
+
 										</li>
 									</td>
 								</tr>

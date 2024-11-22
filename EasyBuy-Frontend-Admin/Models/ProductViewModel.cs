@@ -41,7 +41,6 @@ namespace EasyBuy_Frontend_Admin.Models
         public string Color { get; set; }
 
         [Required(ErrorMessage = "Giới tính là bắt buộc.")]
-        [StringLength(3, MinimumLength = 2, ErrorMessage = "Giới tính phải có độ dài từ 2 đến 3 ký tự.")]
         [JsonPropertyName("gender")]
         public string Gender { get; set; }
 

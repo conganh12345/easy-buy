@@ -47,7 +47,7 @@
 					<table id="inventoryvoucher-table" class="table style-3 dt-table-hover" style="width: 100%">
 						<thead>
 							<tr>
-								<th style="width: 5%">STT</th>
+								<th style="width: 10%">STT</th>
 								<th>Nhà cung cấp</th>
 								<th>Tổng cộng</th>
 								<th>Ngày nhập</th>
@@ -59,10 +59,24 @@
 							{
 								<tr>
 									<td>@inventoryvoucher.Id</td>
-									<td>@inventoryvoucher.Supplier.Name</td>
+									<td>
+										<p class="text-start me-1">
+											Tên:
+											<span class="text-primary">@inventoryvoucher.Supplier.Name</span>
+										</p>
+										<p class="text-start me-1">
+											Email:
+											<span class="text-primary">@inventoryvoucher.Supplier.Email</span>
+										</p>
+										<p class="text-start me-1">
+											Số điện thoại:
+											<span class="text-primary">@inventoryvoucher.Supplier.NumberPhone</span>
+										</p>
+
+									</td>
 									<td>@inventoryvoucher.Total.ToString("N0") VNĐ</td>
 									<td>@inventoryvoucher.Date</td>
-									<td class="table-controls d-flex justify-content-center align-items-center pt-2">
+									<td class="table-controls d-flex justify-content-center align-items-center pt-5">
 										<li>
 										<a href="@Url.Action("Show", "InventoryVoucher", new { id = inventoryvoucher.Id })"
 										   class="bs-tooltip show" data-bs-toggle="tooltip"
