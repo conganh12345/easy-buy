@@ -57,16 +57,61 @@ namespace EasyBuy_Frontend_Admin.Controllers
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Create(ProductViewModel product)
 		{
+			List<CategoryViewModel> categories = await _categoryService.GetCategoriesAsync();
+			string highestCode = await _productService.GetHighestCodeAsync();
+			if (string.IsNullOrEmpty(highestCode))
+			{
+				highestCode = "DH - 001";
+			}
+			else
+			{
+				var parts = highestCode.Split(" - ");
+				if (parts.Length == 2 && int.TryParse(parts[1], out int number))
+				{
+					highestCode = $"{parts[0]} - {number + 1:D3}";
+				}
+			}
+			if (!ModelState.IsValid)
+			{
+				TempData["Error"] = "Vui lòng kiểm tra lại thông tin.";
+				foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+				{
+					Debug.WriteLine($"Error: {error.ErrorMessage}");
+				}
+				ViewBag.HighestCode = highestCode;
+				ViewBag.Categories = new SelectList(categories, "Id", "Name");
+				return View(product);
+			}
+			if (string.IsNullOrEmpty(product.ProductImg))
+			{
+				ViewBag.HighestCode = highestCode;
+				ViewBag.Categories = new SelectList(categories, "Id", "Name");
+				return View(product);
+			}
+			string uploadDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
+			string filePath = Path.Combine(uploadDirectory, product.ProductImg);
+			if (System.IO.File.Exists(filePath))
+			{
+				product.ProductImg = $"/images/{product.ProductImg}";	
+			}
+			else
+			{
+				TempData["Error"] = "File không tồn tại. Vui lòng thử lại.";
+				ViewBag.HighestCode = highestCode;
+				ViewBag.Categories = new SelectList(categories, "Id", "Name");
+				return View(product);
+			}
+			
 			if (await _productService.AddProductAsync(product))
 			{
 				TempData["Success"] = "Thêm mới sản phẩm thành công.";
+				ViewBag.HighestCode = highestCode;
+				ViewBag.Categories = new SelectList(categories, "Id", "Name");
 				return RedirectToAction(nameof(Index));
 			}
-			TempData["Error"] = "Đã có lỗi xảy ra";
-
-			List<CategoryViewModel> categories = await _categoryService.GetCategoriesAsync();
+			TempData["Error"] = "Đã có lỗi xảy ra.";
+			ViewBag.HighestCode = highestCode;
 			ViewBag.Categories = new SelectList(categories, "Id", "Name");
-
 			return View(product);
 		}
 
@@ -74,24 +119,46 @@ namespace EasyBuy_Frontend_Admin.Controllers
 		{
 			ProductViewModel product = await _productService.GetProductByIdAsync(id);
 			List<CategoryViewModel> categories = await _categoryService.GetCategoriesAsync();
-
 			ViewBag.Categories = new SelectList(categories, "Id", "Name");
-
 			return View(product);
 		}
-
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Edit(ProductViewModel product)
 		{
+			List<CategoryViewModel> categories = await _categoryService.GetCategoriesAsync();
+			product.ProductImg = $"/images/{product.ProductImg}";
+
+			// Kiểm tra tính hợp lệ của ModelState
+			if (!ModelState.IsValid)
+			{
+				TempData["Error"] = "Vui lòng kiểm tra lại thông tin.";
+				ViewBag.Categories = new SelectList(categories, "Id", "Name");
+				return View(product);
+			}
+
+			// Kiểm tra ảnh sản phẩm
+			if (string.IsNullOrEmpty(product.ProductImg))
+			{
+				ViewBag.Categories = new SelectList(categories, "Id", "Name");
+				return View(product);
+			}
+
+			string uploadDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
+			string filePath = Path.Combine(uploadDirectory, product.ProductImg);
+			// Cập nhật sản phẩm
 			if (await _productService.UpdateProductAsync(product))
 			{
 				TempData["Success"] = "Chỉnh sửa sản phẩm thành công.";
 				return RedirectToAction(nameof(Index));
 			}
+
+			// Nếu có lỗi trong quá trình cập nhật
 			TempData["Error"] = "Đã có lỗi xảy ra";
+			ViewBag.Categories = new SelectList(categories, "Id", "Name");
 			return View(product);
 		}
+
 
 		[HttpPost]
 		public async Task<IActionResult> Delete(int id)

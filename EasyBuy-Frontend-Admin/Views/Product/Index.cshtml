@@ -2,6 +2,7 @@
 	ViewData["Title"] = "Sản phẩm";
 }
 @model List<EasyBuy_Frontend_Admin.Models.ProductViewModel>
+
 @using EasyBuy_Frontend_Admin.Helpers
 
 <!-- CSS riêng cho lớp con -->
@@ -66,8 +67,9 @@
 									<td>@product.Id</td>
 									<td><span class="badge badge-light-dark">@product.Code</span></td>
 									<td>
-										<img src="@product.ProductImg" alt="Image" style="width: 50px; height: auto;" />
+										<img src="@(string.IsNullOrEmpty(product.ProductImg) ? "/images/default.jpg" : product.ProductImg)" alt="Image" style="width: 50px; height: auto;" />
 									</td>
+
 									<td>@product.ProductName</td>
 									<td>@product.CategoryName</td>
 
