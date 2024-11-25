@@ -196,7 +196,6 @@
 
 				const data = await response.json();
 
-				// Tạo danh sách 15 ngày gần nhất
 				const today = new Date();
 				const categories = [];
 				const seriesData = [];
@@ -205,11 +204,9 @@
 					const date = new Date(today);
 					date.setDate(today.getDate() - i);
 
-					// Định dạng ngày thành dd/MM/yyyy
-					const formattedDate = date.toLocaleDateString('en-GB'); // Định dạng dd/MM/yyyy
+					const formattedDate = date.toLocaleDateString('en-GB'); 
 					categories.push(formattedDate);
 
-					// Thêm giá trị từ API hoặc 0 nếu không có
 					seriesData.push(data[formattedDate] || 0);
 				}
 
@@ -218,14 +215,11 @@
 				console.error('Error fetching order statistics:', error);
 			}
 		}
-
-
-		// Render chart with dynamic data
+		
 		function renderChart(categories, seriesData) {
-			// Xóa chart cũ nếu tồn tại
 			const existingChart = document.querySelector('#s-line');
 			if (existingChart) {
-				existingChart.innerHTML = ''; // Xóa nội dung cũ
+				existingChart.innerHTML = ''; 
 			}
 
 			var sline = {
@@ -234,15 +228,15 @@
 					type: 'line',
 					zoom: { enabled: false },
 					toolbar: { show: false },
-					dropShadow: { enabled: true, top: 3, left: 3, blur: 5, opacity: 0.1 } // Thêm bóng đổ cho biểu đồ
+					dropShadow: { enabled: true, top: 3, left: 3, blur: 5, opacity: 0.1 } 
 				},
 				dataLabels: { enabled: false },
 				stroke: {
-					curve: 'smooth',  // Làm đường cong mượt mà hơn
-					width: 3 // Điều chỉnh độ dày của đường kẻ
+					curve: 'smooth',  
+					width: 3 
 				},
 				series: [{
-					name: "Orders",
+					name: "Số lượng",
 					data: seriesData
 				}],
 				title: {
@@ -266,7 +260,6 @@
 				xaxis: {
 					categories: categories,
 					title: {
-						text: 'Date',
 						style: {
 							fontSize: '12px',
 							color: '#777'
@@ -302,11 +295,11 @@
 					intersect: false,
 					y: {
 						formatter: function (val) {
-							return val + ' orders'; // Format dữ liệu hiển thị trong tooltip
+							return val + ' đơn hàng'; 
 						}
 					}
 				},
-				colors: ['#007bff'], // Chọn màu cho đường biểu đồ
+				colors: ['#007bff'], 
 				legend: {
 					position: 'top',
 					horizontalAlign: 'center',
@@ -316,14 +309,14 @@
 					fontWeight: 600
 				},
 				markers: {
-					size: 6,  // Kích thước của dấu chấm
-					colors: ['#FF0000'],  // Màu đỏ cho dấu chấm
-					strokeColor: '#ffffff',  // Màu viền trắng cho dấu chấm
-					strokeWidth: 2,  // Độ dày của viền dấu chấm
+					size: 6, 
+					colors: ['#FF0000'], 
+					strokeColor: '#ffffff',  
+					strokeWidth: 2,  
 					hover: {
-						size: 8,  // Kích thước dấu chấm khi hover
-						colors: ['#FF6347'],  // Màu khi hover (màu đỏ nhạt)
-						strokeColor: '#ffffff',  // Viền khi hover
+						size: 8, 
+						colors: ['#FF6347'],  
+						strokeColor: '#ffffff',  
 						strokeWidth: 2
 					}
 				}
@@ -337,10 +330,6 @@
 			chart.render();
 		}
 
-
-		// Fetch data and render the chart when the page loads
 		document.addEventListener('DOMContentLoaded', fetchOrderStatistics);
 	</script>
-
-
 }
