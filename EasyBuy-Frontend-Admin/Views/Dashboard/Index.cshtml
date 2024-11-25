@@ -226,8 +226,12 @@
 				chart: {
 					height: 350,
 					type: 'line',
-					zoom: { enabled: false },
-					toolbar: { show: false },
+					zoom: { enabled: true },
+					toolbar: {
+						show: true,
+						offsetX: 0,
+						offsetY: 25,
+					},
 					dropShadow: { enabled: true, top: 3, left: 3, blur: 5, opacity: 0.1 } 
 				},
 				dataLabels: { enabled: false },
@@ -235,10 +239,26 @@
 					curve: 'smooth',  
 					width: 3 
 				},
+				plotOptions: {
+					bar: {
+						columnWidth: '50%'
+					}
+				},
 				series: [{
 					name: "Số lượng",
 					data: seriesData
 				}],
+				fill: {
+					opacity: [1],
+					gradient: {
+						inverseColors: false,
+						shade: 'light',
+						type: "vertical",
+						opacityFrom: 0.85,
+						opacityTo: 0.55,
+						stops: [0, 100, 100, 100]
+					}
+				},
 				title: {
 					text: 'Số lượng đơn hàng (15 ngày gần nhất)',
 					align: 'left',
