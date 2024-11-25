@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using EasyBuy_Frontend_Admin.Models.Enums;
 
@@ -48,8 +49,9 @@ namespace EasyBuy_Frontend_Admin.Models
         [JsonPropertyName("description")]
         public string? Description { get; set; }
 
-        [JsonPropertyName("productImg")]
-		public string? ProductImg { get; set; } = "default_image_path.jpg";
+		[JsonPropertyName("productImg")]
+		[Required(ErrorMessage = "Bạn phải chọn hình ảnh.")]
+		public string ProductImg { get; set; }
 
 		[Required(ErrorMessage = "Có thể xóa là bắt buộc.")]
 		[Range(0, int.MaxValue, ErrorMessage = "Có thể xóa không hợp lệ.")]
@@ -70,6 +72,7 @@ namespace EasyBuy_Frontend_Admin.Models
 		[Range(0, int.MaxValue, ErrorMessage = "id không hợp lệ.")]
 		[JsonPropertyName("categoryId")]
 		public int CategoryId { get; set; }
-		public string CategoryName { get; set; }
+		[NotMapped]
+		public string? CategoryName { get; set; }
 	}
 }
