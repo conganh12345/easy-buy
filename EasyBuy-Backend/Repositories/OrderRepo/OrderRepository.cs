@@ -3,6 +3,7 @@ using EasyBuy_Backend.Dtos.Order;
 using EasyBuy_Backend.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace EasyBuy_Backend.Repositories.OrderRepo
 {
@@ -59,6 +60,33 @@ namespace EasyBuy_Backend.Repositories.OrderRepo
 
 			return order;
 		}
+
+		public async Task<Dictionary<string, int>> GetOrderStatisticsAsync()
+		{
+			try
+			{
+				var endDate = DateTime.Now.Date.AddDays(1).AddTicks(-1);
+				var startDate = DateTime.Now.Date.AddDays(-14);
+
+				var orderStatistics = await _context.Orders
+					.Where(o => o.OrderDate >= startDate && o.OrderDate <= endDate)
+					.GroupBy(o => o.OrderDate.Date)
+					.Select(g => new
+					{
+						Date = g.Key.ToString("dd/MM/yyyy"),
+						Count = g.Count()
+					})
+					.ToDictionaryAsync(x => x.Date, x => x.Count);
+
+				return orderStatistics;
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine($"Error fetching order statistics: {ex.Message}");
+				return new Dictionary<string, int>();
+			}
+		}
+
 	}
 }
 

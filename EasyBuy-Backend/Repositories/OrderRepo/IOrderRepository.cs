@@ -13,4 +13,6 @@ public interface IOrderRepository : IRepository<Order>
 
 	Task<Order> CreateOrderAsync(Order order);
 
+	Task<Dictionary<string, int>> GetOrderStatisticsAsync();
+
 }

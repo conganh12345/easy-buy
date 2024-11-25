@@ -80,5 +80,26 @@ namespace EasyBuy_Backend.Controllers
 
 			return BadRequest("Error creating order");
 		}
+
+		[HttpGet("statistics")]
+		public async Task<IActionResult> GetOrderStatistics()
+		{
+			try
+			{
+				var statistics = await _orderRepository.GetOrderStatisticsAsync();
+
+				if (statistics == null || !statistics.Any())
+				{
+					return NotFound("No orders found in the last 15 days.");
+				}
+
+				return Ok(statistics);
+			}
+			catch (Exception ex)
+			{
+				return StatusCode(500, $"Internal server error: {ex.Message}");
+			}
+		}
+
 	}
 }
