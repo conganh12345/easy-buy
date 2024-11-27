@@ -4,16 +4,21 @@ using EasyBuy_Frontend_Admin.Services.AuthSvc;
 using EasyBuy_Frontend_Admin.Services.UserSvc;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Text.Json;
 
 namespace EasyBuy_Frontend_Admin.Controllers
 {
     public class AuthController : Controller
     {
         private readonly IAuthService _authService;
+        private readonly IUserService _userService;
 
-        public AuthController(IAuthService authService)
-        {
+        public AuthController(
+            IAuthService authService,
+            IUserService userService
+        ) {
             _authService = authService;
+            _userService = userService;
         }
 
         public IActionResult SignIn()
@@ -32,12 +37,18 @@ namespace EasyBuy_Frontend_Admin.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var result = _authService.Login(signInDTO); 
+				var result = _authService.Login(signInDTO);
 
-				if (result != null)
+                UserViewModel user = await _userService.GetUserByEmailAsync(signInDTO.Email);
+
+                if (result != null)
 				{
 					HttpContext.Session.SetString("IsAuthenticated", "True");
-					TempData["Success"] = "Đăng nhập thành công.";
+
+                    string userJson = JsonSerializer.Serialize(user);
+                    HttpContext.Session.SetString("CurrentUser", userJson);
+
+                    TempData["Success"] = "Đăng nhập thành công.";
 					return RedirectToAction("Index", "Dashboard");  
 				}
 

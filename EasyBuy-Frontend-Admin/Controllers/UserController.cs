@@ -2,6 +2,7 @@
 using EasyBuy_Frontend_Admin.Services.UserSvc;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Text.Json;
 
 namespace EasyBuy_Frontend_Admin.Controllers
 {
@@ -65,6 +66,28 @@ namespace EasyBuy_Frontend_Admin.Controllers
 			await _userService.DeleteUserAsync(id);
 
 			return Ok();
+		}
+
+		public async Task<IActionResult> Profile()
+		{
+			string userJson = HttpContext.Session.GetString("CurrentUser");
+
+			UserViewModel user = JsonSerializer.Deserialize<UserViewModel>(userJson);
+
+			return View(user);
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> Profile(UserViewModel user)
+		{
+			if (await _userService.UpdateUserAsync(user))
+			{
+				TempData["Success"] = "Chỉnh sửa hồ sơ thành công.";
+				return View(user);
+			}
+			TempData["Error"] = "Đã có lỗi xảy ra";
+			return View(user);
 		}
 	}
 }

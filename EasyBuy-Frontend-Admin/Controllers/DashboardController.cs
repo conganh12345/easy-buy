@@ -2,6 +2,8 @@
 using EasyBuy_Frontend_Admin.Services.DashboardSvc;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Diagnostics;
+using System.Text.Json;
 
 namespace EasyBuy_Frontend_Admin.Controllers
 {
@@ -17,7 +19,19 @@ namespace EasyBuy_Frontend_Admin.Controllers
 		}
 		public async Task<IActionResult> Index()
 		{
-			DashboardViewModel dashboards = await _dashboardService.GetDashboardAsync();
+            string userJson = HttpContext.Session.GetString("CurrentUser");
+
+            if (!string.IsNullOrEmpty(userJson))
+            {
+                UserViewModel user = JsonSerializer.Deserialize<UserViewModel>(userJson);
+                Debug.WriteLine($"Tên: {user.Name}, Email: {user.Email}");
+            }
+            else
+            {
+                Debug.WriteLine("Session không chứa thông tin người dùng.");
+            }
+
+            DashboardViewModel dashboards = await _dashboardService.GetDashboardAsync();
 			return View(dashboards);
 		}
     }

@@ -118,5 +118,32 @@ namespace EasyBuy_Frontend_Admin.Services.UserSvc
                 return false;
             }
 		}
-	}
+
+        public async Task<UserViewModel> GetUserByEmailAsync(string email)
+        {
+            UserViewModel user = null;
+
+            try
+            {
+                HttpResponseMessage response = await _httpClient.GetAsync($"/api/User/email/{email}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string data = await response.Content.ReadAsStringAsync();
+                    user = JsonSerializer.Deserialize<UserViewModel>(data);
+                }
+                else
+                {
+                    Debug.WriteLine("Failed to retrieve user by email. Status code: " + response.StatusCode);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("An error occurred while getting user by email: " + ex.Message);
+            }
+
+            return user;
+        }
+
+    }
 }

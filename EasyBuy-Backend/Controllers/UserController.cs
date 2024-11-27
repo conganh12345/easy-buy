@@ -69,5 +69,18 @@ namespace EasyBuy_Backend.Controllers
 			}
 			return BadRequest();
 		}
+
+        [HttpGet("email/{email}")]
+        public IActionResult GetByEmail(string email)
+        {
+            var user = _userRepository.GetByEmail(email);
+
+            if (user != null)
+            {
+                return Ok(user);
+            }
+
+            return NotFound(new { Message = "User not found" });
+        }
     }
 }

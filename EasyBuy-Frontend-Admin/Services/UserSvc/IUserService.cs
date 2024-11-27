@@ -13,5 +13,8 @@ namespace EasyBuy_Frontend_Admin.Services.UserSvc
         Task<bool> UpdateUserAsync(UserViewModel user);
 
         Task<bool> DeleteUserAsync(int id);
-	}
+
+		Task<UserViewModel> GetUserByEmailAsync(string email);
+
+    }
 }
