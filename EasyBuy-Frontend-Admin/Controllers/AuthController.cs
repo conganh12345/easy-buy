@@ -82,7 +82,35 @@ namespace EasyBuy_Frontend_Admin.Controllers
 
 			return Json(new { success = true });
 		}
+        public async Task<IActionResult> ViewProfile()
+        {
+            string userJson = HttpContext.Session.GetString("CurrentUser");
 
+            UserViewModel user = JsonSerializer.Deserialize<UserViewModel>(userJson);
+
+            return View(user);
+        }
+        public async Task<IActionResult> Profile()
+		{
+			string userJson = HttpContext.Session.GetString("CurrentUser");
+
+			UserViewModel user = JsonSerializer.Deserialize<UserViewModel>(userJson);
+
+			return View(user);
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> Profile(UserViewModel user)
+		{
+			if (await _userService.UpdateUserAsync(user))
+			{
+				TempData["Success"] = "Chỉnh sửa hồ sơ thành công.";
+				return View(user);
+			}
+			TempData["Error"] = "Đã có lỗi xảy ra";
+			return View(user);
+		}
 	}
 }
 
