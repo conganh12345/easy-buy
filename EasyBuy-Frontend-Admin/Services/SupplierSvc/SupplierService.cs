@@ -116,6 +116,25 @@ namespace EasyBuy_Frontend_Admin.Services.SupplierSvc
                 return false;
             }
         }
-    }
+
+		public async Task<List<SupplierViewModel>> GetSuppliersActive()
+		{
+			List<SupplierViewModel> suppliers = new List<SupplierViewModel>();
+
+			try
+			{
+				HttpResponseMessage response = await _httpClient.GetAsync("/api/Supplier/active");
+
+				string data = await response.Content.ReadAsStringAsync();
+				suppliers = JsonSerializer.Deserialize<List<SupplierViewModel>>(data);
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine("An error occurred: " + ex.Message);
+			}
+
+			return suppliers;
+		}
+	}
 }
     

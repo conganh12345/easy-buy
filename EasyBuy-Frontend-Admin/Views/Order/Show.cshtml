@@ -335,7 +335,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')  
                 },
                 success: function (response) {
-             
+                    console.log("test", 1);
                     if (response.message) {
                         handleSuccess(response.message, response.statusBadge, response.statusName);
                     }

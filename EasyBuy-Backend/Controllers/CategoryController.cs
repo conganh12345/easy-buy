@@ -66,5 +66,13 @@ namespace EasyBuy_Backend.Controllers
 			}
 			return BadRequest();
 		}
-    }
+
+		[HttpGet("active")]
+		public IActionResult GetActiveCategories()
+		{
+			var activeCategories = _categoryRepository.GetActiveCategories();
+
+			return Ok(activeCategories);
+		}
+	}
 }

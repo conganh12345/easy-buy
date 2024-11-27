@@ -13,5 +13,8 @@ namespace EasyBuy_Frontend_Admin.Services.SupplierSvc
         Task<bool> UpdateSupplierAsync(SupplierViewModel supplier);
 
         Task<bool> DeleteSupplierAsync(int id);
-    }
+
+        Task<List<SupplierViewModel>> GetSuppliersActive();
+
+	}
 }

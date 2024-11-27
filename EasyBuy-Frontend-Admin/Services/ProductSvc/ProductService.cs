@@ -34,7 +34,8 @@ namespace EasyBuy_Frontend_Admin.Services.ProductSvc
 		{
 			try
 			{
-				Debug.WriteLine($"Status: {product.Status}");
+				product.Discount /= 100;
+
 				var response = await _httpClient.PostAsJsonAsync("/api/Product", product);
 
 				if (response.IsSuccessStatusCode)
@@ -80,6 +81,8 @@ namespace EasyBuy_Frontend_Admin.Services.ProductSvc
 		{
 			try
 			{
+				product.Discount /= 100;
+
 				var response = await _httpClient.PutAsJsonAsync($"/api/Product/{product.Id}", product);
 
 				if (response.IsSuccessStatusCode)

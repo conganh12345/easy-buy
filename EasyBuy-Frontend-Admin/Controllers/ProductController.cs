@@ -34,7 +34,7 @@ namespace EasyBuy_Frontend_Admin.Controllers
 
 		public async Task<IActionResult> Create()
 		{
-			List<CategoryViewModel> categories = await _categoryService.GetCategoriesAsync();
+			List<CategoryViewModel> categories = await _categoryService.GetCategoriesActive();
 			string highestCode = await _productService.GetHighestCodeAsync();
 			if (string.IsNullOrEmpty(highestCode))
 			{
@@ -57,7 +57,7 @@ namespace EasyBuy_Frontend_Admin.Controllers
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Create(ProductViewModel product)
 		{
-			List<CategoryViewModel> categories = await _categoryService.GetCategoriesAsync();
+			List<CategoryViewModel> categories = await _categoryService.GetCategoriesActive();
 			string highestCode = await _productService.GetHighestCodeAsync();
 			if (string.IsNullOrEmpty(highestCode))
 			{
@@ -71,17 +71,7 @@ namespace EasyBuy_Frontend_Admin.Controllers
 					highestCode = $"{parts[0]} - {number + 1:D3}";
 				}
 			}
-			if (!ModelState.IsValid)
-			{
-				TempData["Error"] = "Vui lòng kiểm tra lại thông tin.";
-				foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-				{
-					Debug.WriteLine($"Error: {error.ErrorMessage}");
-				}
-				ViewBag.HighestCode = highestCode;
-				ViewBag.Categories = new SelectList(categories, "Id", "Name");
-				return View(product);
-			}
+			
 			if (string.IsNullOrEmpty(product.ProductImg))
 			{
 				ViewBag.HighestCode = highestCode;
@@ -118,24 +108,17 @@ namespace EasyBuy_Frontend_Admin.Controllers
 		public async Task<IActionResult> Edit(int id)
 		{
 			ProductViewModel product = await _productService.GetProductByIdAsync(id);
-			List<CategoryViewModel> categories = await _categoryService.GetCategoriesAsync();
+			List<CategoryViewModel> categories = await _categoryService.GetCategoriesActive();
 			ViewBag.Categories = new SelectList(categories, "Id", "Name");
+			product.Discount *= 100;
 			return View(product);
 		}
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Edit(ProductViewModel product)
 		{
-			List<CategoryViewModel> categories = await _categoryService.GetCategoriesAsync();
+			List<CategoryViewModel> categories = await _categoryService.GetCategoriesActive();
 			product.ProductImg = $"/images/{product.ProductImg}";
-
-			// Kiểm tra tính hợp lệ của ModelState
-			if (!ModelState.IsValid)
-			{
-				TempData["Error"] = "Vui lòng kiểm tra lại thông tin.";
-				ViewBag.Categories = new SelectList(categories, "Id", "Name");
-				return View(product);
-			}
 
 			// Kiểm tra ảnh sản phẩm
 			if (string.IsNullOrEmpty(product.ProductImg))

@@ -114,5 +114,23 @@ namespace EasyBuy_Frontend_Admin.Services.CategorySvc
                 return false;
             }
         }
-    }
+
+		public async Task<List<CategoryViewModel>> GetCategoriesActive()
+		{
+			List<CategoryViewModel> categories = new List<CategoryViewModel>();
+
+			try
+			{
+				HttpResponseMessage response = await _httpClient.GetAsync("/api/Category/active");
+				string data = await response.Content.ReadAsStringAsync();
+				categories = JsonSerializer.Deserialize<List<CategoryViewModel>>(data);
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine("An error occurred: " + ex.Message);
+			}
+
+			return categories;
+		}
+	}
 }

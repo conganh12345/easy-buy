@@ -6,6 +6,7 @@
 
 @section Styles {
         <!-- CSS riêng cho lớp con -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <link rel="stylesheet" href="@Url.Content("~/css/plugins/light/tomSelect/custom-tomSelect.css")">
         <link rel="stylesheet" href="@Url.Content("~/css/plugins/dark/tomSelect/custom-tomSelect.css")">
         <link rel="stylesheet" href="@Url.Content("~/lib/plugins/tomSelect/tom-select.default.min.css")">
@@ -74,8 +75,13 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="text-muted mb-4">!!! Vui lòng chọn nhà cung cấp và ngày nhập trước khi chọn sản phẩm.</p>
+                            <div class="col-lg-8 col-md-6 col-12 mb-2 d-flex align-items-center">
+                                <strong class="text-dark">
+                                    <i class="fas fa-exclamation-triangle text-warning"></i>
 
+                                    Vui lòng chọn nhà cung cấp và ngày nhập trước khi chọn sản phẩm.
+                                </strong>
+                            </div><br>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group mb-4">

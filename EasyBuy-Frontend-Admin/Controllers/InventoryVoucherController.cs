@@ -35,7 +35,7 @@ namespace EasyBuy_Frontend_Admin.Controllers
 
 		public async Task<IActionResult> Create()
 		{
-			List<SupplierViewModel> suppliers = await _supplierService.GetSuppliersAsync();
+			List<SupplierViewModel> suppliers = await _supplierService.GetSuppliersActive();
 			List<ProductViewModel> products = await _productService.GetProductsAsync();
 
 			ViewBag.Suppliers = new SelectList(suppliers, "Id", "Name");
@@ -64,7 +64,7 @@ namespace EasyBuy_Frontend_Admin.Controllers
 		{
 			InventoryVoucherViewModel inventoryvoucher = await _inventoryvoucherService.GetInventoryVoucherByIdAsync(id);
 
-			List<SupplierViewModel> suppliers = await _supplierService.GetSuppliersAsync();
+			List<SupplierViewModel> suppliers = await _supplierService.GetSuppliersActive();
 
 			return View(inventoryvoucher);
 		}

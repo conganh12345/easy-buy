@@ -56,7 +56,7 @@ namespace EasyBuy_Frontend_Admin.Controllers
         {
             if (await _orderService.UpdateOrderAsync(updateOrderDTO))
             {
-                return Json(new { success = true, message = "Chỉnh sửa thành công." });
+				return Json(new { success = true, message = "Chỉnh sửa thành công." });
             }
             return Json(new { success = false, message = "Có lỗi xảy ra khi chỉnh sửa." });
         }

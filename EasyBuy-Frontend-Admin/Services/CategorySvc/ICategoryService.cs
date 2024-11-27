@@ -13,5 +13,8 @@ namespace EasyBuy_Frontend_Admin.Services.CategorySvc
         Task<bool> UpdateCategoryAsync(CategoryViewModel category);
 
         Task<bool> DeleteCategoryAsync(int id);
-    }
+
+        Task<List<CategoryViewModel>> GetCategoriesActive();
+
+	}
 }

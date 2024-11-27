@@ -63,5 +63,12 @@ namespace EasyBuy_Backend.Controllers
 			return BadRequest();
 		}
 
+		[HttpGet("active")]
+		public IActionResult GetActiveSuppliers()
+		{
+			var activeSuppliers = _supplierRepository.GetActiveSuppliers();
+
+			return Ok(activeSuppliers);
+		}
 	}
 }

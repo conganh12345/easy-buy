@@ -12,19 +12,5 @@ public class ProductRepository : Repository<Product>, IProductRepository
     {
         _context = context;
     }
-	//public bool Create(Product product)
-	//{
-	//	try
-	//	{
-	//		_context.Set<Product>().Add(product);
-	//		_context.SaveChanges();
 
-	//		return true;
-	//	}
-	//	catch (Exception ex)
-	//	{
-	//		Debug.WriteLine($"Unexpected error: {ex.Message}");
-	//		return false;
-	//	}
-	//}
 }

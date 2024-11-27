@@ -43,7 +43,7 @@ namespace EasyBuy_Frontend_Admin.Services.AuthSvc
             {
                 var response = await _httpClient.PostAsJsonAsync("/api/Auth/Login", signInDTO);
 
-                if (response.IsSuccessStatusCode)
+				if (response.IsSuccessStatusCode)
                 {
                     var user = await response.Content.ReadFromJsonAsync<SignInDTO>();
                     return user; 

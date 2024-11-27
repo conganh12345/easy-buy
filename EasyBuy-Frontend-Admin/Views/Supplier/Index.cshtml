@@ -49,9 +49,8 @@
 							<tr>
 								<th style="width: 5%">STT</th>
 								<th>Tên</th>
-								<th>SDT</th>
-								<th>Địa chỉ</th>
-								<th>Email</th>
+								<th>Thông tin chi tiết</th>
+				
 								<th>Trạng thái</th>
 								<th class="no-content" style="width: 5%">Thao tác</th>
 							</tr>
@@ -62,16 +61,29 @@
 								<tr>
 									<td>@supplier.Id</td>
 									<td>@supplier.Name</td>
-									<td>@supplier.NumberPhone</td>
-									<td>@supplier.Address</td>
-									<td>@supplier.Email</td>
+								
+									<td>
+										<p class="text-start me-1">
+											Số điện thoại:
+											<span class="text-primary">@supplier.NumberPhone</span>
+										</p>
+										<p class="text-start me-1">
+											Địa chỉ:
+											<span class="text-primary">@supplier.Address</span>
+										</p>
+										<p class="text-start me-1">
+											Email:
+											<span class="text-primary">@supplier.Email</span>
+										</p>
+
+									</td>
 
 									<td>
 										<span class="badge badge-light-@supplier.Status.GetBadge()">
 											@supplier.Status.GetDisplayName()
 										</span>
 									</td>
-									<td class="table-controls d-flex justify-content-center align-items-center pt-2">
+									<td class="table-controls d-flex justify-content-center align-items-center pt-5">
 										<li>
 										<a href="@Url.Action("Edit", "Supplier", new { id = supplier.Id })"
 										   class="bs-tooltip edit" data-bs-toggle="tooltip"

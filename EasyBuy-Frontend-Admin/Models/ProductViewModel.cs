@@ -27,8 +27,8 @@ namespace EasyBuy_Frontend_Admin.Models
         public Double ImportPrice { get; set; }
 
 		[Required(ErrorMessage = "Khuyến mãi là bắt buộc.")]
-		[Range(0, double.MaxValue, ErrorMessage = "Khuyến mãi không hợp lệ.")]
-        [JsonPropertyName("discount")]
+		[Range(0, 100, ErrorMessage = "Khuyến mãi phải nằm trong khoảng từ 0 đến 100.")]
+		[JsonPropertyName("discount")]
         public Double Discount { get; set; }
 
         [Required(ErrorMessage = "Kiểu là bắt buộc.")]

@@ -6,9 +6,18 @@ namespace EasyBuy_Backend.Repositories.CategoryRepo
 {
     public class CategoryRepository : Repository<Category>, ICategoryRepository
     {
-        public CategoryRepository(MyDbContext context) : base(context)
+		private readonly MyDbContext _context;
+
+		public CategoryRepository(MyDbContext context) : base(context)
         {
-            //
-        }
-    }
+			_context = context;
+		}
+
+		public IEnumerable<Category> GetActiveCategories()
+		{
+			return _context.Categories
+				.Where(c => c.Status == Models.Enums.CategoryStatus.ENABLE)
+				.ToList();
+		}
+	}
 }

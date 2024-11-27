@@ -63,8 +63,8 @@
 								<tr>
 									<td>@voucher.Id</td>
 									<td>@voucher.Name</td>
-									<td>@voucher.Discount</td>
-									<td>@voucher.Unit</td>
+									<td>@voucher.Discount.ToString("N0") VNĐ</td>
+									<td>@(voucher.Unit == "0" ? "%" : "VNĐ")</td>
 									<td>@voucher.DateFrom.ToString("dd-MM-yyyy")</td>
 									<td>@voucher.DateTo.ToString("dd-MM-yyyy")</td>
 									<td>
