@@ -145,7 +145,30 @@ namespace EasyBuy_Frontend_Admin.Services.ProductSvc
 			return null;
 		}
 
+		public async Task<List<ProductViewModel>> GetProductsByCategoryAsync(int categoryId)
+		{
+			List<ProductViewModel> products = new List<ProductViewModel>();
 
+			try
+			{
+				HttpResponseMessage response = await _httpClient.GetAsync($"/api/Product/category/{categoryId}");
 
+				if (response.IsSuccessStatusCode)
+				{
+					string data = await response.Content.ReadAsStringAsync();
+					products = JsonSerializer.Deserialize<List<ProductViewModel>>(data);
+				}
+				else
+				{
+					Debug.WriteLine("Failed to retrieve products for category. Status code: " + response.StatusCode);
+				}
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine("An error occurred while getting products by category: " + ex.Message);
+			}
+
+			return products;
+		}
 	}
 }

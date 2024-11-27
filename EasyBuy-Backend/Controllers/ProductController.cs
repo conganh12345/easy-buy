@@ -66,5 +66,18 @@ namespace EasyBuy_Backend.Controllers
             }
             return BadRequest();
         }
-    }
+
+		[HttpGet("category/{categoryId}")]
+		public async Task<IActionResult> GetByCategoryId(int categoryId)
+		{
+			var products = await _productRepository.GetProductsByCategoryIdAsync(categoryId);
+
+			if (products == null || !products.Any())
+			{
+				return NotFound("No products found for this category.");
+			}
+
+			return Ok(products);
+		}
+	}
 }

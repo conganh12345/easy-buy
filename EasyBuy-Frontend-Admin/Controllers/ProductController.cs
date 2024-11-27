@@ -150,5 +150,20 @@ namespace EasyBuy_Frontend_Admin.Controllers
 
 			return Ok();
 		}
+
+
+		[HttpGet]
+		public JsonResult GetProducts(int id)
+		{
+			var category = _categoryService.GetCategoryByIdAsync(id);
+			if (category == null)
+			{
+				return Json(new { success = false, message = "Danh mục không tồn tại" });
+			}
+
+			var products = _productService.GetProductsByCategoryAsync(id);
+
+			return Json(new { success = true, products = products });
+		}
 	}
 }

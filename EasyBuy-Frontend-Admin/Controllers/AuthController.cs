@@ -63,6 +63,15 @@ namespace EasyBuy_Frontend_Admin.Controllers
             }
             return View(signUpDTO);
         }
-    }
+
+		[HttpPost]
+		public IActionResult Logout()
+		{
+			HttpContext.Session.Remove("IsAuthenticated");
+
+			return Json(new { success = true });
+		}
+
+	}
 }
 

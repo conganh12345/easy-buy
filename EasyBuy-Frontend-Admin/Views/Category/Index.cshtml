@@ -51,6 +51,7 @@
 								<th>Tên</th>
 								<th>Mô tả</th>
 								<th>Trạng thái</th>
+								<th class="text-center">Danh sách sản phẩm</th>
 								<th class="no-content" style="width: 5%">Thao tác</th>
 							</tr>
 						</thead>
@@ -64,6 +65,18 @@
 									<td>
 										<span class="badge badge-light-@category.Status.GetBadge()">@category.Status.GetDisplayName()
 										</span>
+									</td>
+
+									<td class="text-center">
+										<a href="#" data-category-id="@category.Id"
+										class="btn-warning p-2 rounded text-nowrap view-train-cars pl-3"
+										   >
+											Xem
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye p-1 br-6 mb-1">
+												<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+												<circle cx="12" cy="12" r="3"></circle>
+											</svg>
+										</a>
 									</td>
 									<td class="table-controls d-flex justify-content-center align-items-center pt-2">
 										<li>
@@ -106,6 +119,38 @@
 	</div>
 
 	<!-- /DATATABLE -->
+
+	<div class="modal fade" id="trainCarsModal" tabindex="-1" aria-labelledby="trainCarsModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="trainCarsModalLabel">Danh sách sản phẩm</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<table id="productTables" class="table">
+						<thead>
+							<tr>
+								<th>STT</th>
+								<th>Mã sản phẩm</th>
+								<th>Tên</th>
+								<th>Loại</th>
+								<th>Số lượng</th>
+							</tr>
+						</thead>
+						<tbody id="productTableBody">
+						</tbody>
+					</table>
+					<div class="d-flex justify-content-end mt-3">
+						<button type="button" class="btn btn-light-dark"
+								data-bs-dismiss="modal">
+							Đóng
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 <!-- Scripts riêng cho lớp con -->
@@ -136,6 +181,19 @@
 				"pageLength": 10,
 				"ordering": false
 			});
+	</script>
+
+	<script>
+		$('#productTables').DataTable({
+		    "dom": "<'table-responsive'tr>", 
+		    "oLanguage": {
+		        "sEmptyTable": "Chưa có dữ liệu",
+		        "sZeroRecords": "Không có bản ghi nào trùng khớp",
+		    },
+		    "stripeClasses": [],
+		    "paging": false, 
+		    "ordering": false 
+		});
 	</script>
 
 	<script>
@@ -182,5 +240,48 @@
 				$('#deleteModal').modal('hide');
 			});
 		});
+	</script>
+
+	<script>
+		$(document).ready(function() {
+  
+			$('.view-train-cars').on('click', function(e) {
+				e.preventDefault();
+        
+				var categoryId = $(this).data('category-id');
+        
+				$.ajax({
+					url: '/Product/GetProducts',
+					type: 'GET',
+					data: { id: categoryId },
+					success: function(response) {
+						var productTableBody = $('#productTableBody');
+						productTableBody.empty();
+
+						if (Array.isArray(response.products.result)) {
+							response.products.result.forEach(function(product, index) {
+								var row = '<tr>' +
+									'<td>' + (index + 1) + '</td>' +
+									'<td><span class="badge badge-light-dark">' + product.code + '</span></td>' +
+									'<td>' + product.productName + '</td>' +
+									'<td>' + product.model + '</td>' +
+									'<td>' + product.stockQuantity + '</td>' +
+								'</tr>';
+								productTableBody.append(row);
+							});
+						} else {
+							alert('Dữ liệu sản phẩm không hợp lệ');
+						}
+
+						$('#trainCarsModal').modal('show');
+					},
+					error: function(xhr, status, error) {
+						alert('Không thể tải dữ liệu sản phẩm');
+					}
+				});
+
+			});
+		});
+
 	</script>
 }

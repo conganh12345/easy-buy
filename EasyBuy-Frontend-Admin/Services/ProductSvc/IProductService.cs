@@ -15,5 +15,6 @@ namespace EasyBuy_Frontend_Admin.Services.ProductSvc
 
 		Task<string> GetHighestCodeAsync();
 
+		Task<List<ProductViewModel>> GetProductsByCategoryAsync(int categoryId);
 	}
 }

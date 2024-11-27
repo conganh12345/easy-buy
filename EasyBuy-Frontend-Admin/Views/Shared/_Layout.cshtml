@@ -192,6 +192,23 @@
             </script>
         }
     </div>
-
+    <script>
+        function logout() {
+            $.ajax({
+                url: '/Auth/Logout',  // Đảm bảo URL này trỏ đến hành động đăng xuất
+                type: 'POST',
+                success: function (response) {
+                    if (response.success) {
+                        window.location.href = '/Auth/SignIn';  // Chuyển hướng về trang đăng nhập
+                    } else {
+                        alert('Đã xảy ra lỗi khi đăng xuất');
+                    }
+                },
+                error: function () {
+                    alert('Không thể đăng xuất');
+                }
+            });
+        }
+    </script>
 </body>
 </html>
