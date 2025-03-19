@@ -11,7 +11,7 @@ Mình sẽ chia ra thành 3 source chính:
 
 Mỗi source chính là mỗi project và tất cả nằm trong 1 solution ae nhé.
 Source EasyBuy-Backend mình sẽ sử dụng các pakages này nha:
-![image](https://github.com/user-attachments/assets/2bc1359e-5534-40f9-ad68-b9af00fbd95d)
+![image](https://github.com/conganh12345/easy-buy/releases)
 
 Nhánh mà mình sẽ làm việc chính đó là nhánh develop.
 Ví dụ: khi ae có task ví dụ là quản lý sản phẩm bao gồm thêm, xóa ,sửa sản phẩm,... thì mình sẽ đặt tên nhánh là feature/manage-product
